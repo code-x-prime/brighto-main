@@ -237,15 +237,17 @@ export function BrightoCTAFooter() {
 
         {/* Copyright and Made By */}
         <div className="mx-auto mb-6 mt-6 flex flex-col justify-between text-center text-xs md:max-w-7xl px-4">
-          <div className="flex flex-row items-center justify-center gap-1 text-slate-500">
-            <span>©</span>
-            <span>{new Date().getFullYear()}</span>
-            <span>Made with</span>
-            <FaHeart className="text-orange-500 mx-0.5 h-3.5 w-3.5 animate-pulse fill-orange-500" />
-            <span>by</span>
-            <span className="font-bold text-slate-800 hover:text-blue-900 cursor-pointer">
-              Brighto India
-            </span>
+          <div className="flex flex-row flex-wrap items-center justify-center gap-1 text-slate-500">
+            <span>© {new Date().getFullYear()}</span>
+            <span>Brighto India design and develop by</span>
+            <a 
+              href="https://groxmedia.in/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="font-bold text-slate-800 hover:text-blue-900 transition-colors"
+            >
+              "Grox Media"
+            </a>
           </div>
         </div>
       </footer>
