@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 const ecosystem = [
   {
@@ -10,6 +11,7 @@ const ecosystem = [
     tag: 'Background Verification',
     accent: '#3B82F6',
     letter: 'CS',
+    logo: '/CrediScout-Logo2.png',
   },
   {
     name: 'Hubcheck',
@@ -34,8 +36,10 @@ const ecosystem = [
     tag: 'CRM & Telecalling',
     accent: '#8B5CF6',
     letter: 'TR',
+    logo: '/TrueRing-Logo2.png',
   },
 ]
+
 
 export function BrightoEcosystem() {
   const [hovered, setHovered] = useState<number | null>(null)
@@ -168,17 +172,24 @@ export function BrightoEcosystem() {
               <circle cx="400" cy="200" r="74" fill="none" stroke="#091C8C" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.25" className="eco-spin-slow" style={{ transformOrigin: '400px 200px' }} />
               <circle cx="400" cy="200" r="66" fill="none" stroke="#091C8C" strokeWidth="1" opacity="0.15" />
               <circle cx="400" cy="200" r="58" fill="#091C8C" opacity="0.08" className="animate-pulse" />
-              <circle cx="400" cy="200" r="50" fill="url(#center-grad)" filter="url(#eco-shadow)" />
-              <text x="400" y="196" textAnchor="middle" fill="#FFFFFF" fontSize="13" fontWeight="800" fontFamily="var(--font-manrope)">Brighto</text>
-              <text x="400" y="213" textAnchor="middle" fill="#93c5fd" fontSize="11" fontWeight="600" fontFamily="var(--font-manrope)">India</text>
+              <circle cx="400" cy="200" r="50" fill="#FFFFFF" stroke="#091C8C" strokeWidth="2" filter="url(#eco-shadow)" />
+              <image
+                href="/Brighto-Logo.png"
+                x="355"
+                y="180"
+                width="90"
+                height="40"
+                preserveAspectRatio="xMidYMid meet"
+              />
+
             </g>
 
             {/* Surrounding nodes */}
             {[
-              { cx: 155, cy: 85, label: 'Crediscout', sub: 'Background', accent: '#3B82F6' },
+              { cx: 155, cy: 85, label: 'Crediscout', sub: 'Background', accent: '#3B82F6', logo: '/CrediScout-Logo2.png' },
               { cx: 645, cy: 85, label: 'Hubcheck', sub: 'Warehouse', accent: '#F97316' },
               { cx: 155, cy: 315, label: 'Credify', sub: 'APIs', accent: '#10B981' },
-              { cx: 645, cy: 315, label: 'Truering', sub: 'CRM', accent: '#8B5CF6' },
+              { cx: 645, cy: 315, label: 'Truering', sub: 'CRM', accent: '#8B5CF6', logo: '/TrueRing-Logo2.png' },
             ].map((node, idx) => (
               <g key={idx} className="cursor-pointer group">
                 {/* Outer ring pulse */}
@@ -194,8 +205,21 @@ export function BrightoEcosystem() {
                   strokeLinecap="round"
                   opacity="0.75"
                 />
-                <text x={node.cx} y={node.cy + 5} textAnchor="middle" fontSize="14" fontWeight="700" fill="#0F172A" fontFamily="var(--font-manrope)">{node.label}</text>
-                <text x={node.cx} y={node.cy + 21} textAnchor="middle" fontSize="11" fontWeight="500" fill={node.accent} fontFamily="var(--font-manrope)">{node.sub}</text>
+                {node.logo ? (
+                  <image
+                    href={node.logo}
+                    x={node.cx - 42}
+                    y={node.cy - 21}
+                    width="84"
+                    height="42"
+                    preserveAspectRatio="xMidYMid meet"
+                  />
+                ) : (
+                  <>
+                    <text x={node.cx} y={node.cy + 5} textAnchor="middle" fontSize="14" fontWeight="700" fill="#0F172A" fontFamily="var(--font-manrope)">{node.label}</text>
+                    <text x={node.cx} y={node.cy + 21} textAnchor="middle" fontSize="11" fontWeight="500" fill={node.accent} fontFamily="var(--font-manrope)">{node.sub}</text>
+                  </>
+                )}
               </g>
             ))}
           </svg>
@@ -263,16 +287,30 @@ export function BrightoEcosystem() {
 
                 {/* Header */}
                 <div className="relative z-10 flex items-start justify-between gap-2">
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-xs font-black transition-all duration-300 shrink-0"
-                    style={{
-                      background: isHovered ? item.accent : `${item.accent}15`,
-                      border: `1px solid ${item.accent}${isHovered ? 'ff' : '35'}`,
-                      color: isHovered ? '#fff' : item.accent,
-                    }}
-                  >
-                    {item.letter}
-                  </div>
+                  {item.logo ? (
+                    <div
+                      className="w-16 h-10 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 bg-white border border-slate-200/80 p-1.5 shadow-sm group-hover:border-blue-200"
+                    >
+                      <Image
+                        src={item.logo}
+                        alt={item.name}
+                        width={60}
+                        height={30}
+                        className="object-contain w-full h-full"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center text-xs font-black transition-all duration-300 shrink-0"
+                      style={{
+                        background: isHovered ? item.accent : `${item.accent}15`,
+                        border: `1px solid ${item.accent}${isHovered ? 'ff' : '35'}`,
+                        color: isHovered ? '#fff' : item.accent,
+                      }}
+                    >
+                      {item.letter}
+                    </div>
+                  )}
                   <span
                     className="text-[10px] font-bold px-2 py-1 rounded-full border"
                     style={{

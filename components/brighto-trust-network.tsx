@@ -1,15 +1,15 @@
 'use client'
 
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
-
+import Image from 'next/image'
 
 export function BrightoTrustNetwork() {
   const brands = [
-    { name: 'Crediscout', initials: 'CS', desc: 'Background verification — employment, education, address, vendor & contractor screening' },
+    { name: 'Crediscout', initials: 'CS', desc: 'Background verification — employment, education, address, vendor & contractor screening', logo: '/CrediScout-Logo2.png' },
     { name: 'Hubcheck', initials: 'HC', desc: 'Warehouse audits, stock verification, collateral reviews for commodity finance' },
     { name: 'Credify India', initials: 'CI', desc: 'Verification APIs — KYC, KYB, digital onboarding, banking & compliance APIs' },
-    { name: 'Truering', initials: 'TR', desc: 'Telecalling CRM — inbound/outbound calling, cloud phone, lead tracking, auto dialers' },
-    { name: 'Brighto Risk', initials: 'BR', desc: 'Deep risk intelligence & fraud identification suite across enterprise networks' },
+    { name: 'Truering', initials: 'TR', desc: 'Telecalling CRM — inbound/outbound calling, cloud phone, lead tracking, auto dialers', logo: '/TrueRing-Logo2.png' },
+    { name: 'Brighto Risk', initials: 'BR', desc: 'Deep risk intelligence & fraud identification suite across enterprise networks', logo: '/Brighto-Logo.png' },
   ]
 
   return (
@@ -53,11 +53,23 @@ export function BrightoTrustNetwork() {
                   className="relative bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-xl hover:border-blue-200 transition-all duration-300 flex flex-col justify-between group cursor-pointer hover:-translate-y-1 overflow-hidden"
                 >
                   <div>
-                    <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center mb-4 transition-colors group-hover:bg-blue-900 group-hover:border-blue-900">
-                      <span className="text-xs font-bold text-blue-900 transition-colors group-hover:text-white">
-                        {brand.initials}
-                      </span>
-                    </div>
+                    {brand.logo ? (
+                      <div className="w-24 h-12 bg-white border border-slate-100 rounded-xl flex items-center justify-center p-2 mb-4 shadow-sm group-hover:border-blue-200 transition-colors">
+                        <Image
+                          src={brand.logo}
+                          alt={brand.name}
+                          width={80}
+                          height={40}
+                          className="object-contain w-full h-full"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center mb-4 transition-colors group-hover:bg-blue-900 group-hover:border-blue-900">
+                        <span className="text-xs font-bold text-blue-900 transition-colors group-hover:text-white">
+                          {brand.initials}
+                        </span>
+                      </div>
+                    )}
                     <h3 className="font-bold text-slate-900 group-hover:text-blue-900 transition-colors">
                       {brand.name}
                     </h3>
