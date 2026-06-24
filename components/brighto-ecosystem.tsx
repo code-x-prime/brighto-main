@@ -28,6 +28,7 @@ const ecosystem = [
     tag: 'API & Tech',
     accent: '#10B981',
     letter: 'CI',
+    logo: '/Credify-Logo2.png',
   },
   {
     name: 'Truering',
@@ -188,7 +189,7 @@ export function BrightoEcosystem() {
             {[
               { cx: 155, cy: 85, label: 'Crediscout', sub: 'Background', accent: '#3B82F6', logo: '/CrediScout-Logo2.png' },
               { cx: 645, cy: 85, label: 'Hubcheck', sub: 'Warehouse', accent: '#F97316' },
-              { cx: 155, cy: 315, label: 'Credify', sub: 'APIs', accent: '#10B981' },
+              { cx: 155, cy: 315, label: 'Credify', sub: 'APIs', accent: '#10B981', logo: '/Credify-Logo2.png' },
               { cx: 645, cy: 315, label: 'Truering', sub: 'CRM', accent: '#8B5CF6', logo: '/TrueRing-Logo2.png' },
             ].map((node, idx) => (
               <g key={idx} className="cursor-pointer group">

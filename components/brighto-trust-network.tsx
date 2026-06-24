@@ -7,7 +7,7 @@ export function BrightoTrustNetwork() {
   const brands = [
     { name: 'Crediscout', initials: 'CS', desc: 'Background verification — employment, education, address, vendor & contractor screening', logo: '/CrediScout-Logo2.png' },
     { name: 'Hubcheck', initials: 'HC', desc: 'Warehouse audits, stock verification, collateral reviews for commodity finance' },
-    { name: 'Credify India', initials: 'CI', desc: 'Verification APIs — KYC, KYB, digital onboarding, banking & compliance APIs' },
+    { name: 'Credify India', initials: 'CI', desc: 'Verification APIs — KYC, KYB, digital onboarding, banking & compliance APIs', logo: '/Credify-Logo2.png' },
     { name: 'Truering', initials: 'TR', desc: 'Telecalling CRM — inbound/outbound calling, cloud phone, lead tracking, auto dialers', logo: '/TrueRing-Logo2.png' },
     { name: 'Brighto Risk', initials: 'BR', desc: 'Deep risk intelligence & fraud identification suite across enterprise networks', logo: '/Brighto-Logo.png' },
   ]
