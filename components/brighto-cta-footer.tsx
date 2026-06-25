@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
-import { FaXTwitter, FaInstagram, FaFacebookF, FaLinkedinIn, FaYoutube, FaHeart } from 'react-icons/fa6'
+import { FaXTwitter, FaInstagram, FaFacebookF, FaLinkedinIn, FaYoutube } from 'react-icons/fa6'
 import { FiMail, FiPhone, FiMapPin, FiArrowUp } from 'react-icons/fi'
 
 export function BrightoCTAFooter() {
@@ -120,9 +120,9 @@ export function BrightoCTAFooter() {
             <Image
               src="/Brighto-Logo.png"
               alt="Brighto India"
-              width={130}
-              height={38}
-              className="h-9 object-contain"
+              width={180}
+              height={52}
+              className="h-12 object-contain"
               style={{ width: 'auto' }}
             />
           </div>

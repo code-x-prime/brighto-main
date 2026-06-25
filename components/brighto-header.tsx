@@ -6,12 +6,12 @@ import Image from 'next/image'
 import { Menu, X, ChevronDown, CheckCircle2, FileText, Search, MapPin, Shield, FileCheck, AlertTriangle, CreditCard } from 'lucide-react'
 
 const SERVICES_DROPDOWN = [
-  { label: 'Due Diligence Services', desc: 'Verify facts & key info prior to significant business moves.', href: '#services', icon: CheckCircle2 },
+  { label: 'Due Diligence Services', desc: 'Verify facts & key info prior to significant business moves.', href: '/services/due-diligence', icon: CheckCircle2 },
   { label: 'Loan Application Verification', desc: 'Applicant detail checks to improve credit reviews.', href: '#services', icon: FileText },
   { label: 'Field Investigation (FI)', desc: 'On-ground independent verifications of profiles.', href: '#services', icon: Search },
-  { label: 'Contact Point Verification (CPV)', desc: 'Verify home, office, and business locations.', href: '#services', icon: MapPin },
-  { label: 'RCU Support', desc: 'Investigative support & internal risk checks.', href: '#services', icon: Shield },
-  { label: 'Document Verification', desc: 'Verification of ID papers & financial files.', href: '#services', icon: FileCheck },
+  { label: 'Contact Point Verification (CPV)', desc: 'Verify home, office, and business locations.', href: '/services/contact-point-verification', icon: MapPin },
+  { label: 'RCU Support', desc: 'Investigative support & internal risk checks.', href: '/services/rcu-support', icon: Shield },
+  { label: 'Document Verification', desc: 'Verification of ID papers & financial files.', href: '/services/document-verification', icon: FileCheck },
   { label: 'Fraud Risk Assessment', desc: 'Spot potential risks and control weaknesses.', href: '#services', icon: AlertTriangle },
   { label: 'Credit Appraisal Support', desc: 'Information collection for credit review.', href: '#services', icon: CreditCard },
 ]
@@ -102,7 +102,7 @@ export function BrightoHeader() {
                           {SERVICES_DROPDOWN.map((svc) => {
                             const Icon = svc.icon
                             return (
-                              <a
+                              <Link
                                 key={svc.label}
                                 href={svc.href}
                                 onClick={() => setIsOpen(false)}
@@ -119,7 +119,7 @@ export function BrightoHeader() {
                                     {svc.desc}
                                   </span>
                                 </div>
-                              </a>
+                              </Link>
                             )
                           })}
                         </div>
@@ -188,7 +188,7 @@ export function BrightoHeader() {
                         {SERVICES_DROPDOWN.map((svc) => {
                           const Icon = svc.icon
                           return (
-                            <a
+                            <Link
                               key={svc.label}
                               href={svc.href}
                               onClick={() => { setMobileMenuOpen(false); setMobOpen(false) }}
@@ -201,7 +201,7 @@ export function BrightoHeader() {
                                 <p className="text-sm font-bold text-slate-950">{svc.label}</p>
                                 <p className="text-xs text-slate-500 leading-normal mt-0.5">{svc.desc}</p>
                               </div>
-                            </a>
+                            </Link>
                           )
                         })}
                       </div>
@@ -211,14 +211,14 @@ export function BrightoHeader() {
               }
 
               return (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
                   className="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-900 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
-                </a>
+                </Link>
               )
             })}
             <div className="pt-2">
