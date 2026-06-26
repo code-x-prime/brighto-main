@@ -5,11 +5,11 @@ import {
   ArrowRight, CheckCircle2, Shield, Briefcase,
   Building2, Landmark, Cpu, Users, Package,
   ClipboardList, FileCheck, BarChart3, Home, Search,
-  FileText, AlertTriangle,
 } from 'lucide-react'
 import Link from 'next/link'
 import { FAQAccordion } from '@/components/faq-accordion'
 import { ServiceHero } from '@/components/service-hero'
+import { ServiceOfferings } from '@/components/service-offerings'
 
 export const metadata: Metadata = {
   title: 'Risk Containment Unit (RCU) Support Services India | Brighto India',
@@ -33,49 +33,49 @@ export const metadata: Metadata = {
 
 const RCU_SERVICES = [
   {
-    icon: Search,
+    icon: 'Search',
     title: 'Field Investigation Support',
     desc: 'Help meet information validation requirements by following organized field visit and written report steps.',
     color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe',
   },
   {
-    icon: AlertTriangle,
+    icon: 'AlertTriangle',
     title: 'Exception Case Review',
     desc: 'Independent review support for situations requiring additional verification, investigation, and assessment.',
     color: '#dc2626', bg: '#fef2f2', border: '#fecaca',
   },
   {
-    icon: Home,
+    icon: 'Home',
     title: 'Residence Verification',
     desc: 'Confirm the home address using structured verification steps that support review and assessment work.',
     color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd',
   },
   {
-    icon: Briefcase,
+    icon: 'Briefcase',
     title: 'Office Verification',
     desc: 'Help confirm job details through separate, independent verification steps and reporting systems.',
     color: '#059669', bg: '#f0fdf4', border: '#a7f3d0',
   },
   {
-    icon: Building2,
+    icon: 'Building2',
     title: 'Business Verification',
     desc: 'Check business details with careful verification and investigation activities.',
     color: '#d97706', bg: '#fffbeb', border: '#fde68a',
   },
   {
-    icon: CheckCircle2,
+    icon: 'CheckCircle2',
     title: 'Information Validation Support',
     desc: 'Build stronger review systems with structured information validation and assessment support services.',
     color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe',
   },
   {
-    icon: FileText,
+    icon: 'FileText',
     title: 'Document Review Support',
     desc: 'Help the company review processes by checking and validating the papers people submit.',
     color: '#0f766e', bg: '#f0fdfa', border: '#99f6e4',
   },
   {
-    icon: FileCheck,
+    icon: 'FileCheck',
     title: 'Verification Reporting',
     desc: 'Get clear reports with final results and backup details ready for review.',
     color: '#4f46e5', bg: '#eef2ff', border: '#c7d2fe',
@@ -304,39 +304,13 @@ export default function RCUSupportPage() {
       {/* ══════════════════════════════════════════
           OUR RCU SERVICES
       ══════════════════════════════════════════ */}
-      <section className="py-20 bg-slate-50 border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">What We Offer</p>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
-              Our Risk Containment Unit (RCU) Support Services
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {RCU_SERVICES.map((svc) => {
-              const Icon = svc.icon
-              return (
-                <div key={svc.title} className="rounded-2xl border p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" style={{ background: svc.bg, borderColor: svc.border }}>
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style={{ background: svc.color }}>
-                    <Icon className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="text-base font-bold text-slate-900 mb-2">{svc.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{svc.desc}</p>
-                </div>
-              )
-            })}
-          </div>
-          <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-950 p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <div className="flex-1">
-              <h3 className="text-xl font-bold text-white mb-2">Need a custom RCU support plan?</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">Our experts will assess your requirements and recommend the right verification and investigation approach for your organization.</p>
-            </div>
-            <Link href="/contact" className="shrink-0 flex items-center gap-2 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold transition-all">
-              Talk to an Expert <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ServiceOfferings
+        heading="Our Risk Containment Unit (RCU) Support Services"
+        services={RCU_SERVICES}
+        accentColor="#dc2626"
+        ctaText="Need a custom RCU support plan?"
+        ctaDesc="Our experts will assess your requirements and recommend the right verification and investigation approach for your organization."
+      />
 
       {/* ══════════════════════════════════════════
           WHY RCU MATTERS
@@ -355,7 +329,15 @@ export default function RCUSupportPage() {
             </div>
             <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {WHY_MATTERS.map((item, i) => (
-                <div key={item.title} className={`rounded-2xl border border-slate-200 bg-white p-6 hover:shadow-md hover:border-blue-200 transition-all ${i === WHY_MATTERS.length - 1 ? 'sm:col-span-2' : ''}`}>
+                <div
+                  key={item.title}
+                  className={`rounded-2xl border p-6 backdrop-blur-md hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 ${i === WHY_MATTERS.length - 1 ? 'sm:col-span-2' : ''}`}
+                  style={{
+                    background: 'color-mix(in srgb, #fef2f2 55%, white 45%)',
+                    borderColor: '#fecaca',
+                    boxShadow: '0 2px 16px 0 #fecaca88, inset 0 1px 0 rgba(255,255,255,0.8)',
+                  }}
+                >
                   <div className="w-9 h-9 rounded-xl bg-blue-900 text-white flex items-center justify-center text-xs font-black mb-4">
                     {String(i + 1).padStart(2, '0')}
                   </div>
@@ -381,8 +363,16 @@ export default function RCUSupportPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {WHY_BRIGHTO.map((item, i) => (
-              <div key={item.title} className="group rounded-2xl border border-slate-200 bg-white p-7 hover:border-blue-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 text-blue-900 flex items-center justify-center font-black text-sm mb-5 group-hover:bg-blue-900 group-hover:text-white group-hover:border-blue-900 transition-all">
+              <div
+                key={item.title}
+                className="group rounded-2xl border p-7 backdrop-blur-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                style={{
+                  background: 'color-mix(in srgb, #fef2f2 50%, white 50%)',
+                  borderColor: '#fecaca',
+                  boxShadow: '0 4px 24px -4px #fecaca99, inset 0 1px 0 rgba(255,255,255,0.9)',
+                }}
+              >
+                <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 text-red-700 flex items-center justify-center font-black text-sm mb-5 group-hover:bg-red-700 group-hover:text-white group-hover:border-red-700 transition-all">
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>

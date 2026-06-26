@@ -4,11 +4,12 @@ import { BrightoCTAFooter } from '@/components/brighto-cta-footer'
 import {
   ArrowRight, CheckCircle2, Shield, Briefcase,
   Building2, Landmark, Cpu, HeartPulse, Users, Package,
-  ClipboardList, FileCheck, BarChart3, Home, Phone, Search,
+  ClipboardList, FileCheck, BarChart3, Home, Search,
 } from 'lucide-react'
 import Link from 'next/link'
 import { FAQAccordion } from '@/components/faq-accordion'
 import { ServiceHero } from '@/components/service-hero'
+import { ServiceOfferings } from '@/components/service-offerings'
 
 export const metadata: Metadata = {
   title: 'Contact Point Verification (CPV) Services India | Brighto India',
@@ -33,37 +34,37 @@ export const metadata: Metadata = {
 
 const CPV_SERVICES = [
   {
-    icon: Home,
+    icon: 'Home',
     title: 'Residence Verification',
     desc: 'Support residential information validation through structured residence verification activities and reporting processes. Brighto India offers structured residence verification to support data confirmation and review needs.',
     color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe',
   },
   {
-    icon: Briefcase,
+    icon: 'Briefcase',
     title: 'Office Verification',
     desc: 'Employment-related information often requires independent validation. Our office verification services support information review through structured verification procedures.',
     color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd',
   },
   {
-    icon: Building2,
+    icon: 'Building2',
     title: 'Business Verification',
     desc: 'Validate business-related information through structured verification activities designed to support onboarding, review, and assessment requirements.',
     color: '#059669', bg: '#f0fdf4', border: '#a7f3d0',
   },
   {
-    icon: Phone,
+    icon: 'Phone',
     title: 'Contact Information Verification',
     desc: "Brighto India helps organizations verify applicants' contact details using proven verification steps and reporting methods.",
     color: '#d97706', bg: '#fffbeb', border: '#fde68a',
   },
   {
-    icon: Search,
+    icon: 'Search',
     title: 'Field Verification Support',
     desc: 'Support information validation requirements through field-based verification activities conducted using structured operational processes and documentation standards.',
     color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe',
   },
   {
-    icon: FileCheck,
+    icon: 'FileCheck',
     title: 'Verification Reporting',
     desc: 'Our reporting system provides documented verification, observations, and supporting information to help organizations with their internal review and assessment work.',
     color: '#0f766e', bg: '#f0fdfa', border: '#99f6e4',
@@ -282,39 +283,13 @@ export default function CPVPage() {
       {/* ══════════════════════════════════════════
           OUR CPV SERVICES
       ══════════════════════════════════════════ */}
-      <section className="py-20 bg-slate-50 border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">What We Offer</p>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
-              Our Contact Point Verification Services
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {CPV_SERVICES.map((svc) => {
-              const Icon = svc.icon
-              return (
-                <div key={svc.title} className="rounded-2xl border p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" style={{ background: svc.bg, borderColor: svc.border }}>
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ background: svc.color }}>
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-3">{svc.title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{svc.desc}</p>
-                </div>
-              )
-            })}
-            <div className="sm:col-span-2 lg:col-span-3 rounded-2xl border border-slate-800 bg-slate-950 p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-white mb-2">Not sure which CPV service you need?</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">Our experts will assess your verification requirements and recommend the right approach for your organization.</p>
-              </div>
-              <Link href="/contact" className="shrink-0 flex items-center gap-2 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold transition-all">
-                Talk to an Expert <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServiceOfferings
+        heading="Our Contact Point Verification Services"
+        services={CPV_SERVICES}
+        accentColor="#0369a1"
+        ctaText="Not sure which CPV service you need?"
+        ctaDesc="Our experts will assess your verification requirements and recommend the right approach for your organization."
+      />
 
       {/* ══════════════════════════════════════════
           WHY CPV MATTERS
@@ -333,7 +308,15 @@ export default function CPVPage() {
             </div>
             <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {WHY_MATTERS.map((item, i) => (
-                <div key={item.title} className={`rounded-2xl border border-slate-200 bg-white p-6 hover:shadow-md hover:border-blue-200 transition-all ${i === WHY_MATTERS.length - 1 ? 'sm:col-span-2' : ''}`}>
+                <div
+                  key={item.title}
+                  className={`rounded-2xl border p-6 backdrop-blur-md hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 ${i === WHY_MATTERS.length - 1 ? 'sm:col-span-2' : ''}`}
+                  style={{
+                    background: 'color-mix(in srgb, #f0f9ff 55%, white 45%)',
+                    borderColor: '#bae6fd',
+                    boxShadow: '0 2px 16px 0 #bae6fd88, inset 0 1px 0 rgba(255,255,255,0.8)',
+                  }}
+                >
                   <div className="w-9 h-9 rounded-xl bg-blue-900 text-white flex items-center justify-center text-xs font-black mb-4">
                     {String(i + 1).padStart(2, '0')}
                   </div>
@@ -359,7 +342,15 @@ export default function CPVPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {WHY_BRIGHTO.map((item, i) => (
-              <div key={item.title} className="group rounded-2xl border border-slate-200 bg-white p-7 hover:border-blue-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div
+                key={item.title}
+                className="group rounded-2xl border p-7 backdrop-blur-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                style={{
+                  background: 'color-mix(in srgb, #f0f9ff 50%, white 50%)',
+                  borderColor: '#bae6fd',
+                  boxShadow: '0 4px 24px -4px #bae6fd99, inset 0 1px 0 rgba(255,255,255,0.9)',
+                }}
+              >
                 <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 text-blue-900 flex items-center justify-center font-black text-sm mb-5 group-hover:bg-blue-900 group-hover:text-white group-hover:border-blue-900 transition-all">
                   {String(i + 1).padStart(2, '0')}
                 </div>

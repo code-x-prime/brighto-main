@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import { BrightoHeader } from '@/components/brighto-header'
 import { BrightoCTAFooter } from '@/components/brighto-cta-footer'
 import {
-  ArrowRight, CheckCircle2, Shield, FileSearch, BarChart3,
+  ArrowRight, CheckCircle2, Shield, BarChart3,
   Users, Building2, Landmark, Cpu, HeartPulse, Package, ClipboardList,
   Briefcase, Microscope, FileCheck,
 } from 'lucide-react'
 import Link from 'next/link'
 import { FAQAccordion } from '@/components/faq-accordion'
 import { ServiceHero } from '@/components/service-hero'
+import { ServiceOfferings } from '@/components/service-offerings'
 
 export const metadata: Metadata = {
   title: "Due Diligence Services India | Brighto India – Verified Risk & Business Decisions",
@@ -32,31 +33,31 @@ export const metadata: Metadata = {
 
 const DD_SERVICES = [
   {
-    icon: Building2,
+    icon: 'Building2',
     title: 'Business Due Diligence',
     desc: 'Planning to engage a new business partner or supplier? Brighto India validates business information, operational details, and supporting documentation to support informed business decisions.',
     color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe',
   },
   {
-    icon: BarChart3,
+    icon: 'BarChart3',
     title: 'Financial Due Diligence Support',
     desc: 'Reliable information is essential for financial review processes. Brighto India supports lenders and financial institutions through structured verification, document review, and assessment support.',
     color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd',
   },
   {
-    icon: Users,
+    icon: 'Users',
     title: 'Customer & Borrower Due Diligence',
     desc: 'Strengthen customer and borrower evaluation processes through structured verification and information validation services.',
     color: '#059669', bg: '#f0fdf4', border: '#a7f3d0',
   },
   {
-    icon: FileSearch,
+    icon: 'FileSearch',
     title: 'Vendor Due Diligence',
     desc: 'Want more trust before you work with a supplier or service provider? Brighto India confirms key details and documents before any business partnership.',
     color: '#d97706', bg: '#fffbeb', border: '#fde68a',
   },
   {
-    icon: Shield,
+    icon: 'Shield',
     title: 'Enterprise Due Diligence',
     desc: 'Strong governance, rule-following, and risk management require trustworthy information. Brighto India provides structured due diligence support for large-company review needs.',
     color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe',
@@ -281,47 +282,12 @@ export default function DueDiligencePage() {
       {/* ══════════════════════════════════════════
           OUR DD SERVICES
       ══════════════════════════════════════════ */}
-      <section className="py-20 bg-slate-50 border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">What We Offer</p>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
-              Our Due Diligence Services
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {DD_SERVICES.map((svc) => {
-              const Icon = svc.icon
-              return (
-                <div
-                  key={svc.title}
-                  className="rounded-2xl border p-7 hover:-translate-y-1 transition-all duration-300 group cursor-pointer backdrop-blur-md"
-                  style={{
-                    background: `color-mix(in srgb, ${svc.bg} 60%, white 40%)`,
-                    borderColor: svc.border,
-                    boxShadow: `0 2px 20px 0 ${svc.border}99, inset 0 1px 0 rgba(255,255,255,0.85)`,
-                  }}
-                >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ background: svc.color }}>
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-3">{svc.title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{svc.desc}</p>
-                </div>
-              )
-            })}
-            <div className="sm:col-span-2 lg:col-span-3 rounded-2xl border border-slate-800 bg-slate-950 p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-white mb-2">Not sure which service you need?</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">Our experts will assess your requirements and suggest the right due diligence approach for your organization.</p>
-              </div>
-              <Link href="/contact" className="shrink-0 flex items-center gap-2 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold transition-all">
-                Talk to an Expert <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServiceOfferings
+        heading="Our Due Diligence Services"
+        services={DD_SERVICES}
+        accentColor="#091C8C"
+        ctaDesc="Our experts will assess your requirements and suggest the right due diligence approach for your organization."
+      />
 
       {/* ══════════════════════════════════════════
           IMPORTANCE

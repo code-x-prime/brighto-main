@@ -3,12 +3,13 @@ import { BrightoHeader } from '@/components/brighto-header'
 import { BrightoCTAFooter } from '@/components/brighto-cta-footer'
 import {
   ArrowRight, CheckCircle2, Shield, FileText, FileSearch,
-  Users, Building2, Landmark, Cpu, BadgeCheck, ClipboardList,
-  Briefcase, FileCheck, FileScan, FileWarning, ListChecks,
+  Users, Building2, Landmark, Cpu, ClipboardList,
+  Briefcase, FileCheck, FileScan, FileWarning,
 } from 'lucide-react'
 import Link from 'next/link'
 import { FAQAccordion } from '@/components/faq-accordion'
 import { ServiceHero } from '@/components/service-hero'
+import { ServiceOfferings } from '@/components/service-offerings'
 
 export const metadata: Metadata = {
   title: "Document Verification Services India | Brighto India – Trusted Information Validation",
@@ -32,49 +33,49 @@ export const metadata: Metadata = {
 
 const DV_SERVICES = [
   {
-    icon: BadgeCheck,
+    icon: 'BadgeCheck',
     title: 'Identity Document Verification',
     desc: 'Support information validation through structured review of identity-related documentation and supporting records.',
     color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe',
   },
   {
-    icon: FileSearch,
+    icon: 'FileSearch',
     title: 'Address Document Verification',
     desc: 'Validate address-related information through defined document review and verification procedures.',
     color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd',
   },
   {
-    icon: Briefcase,
+    icon: 'Briefcase',
     title: 'Employment Document Verification',
     desc: 'Review employment-related documents to support onboarding, lending, and assessment processes.',
     color: '#059669', bg: '#f0fdf4', border: '#a7f3d0',
   },
   {
-    icon: FileText,
+    icon: 'FileText',
     title: 'Financial Document Verification',
     desc: 'Support financial assessment activities through structured review of submitted financial documentation.',
     color: '#d97706', bg: '#fffbeb', border: '#fde68a',
   },
   {
-    icon: Building2,
+    icon: 'Building2',
     title: 'Business Document Verification',
     desc: 'Validate business-related information through review of organizational and operational documents.',
     color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe',
   },
   {
-    icon: ClipboardList,
+    icon: 'ClipboardList',
     title: 'Supporting Document Review',
     desc: 'Assess supporting documentation through established verification methodologies and reporting practices.',
     color: '#0891b2', bg: '#f0fdfa', border: '#a5f3fc',
   },
   {
-    icon: ListChecks,
+    icon: 'ListChecks',
     title: 'Information Validation Support',
     desc: 'Strengthen review frameworks through structured document verification and assessment support services.',
     color: '#dc2626', bg: '#fef2f2', border: '#fecaca',
   },
   {
-    icon: FileCheck,
+    icon: 'FileCheck',
     title: 'Verification Reporting',
     desc: 'Receive organized reporting that documents verification observations and supporting information for evaluation purposes.',
     color: '#65a30d', bg: '#f7fee7', border: '#d9f99d',
@@ -181,7 +182,7 @@ const FAQS = [
 
 export default function DocumentVerificationPage() {
   return (
-    <>
+    <div className="min-h-screen bg-white overflow-x-hidden">
       <BrightoHeader />
 
       <ServiceHero
@@ -283,46 +284,13 @@ export default function DocumentVerificationPage() {
       </section>
 
       {/* ── DV SERVICES ── */}
-      <section id="services" className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-green-700 mb-2 block">What We Offer</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Our Document Verification Services
-            </h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {DV_SERVICES.map((svc) => {
-              const Icon = svc.icon
-              return (
-                <div
-                  key={svc.title}
-                  className="rounded-2xl border p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
-                  style={{ background: svc.bg, borderColor: svc.border }}
-                >
-                  <span className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: svc.color + '18' }}>
-                    <Icon className="w-5 h-5" style={{ color: svc.color }} />
-                  </span>
-                  <h3 className="font-bold text-slate-900 text-sm mb-2 leading-snug">{svc.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{svc.desc}</p>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* Full-width CTA strip */}
-          <div className="mt-8 rounded-2xl bg-green-700 p-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <p className="text-white font-bold text-lg">Need Document Verification Support?</p>
-              <p className="text-green-100 text-sm mt-1">Our team can help assess your requirements and recommend the right approach.</p>
-            </div>
-            <Link href="/contact" className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-green-800 rounded-xl font-bold text-sm hover:bg-green-50 transition-all">
-              Get in Touch <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ServiceOfferings
+        heading="Our Document Verification Services"
+        services={DV_SERVICES}
+        accentColor="#15803d"
+        ctaText="Need Document Verification Support?"
+        ctaDesc="Our team can help assess your requirements and recommend the right approach."
+      />
 
       {/* ── BENEFITS ── */}
       <section className="py-16 md:py-24 bg-slate-50">
@@ -342,7 +310,15 @@ export default function DocumentVerificationPage() {
             {/* Numbered benefit cards */}
             <div className="space-y-4">
               {BENEFITS.map((b, i) => (
-                <div key={b.title} className="bg-white rounded-2xl border border-slate-200 p-6 flex gap-4 hover:shadow-md transition-shadow">
+                <div
+                  key={b.title}
+                  className="rounded-2xl border p-6 flex gap-4 backdrop-blur-md hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+                  style={{
+                    background: 'color-mix(in srgb, #f0fdf4 55%, white 45%)',
+                    borderColor: '#bbf7d0',
+                    boxShadow: '0 2px 16px 0 #bbf7d088, inset 0 1px 0 rgba(255,255,255,0.8)',
+                  }}
+                >
                   <span className="w-10 h-10 rounded-xl bg-green-700 text-white text-sm font-extrabold flex items-center justify-center shrink-0">
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -370,9 +346,17 @@ export default function DocumentVerificationPage() {
             {WHY_BRIGHTO.map((item) => {
               const Icon = item.icon
               return (
-                <div key={item.title} className="group rounded-2xl border border-slate-200 bg-slate-50 p-6 hover:border-green-200 hover:bg-green-50/40 transition-all hover:-translate-y-1 hover:shadow-md">
-                  <span className="w-10 h-10 rounded-xl bg-white border border-slate-200 group-hover:border-green-200 flex items-center justify-center mb-4 transition-colors">
-                    <Icon className="w-5 h-5 text-green-700" />
+                <div
+                  key={item.title}
+                  className="group rounded-2xl border p-6 backdrop-blur-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  style={{
+                    background: 'color-mix(in srgb, #f0fdf4 50%, white 50%)',
+                    borderColor: '#bbf7d0',
+                    boxShadow: '0 4px 24px -4px #bbf7d099, inset 0 1px 0 rgba(255,255,255,0.9)',
+                  }}
+                >
+                  <span className="w-10 h-10 rounded-xl bg-white border border-green-200 group-hover:bg-green-700 group-hover:border-green-700 flex items-center justify-center mb-4 transition-all">
+                    <Icon className="w-5 h-5 text-green-700 group-hover:text-white transition-colors" />
                   </span>
                   <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
@@ -487,6 +471,6 @@ export default function DocumentVerificationPage() {
       </section>
 
       <BrightoCTAFooter />
-    </>
+    </div>
   )
 }
