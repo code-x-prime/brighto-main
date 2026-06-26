@@ -7,6 +7,7 @@ import {
   ClipboardList, FileCheck, BarChart3, Home, Search,
 } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { FAQAccordion } from '@/components/faq-accordion'
 import { ServiceHero } from '@/components/service-hero'
 import { ServiceOfferings } from '@/components/service-offerings'
@@ -227,21 +228,40 @@ export default function RCUSupportPage() {
       ══════════════════════════════════════════ */}
       <section className="py-20 bg-slate-50 border-y border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">About Brighto India</p>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 mb-8 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
-              Trusted RCU Support Partner Since 2015
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-slate-600 leading-relaxed text-base">
-              <p>
-                Since 2015, Brighto India has worked with banks, NBFCs, housing finance companies, fintech companies, and similar groups by providing structured Risk Containment Unit (RCU) Support Services that improve risk review and assessment processes.
-              </p>
-              <p>
-                Our team has extensive experience in due diligence, loan application verification, contact point verification, field investigation, and information validation, helping organizations build consistent verification and assessment frameworks.
-              </p>
-              <p>
-                As an ISO 27001 Certified, ISO 9001 Certified, and SOC 2 Audited organization, Brighto India follows established standards for information security, quality management, and data protection while delivering structured verification, investigation, and assessment support services.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+            <div className="lg:col-span-3">
+              <p className="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">About Brighto India</p>
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-950 mb-8 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
+                Trusted RCU Support Partner Since 2015
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-slate-600 leading-relaxed text-base">
+                <p>
+                  Since 2015, Brighto India has worked with banks, NBFCs, housing finance companies, fintech companies, and similar groups by providing structured Risk Containment Unit (RCU) Support Services that improve risk review and assessment processes.
+                </p>
+                <p>
+                  Our team has extensive experience in due diligence, loan application verification, contact point verification, field investigation, and information validation, helping organizations build consistent verification and assessment frameworks.
+                </p>
+                <p className="sm:col-span-2">
+                  As an ISO 27001 Certified, ISO 9001 Certified, and SOC 2 Audited organization, Brighto India follows established standards for information security, quality management, and data protection while delivering structured verification, investigation, and assessment support services.
+                </p>
+              </div>
+            </div>
+            <div className="lg:col-span-2">
+              <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                <Image
+                  src="/contract-signing.jpg"
+                  alt="Brighto India RCU support team"
+                  width={600}
+                  height={480}
+                  className="w-full h-72 lg:h-80 object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-red-950/40 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-red-900">
+                    ISO 27001 · ISO 9001 · SOC 2 Audited
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -253,21 +273,36 @@ export default function RCUSupportPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <p className="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">Strengthen Risk Frameworks</p>
-              <h2 className="text-3xl sm:text-4xl font-black text-slate-950 mb-6 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
-                Strengthen Risk Review Frameworks Through RCU Support Services
-              </h2>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
-                <p>
-                  Banks and lenders work in a world where information accuracy and structured review processes really matter. Some situations call for additional verification, investigation, or assessment support before they move ahead in company systems.
-                </p>
-                <p>
-                  Brighto India&apos;s Risk Containment Unit (RCU) Support Services give organizations help through structured verification activities, field investigations, information validation, and assessment-driven reporting. These services help financial lenders to go over the submitted details, evaluate the reports, and build stronger internal verification processes with independent investigation support.
-                </p>
-                <p>
-                  No matter if we help banks, NBFCs, housing finance companies, fintech lenders, or other finance groups, our team provides process-oriented RCU support that fits exactly what the daily operations need.
-                </p>
+            <div className="flex flex-col gap-8">
+              <div>
+                <p className="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">Strengthen Risk Frameworks</p>
+                <h2 className="text-3xl sm:text-4xl font-black text-slate-950 mb-6 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
+                  Strengthen Risk Review Frameworks Through RCU Support Services
+                </h2>
+                <div className="space-y-4 text-slate-600 leading-relaxed">
+                  <p>
+                    Banks and lenders work in a world where information accuracy and structured review processes really matter. Some situations call for additional verification, investigation, or assessment support before they move ahead in company systems.
+                  </p>
+                  <p>
+                    Brighto India&apos;s Risk Containment Unit (RCU) Support Services give organizations help through structured verification activities, field investigations, information validation, and assessment-driven reporting. These services help financial lenders to go over the submitted details, evaluate the reports, and build stronger internal verification processes with independent investigation support.
+                  </p>
+                  <p>
+                    No matter if we help banks, NBFCs, housing finance companies, fintech lenders, or other finance groups, our team provides process-oriented RCU support that fits exactly what the daily operations need.
+                  </p>
+                </div>
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/about-indian-professional.jpg"
+                  alt="Brighto India RCU investigation expert"
+                  width={700}
+                  height={320}
+                  className="w-full h-52 object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-r from-red-950/50 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <span className="text-white text-sm font-bold drop-shadow">Expert Team · Pan-India Coverage</span>
+                </div>
               </div>
             </div>
 

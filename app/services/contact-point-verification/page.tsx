@@ -7,6 +7,7 @@ import {
   ClipboardList, FileCheck, BarChart3, Home, Search,
 } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { FAQAccordion } from '@/components/faq-accordion'
 import { ServiceHero } from '@/components/service-hero'
 import { ServiceOfferings } from '@/components/service-offerings'
@@ -211,21 +212,40 @@ export default function CPVPage() {
       ══════════════════════════════════════════ */}
       <section className="py-20 bg-slate-50 border-y border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">About Brighto India</p>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 mb-8 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
-              Introducing the Leading Contact Point Verification Services Expert
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-slate-600 leading-relaxed text-base">
-              <p>
-                Brighto India works with banks, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises by offering structured Contact Point Verification (CPV) Services that strengthen data checks and review processes.
-              </p>
-              <p>
-                We know due diligence, loan checks, field visits, and risk review support, so we help organizations set up reliable verification methods and reporting systems.
-              </p>
-              <p>
-                As an ISO 27001-certified, ISO 9001-certified, and SOC 2 Audited organization, Brighto India adheres to clear rules for data safety, quality work, and protection in all its verification work.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+            <div className="lg:col-span-3">
+              <p className="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">About Brighto India</p>
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-950 mb-8 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
+                Introducing the Leading Contact Point Verification Services Expert
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-slate-600 leading-relaxed text-base">
+                <p>
+                  Brighto India works with banks, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises by offering structured Contact Point Verification (CPV) Services that strengthen data checks and review processes.
+                </p>
+                <p>
+                  We know due diligence, loan checks, field visits, and risk review support, so we help organizations set up reliable verification methods and reporting systems.
+                </p>
+                <p className="sm:col-span-2">
+                  As an ISO 27001-certified, ISO 9001-certified, and SOC 2 Audited organization, Brighto India adheres to clear rules for data safety, quality work, and protection in all its verification work.
+                </p>
+              </div>
+            </div>
+            <div className="lg:col-span-2">
+              <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                <Image
+                  src="/consulting-expert.jpg"
+                  alt="Brighto India CPV expert consulting"
+                  width={600}
+                  height={480}
+                  className="w-full h-72 lg:h-80 object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-blue-950/40 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-blue-900">
+                    ISO 27001 · ISO 9001 · SOC 2 Audited
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -237,18 +257,33 @@ export default function CPVPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <p className="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">Transform Verification Confidence</p>
-              <h2 className="text-3xl sm:text-4xl font-black text-slate-950 mb-6 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
-                Transform Information into Verification Confidence with CPV Services
-              </h2>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
-                <p>
-                  Accurate information plays an important role in lending, onboarding, customer assessment, and review processes. Brighto India's Contact Point Verification Services help organizations strengthen information validation through structured verification methodologies, field-based verification activities, and organized reporting frameworks.
-                </p>
-                <p>
-                  We support banks, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises in validating residential, office, business, and contact-related information through consistent verification processes and documented observations.
-                </p>
+            <div className="flex flex-col gap-8">
+              <div>
+                <p className="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">Transform Verification Confidence</p>
+                <h2 className="text-3xl sm:text-4xl font-black text-slate-950 mb-6 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
+                  Transform Information into Verification Confidence with CPV Services
+                </h2>
+                <div className="space-y-4 text-slate-600 leading-relaxed">
+                  <p>
+                    Accurate information plays an important role in lending, onboarding, customer assessment, and review processes. Brighto India&apos;s Contact Point Verification Services help organizations strengthen information validation through structured verification methodologies, field-based verification activities, and organized reporting frameworks.
+                  </p>
+                  <p>
+                    We support banks, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises in validating residential, office, business, and contact-related information through consistent verification processes and documented observations.
+                  </p>
+                </div>
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/team-analysis.jpg"
+                  alt="Brighto India team analyzing verification data"
+                  width={700}
+                  height={320}
+                  className="w-full h-52 object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-r from-blue-950/50 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <span className="text-white text-sm font-bold drop-shadow">Expert Team · Pan-India Coverage</span>
+                </div>
               </div>
             </div>
 

@@ -7,6 +7,7 @@ import {
   Briefcase, FileCheck, FileScan, FileWarning,
 } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { FAQAccordion } from '@/components/faq-accordion'
 import { ServiceHero } from '@/components/service-hero'
 import { ServiceOfferings } from '@/components/service-offerings'
@@ -212,22 +213,41 @@ export default function DocumentVerificationPage() {
       {/* ── ABOUT ── */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="mb-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-green-700 mb-2 block">About Brighto India</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight max-w-3xl">
-              Trusted Verification &amp; Assessment Support
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 text-slate-600 leading-relaxed text-sm">
-            <p>
-              Brighto India works with financial institutions, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises. We deliver Document Verification Services built to strengthen information validation and review processes.
-            </p>
-            <p>
-              Our experience covers due diligence, loan application verification, contact point verification, field investigation, and document review support. This enables organizations to maintain consistent verification practices across their operational workflows.
-            </p>
-            <p>
-              As an ISO 27001 Certified, ISO 9001 Certified, and SOC 2 Audited organization, Brighto India follows established standards for information security, quality management, and data protection across its verification and assessment operations.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+            <div className="lg:col-span-3">
+              <span className="text-xs font-bold uppercase tracking-widest text-green-700 mb-2 block">About Brighto India</span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight max-w-3xl mb-8">
+                Trusted Verification &amp; Assessment Support
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-slate-600 leading-relaxed text-sm">
+                <p>
+                  Brighto India works with financial institutions, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises. We deliver Document Verification Services built to strengthen information validation and review processes.
+                </p>
+                <p>
+                  Our experience covers due diligence, loan application verification, contact point verification, field investigation, and document review support. This enables organizations to maintain consistent verification practices across their operational workflows.
+                </p>
+                <p className="sm:col-span-2">
+                  As an ISO 27001 Certified, ISO 9001 Certified, and SOC 2 Audited organization, Brighto India follows established standards for information security, quality management, and data protection across its verification and assessment operations.
+                </p>
+              </div>
+            </div>
+            <div className="lg:col-span-2">
+              <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                <Image
+                  src="/about-indian-professional.jpg"
+                  alt="Brighto India document verification professional"
+                  width={600}
+                  height={480}
+                  className="w-full h-72 lg:h-80 object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-green-950/40 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-green-900">
+                    ISO 27001 · ISO 9001 · SOC 2 Audited
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -236,21 +256,36 @@ export default function DocumentVerificationPage() {
       <section className="py-16 md:py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-green-700 mb-2 block">Our Approach</span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-6">
-                Strengthen Information Validation Through Document Verification
-              </h2>
-              <div className="space-y-4 text-slate-600 leading-relaxed text-sm">
-                <p>
-                  Documents play a critical role in onboarding, lending, compliance, and operational review processes. Organizations often need independent validation of submitted information to strengthen internal review frameworks and improve information visibility.
-                </p>
-                <p>
-                  Brighto India&apos;s Document Verification Services help review and validate documents through structured verification methodologies, information assessment procedures, and organized reporting frameworks. Our services help organizations maintain consistency across document review processes while supporting informed assessment activities.
-                </p>
-                <p>
-                  Whether working with banks, NBFCs, housing finance companies, fintech companies, insurance providers, or enterprises, Brighto India delivers process-driven document verification services tailored to operational requirements.
-                </p>
+            <div className="flex flex-col gap-8">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-widest text-green-700 mb-2 block">Our Approach</span>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-6">
+                  Strengthen Information Validation Through Document Verification
+                </h2>
+                <div className="space-y-4 text-slate-600 leading-relaxed text-sm">
+                  <p>
+                    Documents play a critical role in onboarding, lending, compliance, and operational review processes. Organizations often need independent validation of submitted information to strengthen internal review frameworks and improve information visibility.
+                  </p>
+                  <p>
+                    Brighto India&apos;s Document Verification Services help review and validate documents through structured verification methodologies, information assessment procedures, and organized reporting frameworks. Our services help organizations maintain consistency across document review processes while supporting informed assessment activities.
+                  </p>
+                  <p>
+                    Whether working with banks, NBFCs, housing finance companies, fintech companies, insurance providers, or enterprises, Brighto India delivers process-driven document verification services tailored to operational requirements.
+                  </p>
+                </div>
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/team-analysis.jpg"
+                  alt="Brighto India document verification team"
+                  width={700}
+                  height={320}
+                  className="w-full h-52 object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-r from-green-950/50 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <span className="text-white text-sm font-bold drop-shadow">Expert Team · Pan-India Coverage</span>
+                </div>
               </div>
             </div>
 
