@@ -1,8 +1,14 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { CheckCircle2, ArrowRight } from 'lucide-react'
+import {
+  motion,
+  useMotionValue,
+  useMotionTemplate,
+  useAnimationFrame,
+} from 'framer-motion'
 
 interface StatCard {
   val: string
@@ -22,16 +28,51 @@ interface ServiceHeroProps {
   primaryCta?: string
   secondaryCta?: string
   stats: StatCard[]
-  accentColor: string     // e.g. '#091C8C'  — used for grid stroke, lines, badge
-  accentLight: string     // e.g. '#eef2ff'  — light tint for badge bg
-  accentBorder: string    // e.g. '#c7d2fe'  — border for badge
-  gridStroke: string      // e.g. '#BFDBFE'
+  accentColor: string
+  accentLight: string
+  accentBorder: string
+  gridStroke: string
   blob1: string
   blob2: string
   blob3: string
   breadcrumb: string
   breadcrumbHref: string
   certs?: string[]
+}
+
+function GridPattern({
+  offsetX,
+  offsetY,
+  size,
+  stroke,
+}: {
+  offsetX: any
+  offsetY: any
+  size: number
+  stroke: string
+}) {
+  return (
+    <svg className="w-full h-full">
+      <defs>
+        <motion.pattern
+          id={`grid-${stroke.replace('#', '')}`}
+          width={size}
+          height={size}
+          patternUnits="userSpaceOnUse"
+          x={offsetX}
+          y={offsetY}
+        >
+          <path
+            d={`M ${size} 0 L 0 0 0 ${size}`}
+            fill="none"
+            stroke={stroke}
+            strokeWidth="0.8"
+          />
+        </motion.pattern>
+      </defs>
+      <rect width="100%" height="100%" fill={`url(#grid-${stroke.replace('#', '')})`} />
+    </svg>
+  )
 }
 
 export function ServiceHero({
@@ -54,153 +95,103 @@ export function ServiceHero({
   breadcrumbHref,
   certs = ['ISO 27001 Certified', 'ISO 9001 Certified', 'SOC 2 Audited'],
 }: ServiceHeroProps) {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const GRID_SIZE = 44
 
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
+  const mouseX = useMotionValue(-9999)
+  const mouseY = useMotionValue(-9999)
+  const gridOffsetX = useMotionValue(0)
+  const gridOffsetY = useMotionValue(0)
 
-    const setSize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-    setSize()
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { left, top } = e.currentTarget.getBoundingClientRect()
+    mouseX.set(e.clientX - left)
+    mouseY.set(e.clientY - top)
+  }
 
-    type Particle = {
-      x: number; y: number; speed: number
-      opacity: number; fadeDelay: number; fadeStart: number; fadingOut: boolean
-    }
+  const handleMouseLeave = () => {
+    mouseX.set(-9999)
+    mouseY.set(-9999)
+  }
 
-    let particles: Particle[] = []
-    let raf = 0
+  useAnimationFrame(() => {
+    gridOffsetX.set((gridOffsetX.get() + 0.4) % GRID_SIZE)
+    gridOffsetY.set((gridOffsetY.get() + 0.4) % GRID_SIZE)
+  })
 
-    const count = () => Math.floor((canvas.width * canvas.height) / 9000)
-
-    const make = (): Particle => {
-      const fadeDelay = Math.random() * 800 + 200
-      return {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        speed: Math.random() / 6 + 0.08,
-        opacity: 0.45,
-        fadeDelay,
-        fadeStart: Date.now() + fadeDelay,
-        fadingOut: false,
-      }
-    }
-
-    const reset = (p: Particle) => {
-      p.x = Math.random() * canvas.width
-      p.y = Math.random() * canvas.height
-      p.speed = Math.random() / 6 + 0.08
-      p.opacity = 0.45
-      p.fadeDelay = Math.random() * 800 + 200
-      p.fadeStart = Date.now() + p.fadeDelay
-      p.fadingOut = false
-    }
-
-    const init = () => {
-      particles = []
-      for (let i = 0; i < count(); i++) particles.push(make())
-    }
-
-    // parse accent hex -> rgb for particle color
-    const hex = accentColor.replace('#', '')
-    const r = parseInt(hex.substring(0, 2), 16)
-    const g = parseInt(hex.substring(2, 4), 16)
-    const b = parseInt(hex.substring(4, 6), 16)
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      particles.forEach((p) => {
-        p.y -= p.speed
-        if (p.y < 0) reset(p)
-        if (!p.fadingOut && Date.now() > p.fadeStart) p.fadingOut = true
-        if (p.fadingOut) {
-          p.opacity -= 0.006
-          if (p.opacity <= 0) reset(p)
-        }
-        ctx.fillStyle = `rgba(${r},${g},${b},${p.opacity})`
-        ctx.fillRect(p.x, p.y, 0.8, Math.random() * 2 + 1)
-      })
-      raf = requestAnimationFrame(draw)
-    }
-
-    const onResize = () => { setSize(); init() }
-    window.addEventListener('resize', onResize)
-    init()
-    raf = requestAnimationFrame(draw)
-
-    return () => {
-      window.removeEventListener('resize', onResize)
-      cancelAnimationFrame(raf)
-    }
-  }, [accentColor])
+  const maskImage = useMotionTemplate`radial-gradient(320px circle at ${mouseX}px ${mouseY}px, black, transparent)`
 
   return (
-    <section className="relative pt-28 sm:pt-36 pb-24 overflow-hidden min-h-[520px]">
-
+    <section
+      className="relative pt-28 sm:pt-36 pb-24 overflow-hidden min-h-130"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       {/* ── BG BASE ── */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-white" />
+      <div className="absolute inset-0 bg-white pointer-events-none" />
 
-        {/* Subtle gradient tint */}
-        <div
-          className="absolute inset-0 opacity-40"
-          style={{ background: `radial-gradient(ellipse 80% 60% at 10% 10%, ${blob1}55 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 90% 80%, ${blob2}33 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 50% 50%, ${blob3}22 0%, transparent 60%)` }}
-        />
+      {/* Gradient blobs */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-50"
+        style={{
+          background: `radial-gradient(ellipse 80% 60% at 10% 10%, ${blob1}55 0%, transparent 60%),
+                       radial-gradient(ellipse 60% 50% at 90% 80%, ${blob2}33 0%, transparent 60%),
+                       radial-gradient(ellipse 50% 40% at 50% 50%, ${blob3}22 0%, transparent 60%)`,
+        }}
+      />
 
-        {/* Square grid */}
-        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id={`svc-grid-${badge.replace(/\s/g, '')}`} width="48" height="48" patternUnits="userSpaceOnUse">
-              <path d="M 48 0 L 0 0 0 48" fill="none" stroke={gridStroke} strokeWidth="0.7" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill={`url(#svc-grid-${badge.replace(/\s/g, '')})`} opacity="0.7" />
-        </svg>
-
-        {/* Animated accent lines — horizontal */}
-        <div className="absolute inset-0">
-          {[18, 50, 82].map((pos, i) => (
-            <div
-              key={`h${i}`}
-              className="absolute left-0 right-0 svc-hline"
-              style={{
-                top: `${pos}%`,
-                height: '1px',
-                background: `linear-gradient(90deg, transparent 0%, ${accentColor}22 20%, ${accentColor}44 50%, ${accentColor}22 80%, transparent 100%)`,
-                animationDelay: `${i * 130 + 100}ms`,
-              }}
-            />
-          ))}
-          {/* Vertical lines */}
-          {[20, 50, 80].map((pos, i) => (
-            <div
-              key={`v${i}`}
-              className="absolute top-0 bottom-0 svc-vline"
-              style={{
-                left: `${pos}%`,
-                width: '1px',
-                background: `linear-gradient(180deg, transparent 0%, ${accentColor}22 20%, ${accentColor}44 50%, ${accentColor}22 80%, transparent 100%)`,
-                animationDelay: `${i * 120 + 400}ms`,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Particle canvas */}
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{ mixBlendMode: 'multiply', opacity: 0.5 }}
+      {/* Dim base grid — always visible */}
+      <div className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none">
+        <GridPattern
+          offsetX={gridOffsetX}
+          offsetY={gridOffsetY}
+          size={GRID_SIZE}
+          stroke={gridStroke}
         />
       </div>
 
+      {/* Bright grid — flashlight reveal on hover */}
+      <motion.div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{ maskImage, WebkitMaskImage: maskImage, opacity: 0.55 }}
+      >
+        <GridPattern
+          offsetX={gridOffsetX}
+          offsetY={gridOffsetY}
+          size={GRID_SIZE}
+          stroke={accentColor}
+        />
+      </motion.div>
+
+      {/* Animated accent lines */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[18, 50, 82].map((pos, i) => (
+          <div
+            key={`h${i}`}
+            className="absolute left-0 right-0 svc-hline"
+            style={{
+              top: `${pos}%`,
+              height: '1px',
+              background: `linear-gradient(90deg, transparent 0%, ${accentColor}22 20%, ${accentColor}44 50%, ${accentColor}22 80%, transparent 100%)`,
+              animationDelay: `${i * 130 + 100}ms`,
+            }}
+          />
+        ))}
+        {[20, 50, 80].map((pos, i) => (
+          <div
+            key={`v${i}`}
+            className="absolute top-0 bottom-0 svc-vline"
+            style={{
+              left: `${pos}%`,
+              width: '1px',
+              background: `linear-gradient(180deg, transparent 0%, ${accentColor}22 20%, ${accentColor}44 50%, ${accentColor}22 80%, transparent 100%)`,
+              animationDelay: `${i * 120 + 400}ms`,
+            }}
+          />
+        ))}
+      </div>
+
       {/* ── CONTENT ── */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-slate-500 mb-8" aria-label="Breadcrumb">
           <Link href="/" className="hover:text-blue-900 transition-colors">Home</Link>
@@ -213,7 +204,6 @@ export function ServiceHero({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left */}
           <div>
-            {/* Badge */}
             <div
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 border text-xs font-bold uppercase tracking-wider"
               style={{ background: accentLight, borderColor: accentBorder, color: accentColor }}
@@ -257,7 +247,6 @@ export function ServiceHero({
               </Link>
             </div>
 
-            {/* Certs */}
             <div className="flex flex-wrap gap-3">
               {certs.map((c) => (
                 <span
@@ -292,7 +281,6 @@ export function ServiceHero({
         </div>
       </div>
 
-      {/* Keyframe styles */}
       <style>{`
         .svc-hline {
           transform: scaleX(0);
