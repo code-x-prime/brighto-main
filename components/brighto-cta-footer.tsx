@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { FaXTwitter, FaInstagram, FaFacebookF, FaLinkedinIn, FaYoutube } from 'react-icons/fa6'
 import { FiMail, FiPhone, FiMapPin, FiArrowUp } from 'react-icons/fi'
@@ -37,13 +38,13 @@ export function BrightoCTAFooter() {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 opacity-0 animate-fade-in-up delay-500 relative z-20 w-full sm:w-auto">
-              <button className="w-full sm:w-auto px-6 py-3 border border-slate-300 bg-white text-slate-900 rounded-xl font-medium hover:bg-slate-50 transition-all duration-200 text-sm sm:text-base shadow-sm">
+              <Link href="/contact" className="w-full sm:w-auto px-6 py-3 border border-slate-300 bg-white text-slate-900 rounded-xl font-medium hover:bg-slate-50 transition-all duration-200 text-sm sm:text-base shadow-sm text-center">
                 Contact Team
-              </button>
-              <button className="w-full sm:w-auto px-6 py-3 bg-blue-900 hover:bg-blue-950 text-white rounded-xl font-medium transition-all duration-200 hover:shadow-lg flex items-center justify-center gap-2 group text-sm sm:text-base">
+              </Link>
+              <Link href="/contact" className="w-full sm:w-auto px-6 py-3 bg-blue-900 hover:bg-blue-950 text-white rounded-xl font-medium transition-all duration-200 hover:shadow-lg flex items-center justify-center gap-2 group text-sm sm:text-base">
                 Request Consultation
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
+              </Link>
             </div>
 
           </div>
@@ -140,11 +141,17 @@ export function BrightoCTAFooter() {
               <div>
                 <h4 className="font-semibold text-slate-900 text-sm mb-4">Services</h4>
                 <ul className="flex flex-col space-y-2">
-                  {['Due Diligence', 'Field Investigation', 'CPV Solutions', 'Fraud Detection', 'Compliance Verification'].map((item) => (
-                    <li key={item}>
-                      <a href="#" className="text-sm text-slate-500 hover:text-blue-900 md:text-xs transition-colors">
-                        {item}
-                      </a>
+                  {[
+                    { label: 'Due Diligence', href: '/services/due-diligence' },
+                    { label: 'Field Investigation', href: '#services' },
+                    { label: 'CPV Solutions', href: '/services/contact-point-verification' },
+                    { label: 'RCU Support', href: '/services/rcu-support' },
+                    { label: 'Document Verification', href: '/services/document-verification' },
+                  ].map((item) => (
+                    <li key={item.label}>
+                      <Link href={item.href} className="text-sm text-slate-500 hover:text-blue-900 md:text-xs transition-colors">
+                        {item.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -156,9 +163,9 @@ export function BrightoCTAFooter() {
                 <ul className="flex flex-col space-y-2">
                   {['Banking', 'NBFC', 'Housing Finance', 'Fintech', 'Insurance'].map((item) => (
                     <li key={item}>
-                      <a href="#" className="text-sm text-slate-500 hover:text-blue-900 md:text-xs transition-colors">
+                      <Link href="/#industries" className="text-sm text-slate-500 hover:text-blue-900 md:text-xs transition-colors">
                         {item}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -182,14 +189,25 @@ export function BrightoCTAFooter() {
               <div>
                 <h4 className="font-semibold text-slate-900 text-sm mb-4">Contact</h4>
                 <ul className="flex flex-col space-y-2">
-                  <li className="text-sm text-slate-500 md:text-xs flex items-center gap-2">
-                    <FiMail className="w-3.5 h-3.5" /> hello@brighto.in
+                  <li>
+                    <a href="mailto:hello@brighto.in" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
+                      <FiMail className="w-3.5 h-3.5 shrink-0" /> hello@brighto.in
+                    </a>
                   </li>
-                  <li className="text-sm text-slate-500 md:text-xs flex items-center gap-2">
-                    <FiPhone className="w-3.5 h-3.5" /> +91-9876-543-210
+                  <li>
+                    <a href="tel:+919876543210" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
+                      <FiPhone className="w-3.5 h-3.5 shrink-0" /> +91-9876-543-210
+                    </a>
                   </li>
-                  <li className="text-sm text-slate-500 md:text-xs flex items-center gap-2">
-                    <FiMapPin className="w-3.5 h-3.5" /> Mumbai, Delhi
+                  <li>
+                    <Link href="/contact" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
+                      <FiMapPin className="w-3.5 h-3.5 shrink-0" /> Mumbai, Delhi
+                    </Link>
+                  </li>
+                  <li className="pt-1">
+                    <Link href="/contact" className="text-xs font-semibold text-blue-900 hover:text-blue-700 transition-colors">
+                      → Visit Contact Page
+                    </Link>
                   </li>
                 </ul>
               </div>

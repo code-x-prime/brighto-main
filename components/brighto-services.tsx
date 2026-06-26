@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function BrightoServices() {
   const services = [
@@ -8,6 +9,7 @@ export function BrightoServices() {
       title: 'Due Diligence Services',
       description: 'Verify facts and key information, determine potential risks prior to significant business moves. Clear verification steps help clients make better assessments with greater confidence.',
       icon: '/icons/due-diligence-services.svg',
+      href: '/services/due-diligence',
       size: 'large',
       gradient: 'from-blue-50 to-blue-100',
       featured: true,
@@ -16,6 +18,7 @@ export function BrightoServices() {
       title: 'Loan Application Verification',
       description: 'Strong verification support to lenders, banks, NBFCs, and fintech firms — checking applicant details through proper steps to improve loan checks and risk reviews.',
       icon: '/icons/loan-application-verification.svg',
+      href: '#services',
       size: 'medium',
       gradient: 'from-slate-50 to-slate-100',
     },
@@ -23,6 +26,7 @@ export function BrightoServices() {
       title: 'Field Investigation (FI)',
       description: 'On-ground verification services providing independent checks that confirm details in loan files and other business needs for lenders and financial institutions.',
       icon: '/icons/field-investigation.svg',
+      href: '#services',
       size: 'medium',
       gradient: 'from-orange-50 to-orange-100',
     },
@@ -30,6 +34,7 @@ export function BrightoServices() {
       title: 'Contact Point Verification (CPV)',
       description: 'Verify home addresses, office locations, and business locations through structured checks — a key role in strengthening lending and financial verification.',
       icon: '/icons/contact-point-verification.svg',
+      href: '/services/contact-point-verification',
       size: 'medium',
       gradient: 'from-blue-50 to-blue-100',
     },
@@ -37,6 +42,7 @@ export function BrightoServices() {
       title: 'RCU Support',
       description: 'Build better internal risk checks and reviews with investigative support, verification, and fact-checking so clients can manage lending and operational risks more effectively.',
       icon: '/icons/rcu-support.svg',
+      href: '/services/rcu-support',
       size: 'medium',
       gradient: 'from-emerald-50 to-emerald-100',
     },
@@ -44,6 +50,7 @@ export function BrightoServices() {
       title: 'Document Verification',
       description: 'Handle verification for ID papers, financial records, business files, and other important documents — following pre-defined steps that support internal reviews.',
       icon: '/icons/document-verification.svg',
+      href: '/services/document-verification',
       size: 'medium',
       gradient: 'from-amber-50 to-amber-100',
     },
@@ -51,6 +58,7 @@ export function BrightoServices() {
       title: 'Fraud Risk Assessment',
       description: 'Spot potential risks through checks and investigations. Our clear method strengthens risk review systems and supports better control setups for businesses.',
       icon: '/icons/fraud-risk-assessment.svg',
+      href: '#services',
       size: 'medium',
       gradient: 'from-red-50 to-red-100',
     },
@@ -58,6 +66,7 @@ export function BrightoServices() {
       title: 'Credit Appraisal Support',
       description: 'Help financial institutions collect information, run verifications, and provide inputs that feed into their own credit review work.',
       icon: '/icons/credit-appraisal-support.svg',
+      href: '#services',
       size: 'large',
       gradient: 'from-indigo-50 to-indigo-100',
       featured: true,
@@ -83,8 +92,9 @@ export function BrightoServices() {
             const isLarge = service.size === 'large'
 
             return (
-              <div
+              <Link
                 key={idx}
+                href={service.href}
                 className={`group rounded-xl sm:rounded-2xl border border-slate-200 p-4 sm:p-6 lg:p-8 hover:shadow-xl hover:border-blue-300 transition-all cursor-pointer bg-gradient-to-br ${service.gradient} ${isLarge ? 'lg:col-span-2 lg:row-span-2' : 'lg:col-span-1'
                   }`}
               >
@@ -113,7 +123,7 @@ export function BrightoServices() {
                     </div>
                   )}
                 </div>
-              </div>
+              </Link>
             )
           })}
         </div>

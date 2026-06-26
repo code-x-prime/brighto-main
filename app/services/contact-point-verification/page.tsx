@@ -6,7 +6,9 @@ import {
   Building2, Landmark, Cpu, HeartPulse, Users, Package,
   ClipboardList, FileCheck, BarChart3, Home, Phone, Search,
 } from 'lucide-react'
+import Link from 'next/link'
 import { FAQAccordion } from '@/components/faq-accordion'
+import { ServiceHero } from '@/components/service-hero'
 
 export const metadata: Metadata = {
   title: 'Contact Point Verification (CPV) Services India | Brighto India',
@@ -179,87 +181,29 @@ export default function CPVPage() {
     <div className="min-h-screen bg-white overflow-x-hidden">
       <BrightoHeader />
 
-      {/* ══════════════════════════════════════════
-          HERO
-      ══════════════════════════════════════════ */}
-      <section className="relative pt-28 sm:pt-36 pb-24 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(145deg,#f0f9ff 0%,#eef2ff 45%,#ffffff 80%,#f0fdf4 100%)' }} />
-          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="cpv-grid" width="48" height="48" patternUnits="userSpaceOnUse">
-                <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#BFDBFE" strokeWidth="0.8" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#cpv-grid)" opacity="0.65" />
-          </svg>
-          <div className="absolute w-150 h-150 rounded-full blur-[130px] opacity-25 -top-24 -right-24" style={{ background: '#7dd3fc' }} />
-          <div className="absolute w-100 h-100 rounded-full blur-[100px] opacity-15 bottom-0 left-0" style={{ background: '#a5f3fc' }} />
-          <div className="absolute w-100 h-100 rounded-full blur-[100px] opacity-10 top-1/3 left-1/3" style={{ background: '#818cf8' }} />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-xs text-slate-500 mb-8" aria-label="Breadcrumb">
-            <a href="/" className="hover:text-blue-900 transition-colors">Home</a>
-            <span>/</span>
-            <span className="text-slate-400">Services</span>
-            <span>/</span>
-            <span className="text-blue-900 font-semibold">Contact Point Verification</span>
-          </nav>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 border border-blue-200 rounded-full mb-6">
-                <div className="w-2 h-2 rounded-full bg-blue-900 animate-pulse" />
-                <span className="text-xs font-bold text-blue-900 uppercase tracking-wider">CPV Services Since 2015</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-950 leading-[1.1] mb-4" style={{ fontFamily: 'var(--font-manrope)' }}>
-                One Stop Destination for{' '}
-                <span className="text-blue-900">Contact Point</span>{' '}
-                Verification Services
-              </h1>
-
-              <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">
-                Since 2015, Brighto India has supported financial institutions, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises through structured Contact Point Verification Services designed to strengthen information validation and review processes. We bring together deep verification skills, smooth daily work, and rules-based steps to deliver solid data checks and reports.
-              </p>
-
-              <div className="flex flex-wrap gap-4 mb-8">
-                <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-900 text-white rounded-xl font-semibold hover:bg-blue-950 transition-all hover:shadow-xl hover:-translate-y-0.5">
-                  Request Consultation <ArrowRight className="w-4 h-4" />
-                </button>
-                <button className="flex items-center gap-2 px-7 py-3.5 border-2 border-blue-900 text-blue-900 rounded-xl font-semibold hover:bg-blue-50 transition-all">
-                  Contact Our Team
-                </button>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                {['ISO 27001 Certified', 'ISO 9001 Certified', 'SOC 2 Audited'].map((c) => (
-                  <span key={c} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs font-semibold text-emerald-800">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />{c}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Right stat grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { val: '2015',      label: 'Serving Since',   sub: 'Decade of CPV expertise',      color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
-                { val: '500K+',     label: 'Cases Verified',  sub: 'Across India',                  color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
-                { val: 'Pan-India', label: 'Field Coverage',  sub: 'Multi-geography reach',         color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
-                { val: '3 Certs',   label: 'ISO + SOC 2',     sub: 'Internationally audited',       color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
-              ].map((s) => (
-                <div key={s.label} className="rounded-2xl p-6 border" style={{ background: s.bg, borderColor: s.border }}>
-                  <div className="text-3xl font-black mb-1" style={{ color: s.color }}>{s.val}</div>
-                  <div className="text-sm font-bold text-slate-800">{s.label}</div>
-                  <div className="text-xs text-slate-500 mt-0.5">{s.sub}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServiceHero
+        badge="CPV Services Since 2015"
+        title="One Stop Destination for"
+        titleAccent="Contact Point Verification Services"
+        description="Since 2015, Brighto India has supported financial institutions, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises through structured Contact Point Verification Services designed to strengthen information validation and review processes."
+        primaryCta="Request Consultation"
+        secondaryCta="Contact Our Team"
+        accentColor="#0369a1"
+        accentLight="#f0f9ff"
+        accentBorder="#bae6fd"
+        gridStroke="#BAE6FD"
+        blob1="#7dd3fc"
+        blob2="#a5f3fc"
+        blob3="#818cf8"
+        breadcrumb="Contact Point Verification"
+        breadcrumbHref="/services/contact-point-verification"
+        stats={[
+          { val: '2015',      label: 'Serving Since',   sub: 'Decade of CPV expertise',   color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
+          { val: '500K+',     label: 'Cases Verified',  sub: 'Across India',               color: '#0891b2', bg: '#f0fdfa', border: '#a5f3fc' },
+          { val: 'Pan-India', label: 'Field Coverage',  sub: 'Multi-geography reach',      color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
+          { val: '3 Certs',   label: 'ISO + SOC 2',     sub: 'Internationally audited',    color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+        ]}
+      />
 
       {/* ══════════════════════════════════════════
           ABOUT
@@ -364,9 +308,9 @@ export default function CPVPage() {
                 <h3 className="text-xl font-bold text-white mb-2">Not sure which CPV service you need?</h3>
                 <p className="text-slate-400 text-sm leading-relaxed">Our experts will assess your verification requirements and recommend the right approach for your organization.</p>
               </div>
-              <button className="shrink-0 flex items-center gap-2 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold transition-all">
+              <Link href="/contact" className="shrink-0 flex items-center gap-2 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold transition-all">
                 Talk to an Expert <ArrowRight className="w-4 h-4" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -563,12 +507,12 @@ export default function CPVPage() {
             Whether you require residence verification, office verification, business verification, contact information validation, or field verification support, our team can recommend an appropriate verification approach aligned with your operational requirements.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-base transition-all hover:shadow-2xl hover:-translate-y-0.5">
+            <Link href="/contact" className="flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-base transition-all hover:shadow-2xl hover:-translate-y-0.5">
               Request Consultation <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 text-white rounded-xl font-bold text-base transition-all">
+            </Link>
+            <Link href="/contact" className="flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 text-white rounded-xl font-bold text-base transition-all">
               Contact Our Team
-            </button>
+            </Link>
           </div>
         </div>
       </section>

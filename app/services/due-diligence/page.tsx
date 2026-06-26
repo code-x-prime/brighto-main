@@ -6,7 +6,9 @@ import {
   Users, Building2, Landmark, Cpu, HeartPulse, Package, ClipboardList,
   Briefcase, Microscope, FileCheck,
 } from 'lucide-react'
+import Link from 'next/link'
 import { FAQAccordion } from '@/components/faq-accordion'
+import { ServiceHero } from '@/components/service-hero'
 
 export const metadata: Metadata = {
   title: "Due Diligence Services India | Brighto India – Verified Risk & Business Decisions",
@@ -171,93 +173,30 @@ export default function DueDiligencePage() {
     <div className="min-h-screen bg-white overflow-x-hidden">
       <BrightoHeader />
 
-      {/* ══════════════════════════════════════════
-          HERO
-      ══════════════════════════════════════════ */}
-      <section className="relative pt-28 sm:pt-36 pb-24 overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(145deg,#eef2ff 0%,#f0f7ff 45%,#ffffff 80%,#fff7ed 100%)' }} />
-          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="dd-grid" width="48" height="48" patternUnits="userSpaceOnUse">
-                <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#BFDBFE" strokeWidth="0.8" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#dd-grid)" opacity="0.65" />
-          </svg>
-          <div className="absolute w-150 h-150 rounded-full blur-[130px] opacity-25 -top-24 -left-24" style={{ background: '#93c5fd' }} />
-          <div className="absolute w-100 h-100 rounded-full blur-[100px] opacity-15 top-0 right-0" style={{ background: '#818cf8' }} />
-          <div className="absolute w-100 h-100 rounded-full blur-[100px] opacity-10 bottom-0 right-1/3" style={{ background: '#f97316' }} />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* breadcrumb */}
-          <nav className="flex items-center gap-2 text-xs text-slate-500 mb-8" aria-label="Breadcrumb">
-            <a href="/" className="hover:text-blue-900 transition-colors">Home</a>
-            <span aria-hidden>/</span>
-            <span className="text-slate-400">Services</span>
-            <span aria-hidden>/</span>
-            <span className="text-blue-900 font-semibold">Due Diligence Services</span>
-          </nav>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left — headline */}
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 border border-blue-200 rounded-full mb-6">
-                <div className="w-2 h-2 rounded-full bg-blue-900 animate-pulse" />
-                <span className="text-xs font-bold text-blue-900 uppercase tracking-wider">Trusted Since 2015</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-950 leading-[1.1] mb-5" style={{ fontFamily: 'var(--font-manrope)' }}>
-                India&apos;s Trusted{' '}
-                <span className="text-blue-900">Due Diligence</span>{' '}
-                Services Partner
-              </h1>
-              <p className="text-2xl sm:text-3xl font-bold text-orange-600 mb-6">
-                for Smarter Risk &amp; Business Decisions
-              </p>
-
-              <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">
-                Incomplete information and inconsistent verification can affect critical business decisions. Brighto India has been providing structured Due Diligence Services since 2015 that support information validation, risk assessment, and informed decision-making.
-              </p>
-
-              <div className="flex flex-wrap gap-4 mb-8">
-                <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-900 text-white rounded-xl font-semibold hover:bg-blue-950 transition-all hover:shadow-xl hover:-translate-y-0.5">
-                  Request Consultation <ArrowRight className="w-4 h-4" />
-                </button>
-                <button className="flex items-center gap-2 px-7 py-3.5 border-2 border-blue-900 text-blue-900 rounded-xl font-semibold hover:bg-blue-50 transition-all">
-                  Talk to Our Experts
-                </button>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                {['ISO 27001 Certified', 'ISO 9001 Certified', 'SOC 2 Audited'].map((c) => (
-                  <span key={c} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs font-semibold text-emerald-800">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />{c}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Right — stat panel */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { val: '2015', label: 'Serving Since',  sub: 'Decade of experience', color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
-                { val: '500K+', label: 'Cases Verified', sub: 'Across India',          color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
-                { val: 'Pan-India', label: 'Coverage',  sub: 'Multi-geography reach', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
-                { val: '3 Certs', label: 'ISO + SOC 2', sub: 'Internationally audited', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
-              ].map((s) => (
-                <div key={s.label} className="rounded-2xl p-6 border" style={{ background: s.bg, borderColor: s.border }}>
-                  <div className="text-3xl font-black mb-1" style={{ color: s.color }}>{s.val}</div>
-                  <div className="text-sm font-bold text-slate-800">{s.label}</div>
-                  <div className="text-xs text-slate-500 mt-0.5">{s.sub}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServiceHero
+        badge="Trusted Since 2015"
+        title="India's Trusted"
+        titleAccent="Due Diligence Services Partner"
+        subtitle="for Smarter Risk & Business Decisions"
+        description="Incomplete information and inconsistent verification can affect critical business decisions. Brighto India has been providing structured Due Diligence Services since 2015 that support information validation, risk assessment, and informed decision-making."
+        primaryCta="Request Consultation"
+        secondaryCta="Talk to Our Experts"
+        accentColor="#091C8C"
+        accentLight="#eef2ff"
+        accentBorder="#c7d2fe"
+        gridStroke="#BFDBFE"
+        blob1="#93c5fd"
+        blob2="#818cf8"
+        blob3="#f97316"
+        breadcrumb="Due Diligence Services"
+        breadcrumbHref="/services/due-diligence"
+        stats={[
+          { val: '2015',      label: 'Serving Since',   sub: 'Decade of experience',     color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
+          { val: '500K+',     label: 'Cases Verified',  sub: 'Across India',              color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+          { val: 'Pan-India', label: 'Coverage',        sub: 'Multi-geography reach',     color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
+          { val: '3 Certs',   label: 'ISO + SOC 2',     sub: 'Internationally audited',   color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+        ]}
+      />
 
       {/* ══════════════════════════════════════════
           ABOUT BRIGHTO INDIA
@@ -354,7 +293,15 @@ export default function DueDiligencePage() {
             {DD_SERVICES.map((svc) => {
               const Icon = svc.icon
               return (
-                <div key={svc.title} className="rounded-2xl border p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" style={{ background: svc.bg, borderColor: svc.border }}>
+                <div
+                  key={svc.title}
+                  className="rounded-2xl border p-7 hover:-translate-y-1 transition-all duration-300 group cursor-pointer backdrop-blur-md"
+                  style={{
+                    background: `color-mix(in srgb, ${svc.bg} 60%, white 40%)`,
+                    borderColor: svc.border,
+                    boxShadow: `0 2px 20px 0 ${svc.border}99, inset 0 1px 0 rgba(255,255,255,0.85)`,
+                  }}
+                >
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ background: svc.color }}>
                     <Icon className="w-6 h-6 text-white" />
                   </div>
@@ -368,9 +315,9 @@ export default function DueDiligencePage() {
                 <h3 className="text-xl font-bold text-white mb-2">Not sure which service you need?</h3>
                 <p className="text-slate-400 text-sm leading-relaxed">Our experts will assess your requirements and suggest the right due diligence approach for your organization.</p>
               </div>
-              <button className="shrink-0 flex items-center gap-2 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold transition-all">
+              <Link href="/contact" className="shrink-0 flex items-center gap-2 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold transition-all">
                 Talk to an Expert <ArrowRight className="w-4 h-4" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -393,12 +340,20 @@ export default function DueDiligencePage() {
             </div>
             <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {IMPORTANCE.map((item, i) => (
-                <div key={item.title} className={`rounded-2xl border border-slate-200 bg-white p-6 hover:shadow-md hover:border-blue-200 transition-all ${i === IMPORTANCE.length - 1 ? 'sm:col-span-2' : ''}`}>
+                <div
+                  key={item.title}
+                  className={`rounded-2xl border p-6 hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-md ${i === IMPORTANCE.length - 1 ? 'sm:col-span-2' : ''}`}
+                  style={{
+                    background: 'rgba(255,255,255,0.6)',
+                    borderColor: 'rgba(191,219,254,0.7)',
+                    boxShadow: '0 2px 16px 0 rgba(9,28,140,0.05), inset 0 1px 0 rgba(255,255,255,0.9)',
+                  }}
+                >
                   <div className="w-9 h-9 rounded-xl bg-blue-900 text-white flex items-center justify-center text-xs font-black mb-4">
                     {String(i + 1).padStart(2, '0')}
                   </div>
                   <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -419,12 +374,20 @@ export default function DueDiligencePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {WHY_BRIGHTO.map((item, i) => (
-              <div key={item.title} className="group rounded-2xl border border-slate-200 bg-white p-7 hover:border-blue-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div
+                key={item.title}
+                className="group rounded-2xl border p-7 hover:-translate-y-1 transition-all duration-300 backdrop-blur-md"
+                style={{
+                  background: 'rgba(255,255,255,0.55)',
+                  borderColor: 'rgba(199,210,254,0.6)',
+                  boxShadow: '0 2px 20px 0 rgba(9,28,140,0.06), inset 0 1px 0 rgba(255,255,255,0.9)',
+                }}
+              >
                 <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 text-blue-900 flex items-center justify-center font-black text-sm mb-5 group-hover:bg-blue-900 group-hover:text-white group-hover:border-blue-900 transition-all">
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -567,12 +530,12 @@ export default function DueDiligencePage() {
             Brighto India supports organizations through structured Due Diligence Services, helping strengthen information validation, risk assessment, and internal review processes across diverse business requirements and industries.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-base transition-all hover:shadow-2xl hover:-translate-y-0.5">
+            <Link href="/contact" className="flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-base transition-all hover:shadow-2xl hover:-translate-y-0.5">
               Request a Consultation Today <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 text-white rounded-xl font-bold text-base transition-all">
+            </Link>
+            <Link href="/contact" className="flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 text-white rounded-xl font-bold text-base transition-all">
               Contact Our Team
-            </button>
+            </Link>
           </div>
         </div>
       </section>

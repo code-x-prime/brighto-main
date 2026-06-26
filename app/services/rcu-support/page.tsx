@@ -7,7 +7,9 @@ import {
   ClipboardList, FileCheck, BarChart3, Home, Search,
   FileText, AlertTriangle,
 } from 'lucide-react'
+import Link from 'next/link'
 import { FAQAccordion } from '@/components/faq-accordion'
+import { ServiceHero } from '@/components/service-hero'
 
 export const metadata: Metadata = {
   title: 'Risk Containment Unit (RCU) Support Services India | Brighto India',
@@ -195,89 +197,30 @@ export default function RCUSupportPage() {
     <div className="min-h-screen bg-white overflow-x-hidden">
       <BrightoHeader />
 
-      {/* ══════════════════════════════════════════
-          HERO
-      ══════════════════════════════════════════ */}
-      <section className="relative pt-28 sm:pt-36 pb-24 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(145deg,#fef2f2 0%,#fff7ed 35%,#ffffff 70%,#eef2ff 100%)' }} />
-          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="rcu-grid" width="48" height="48" patternUnits="userSpaceOnUse">
-                <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#FECACA" strokeWidth="0.8" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#rcu-grid)" opacity="0.65" />
-          </svg>
-          <div className="absolute w-150 h-150 rounded-full blur-[130px] opacity-20 -top-24 -right-24" style={{ background: '#fca5a5' }} />
-          <div className="absolute w-100 h-100 rounded-full blur-[100px] opacity-15 bottom-0 left-0" style={{ background: '#fed7aa' }} />
-          <div className="absolute w-100 h-100 rounded-full blur-[100px] opacity-10 top-1/3 left-1/3" style={{ background: '#c7d2fe' }} />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-xs text-slate-500 mb-8" aria-label="Breadcrumb">
-            <a href="/" className="hover:text-blue-900 transition-colors">Home</a>
-            <span>/</span>
-            <span className="text-slate-400">Services</span>
-            <span>/</span>
-            <span className="text-blue-900 font-semibold">RCU Support Services</span>
-          </nav>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-red-50 border border-red-200 rounded-full mb-6">
-                <div className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
-                <span className="text-xs font-bold text-red-700 uppercase tracking-wider">RCU Support Since 2015</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-950 leading-[1.1] mb-4" style={{ fontFamily: 'var(--font-manrope)' }}>
-                Risk Containment Unit{' '}
-                <span className="text-blue-900">(RCU) Support</span>{' '}
-                Services
-              </h1>
-              <p className="text-2xl sm:text-3xl font-bold text-orange-600 mb-6">
-                for Stronger Risk Assessment Processes
-              </p>
-
-              <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">
-                Lending teams sometimes face unclear details, missing checks, and special situations that need extra attention. Brighto India offers Risk Containment Unit (RCU) Support Services to help banks and lenders with structured verification, investigation, information validation, and reporting support.
-              </p>
-
-              <div className="flex flex-wrap gap-4 mb-8">
-                <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-900 text-white rounded-xl font-semibold hover:bg-blue-950 transition-all hover:shadow-xl hover:-translate-y-0.5">
-                  Request Consultation <ArrowRight className="w-4 h-4" />
-                </button>
-                <button className="flex items-center gap-2 px-7 py-3.5 border-2 border-blue-900 text-blue-900 rounded-xl font-semibold hover:bg-blue-50 transition-all">
-                  Contact Our Team
-                </button>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                {['ISO 27001 Certified', 'ISO 9001 Certified', 'SOC 2 Audited'].map((c) => (
-                  <span key={c} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs font-semibold text-emerald-800">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />{c}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { val: '2015',      label: 'Serving Since',   sub: 'Decade of RCU expertise',      color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
-                { val: '500K+',     label: 'Cases Supported', sub: 'Across India',                  color: '#dc2626', bg: '#fef2f2', border: '#fecaca' },
-                { val: 'Pan-India', label: 'Field Coverage',  sub: 'Multi-geography network',       color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
-                { val: '3 Certs',   label: 'ISO + SOC 2',     sub: 'Internationally audited',       color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
-              ].map((s) => (
-                <div key={s.label} className="rounded-2xl p-6 border" style={{ background: s.bg, borderColor: s.border }}>
-                  <div className="text-3xl font-black mb-1" style={{ color: s.color }}>{s.val}</div>
-                  <div className="text-sm font-bold text-slate-800">{s.label}</div>
-                  <div className="text-xs text-slate-500 mt-0.5">{s.sub}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServiceHero
+        badge="RCU Support Since 2015"
+        title="Risk Containment Unit"
+        titleAccent="(RCU) Support Services"
+        subtitle="for Stronger Risk Assessment Processes"
+        description="Lending teams sometimes face unclear details, missing checks, and special situations that need extra attention. Brighto India offers Risk Containment Unit (RCU) Support Services to help banks and lenders with structured verification, investigation, information validation, and reporting support."
+        primaryCta="Request Consultation"
+        secondaryCta="Contact Our Team"
+        accentColor="#dc2626"
+        accentLight="#fef2f2"
+        accentBorder="#fecaca"
+        gridStroke="#FECACA"
+        blob1="#fca5a5"
+        blob2="#fed7aa"
+        blob3="#c7d2fe"
+        breadcrumb="RCU Support Services"
+        breadcrumbHref="/services/rcu-support"
+        stats={[
+          { val: '2015',      label: 'Serving Since',   sub: 'Decade of RCU expertise',   color: '#dc2626', bg: '#fef2f2', border: '#fecaca' },
+          { val: '500K+',     label: 'Cases Supported', sub: 'Across India',               color: '#d97706', bg: '#fffbeb', border: '#fde68a' },
+          { val: 'Pan-India', label: 'Field Coverage',  sub: 'Multi-geography network',    color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
+          { val: '3 Certs',   label: 'ISO + SOC 2',     sub: 'Internationally audited',    color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+        ]}
+      />
 
       {/* ══════════════════════════════════════════
           ABOUT
@@ -388,9 +331,9 @@ export default function RCUSupportPage() {
               <h3 className="text-xl font-bold text-white mb-2">Need a custom RCU support plan?</h3>
               <p className="text-slate-400 text-sm leading-relaxed">Our experts will assess your requirements and recommend the right verification and investigation approach for your organization.</p>
             </div>
-            <button className="shrink-0 flex items-center gap-2 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold transition-all">
+            <Link href="/contact" className="shrink-0 flex items-center gap-2 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold transition-all">
               Talk to an Expert <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -586,12 +529,12 @@ export default function RCUSupportPage() {
             Whether you need field investigation support, residence verification, office verification, business verification, exception case reviews, or information validation services, our team can suggest a good plan that fits your daily work.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-base transition-all hover:shadow-2xl hover:-translate-y-0.5">
+            <Link href="/contact" className="flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-base transition-all hover:shadow-2xl hover:-translate-y-0.5">
               Request a Consultation <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 text-white rounded-xl font-bold text-base transition-all">
+            </Link>
+            <Link href="/contact" className="flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 text-white rounded-xl font-bold text-base transition-all">
               Contact Our Team
-            </button>
+            </Link>
           </div>
         </div>
       </section>

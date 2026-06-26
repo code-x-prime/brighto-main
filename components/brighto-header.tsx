@@ -21,7 +21,7 @@ const NAV_ITEMS = [
   { label: 'Services', href: '#services', dropdown: true, isServices: true },
   { label: 'Industries', href: '#industries' },
   { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export function BrightoHeader() {
@@ -131,21 +131,21 @@ export function BrightoHeader() {
             }
 
             return (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 className="px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-blue-900 hover:bg-slate-50 transition-colors"
               >
                 {item.label}
-              </a>
+              </Link>
             )
           })}
         </nav>
 
         {/* Desktop CTA */}
-        <button className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-blue-900 text-white rounded-xl text-sm font-semibold hover:bg-blue-950 transition-all hover:shadow-lg shrink-0">
+        <Link href="/contact" className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-blue-900 text-white rounded-xl text-sm font-semibold hover:bg-blue-950 transition-all hover:shadow-lg shrink-0">
           Request Consultation
-        </button>
+        </Link>
 
         {/* Mobile hamburger */}
         <button
@@ -222,9 +222,9 @@ export function BrightoHeader() {
               )
             })}
             <div className="pt-2">
-              <button className="w-full px-5 py-3 bg-blue-900 text-white rounded-xl text-sm font-semibold hover:bg-blue-950 transition-colors">
+              <Link href="/contact" className="block w-full px-5 py-3 bg-blue-900 text-white rounded-xl text-sm font-semibold hover:bg-blue-950 transition-colors text-center">
                 Request Consultation
-              </button>
+              </Link>
             </div>
           </div>
         </div>

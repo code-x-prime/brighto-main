@@ -6,7 +6,9 @@ import {
   Users, Building2, Landmark, Cpu, BadgeCheck, ClipboardList,
   Briefcase, FileCheck, FileScan, FileWarning, ListChecks,
 } from 'lucide-react'
+import Link from 'next/link'
 import { FAQAccordion } from '@/components/faq-accordion'
+import { ServiceHero } from '@/components/service-hero'
 
 export const metadata: Metadata = {
   title: "Document Verification Services India | Brighto India – Trusted Information Validation",
@@ -182,77 +184,29 @@ export default function DocumentVerificationPage() {
     <>
       <BrightoHeader />
 
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24">
-        {/* Background */}
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f7fee7 50%, #ecfdf5 100%)' }} />
-        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="dv-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#86efac" strokeWidth="0.8" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#dv-grid)" />
-        </svg>
-        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-25 blur-3xl" style={{ background: 'radial-gradient(circle, #4ade80, transparent)' }} />
-        <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full opacity-20 blur-3xl" style={{ background: 'radial-gradient(circle, #86efac, transparent)' }} />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-green-200 bg-green-50 text-green-800 text-xs font-semibold mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-              Document Verification Services
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight mb-6">
-              India&apos;s Trusted Partner for{' '}
-              <span className="text-green-700">Document Verification</span>{' '}
-              Services
-            </h1>
-
-            <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mb-8">
-              Incomplete, inconsistent, or unverifiable documentation can impact onboarding, lending, and assessment processes. Since 2015, Brighto India has provided Document Verification Services to help organizations with structured document review, information validation, and verification reporting.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 mb-12">
-              <button className="inline-flex items-center gap-2 px-6 py-3.5 bg-green-700 text-white rounded-xl font-semibold hover:bg-green-800 transition-all hover:shadow-lg text-sm">
-                Request Consultation
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button className="inline-flex items-center gap-2 px-6 py-3.5 border border-slate-300 bg-white text-slate-700 rounded-xl font-semibold hover:bg-slate-50 transition-all text-sm">
-                View Our Services
-              </button>
-            </div>
-
-            {/* Cert badges */}
-            <div className="flex flex-wrap items-center gap-3">
-              {['ISO 27001 Certified', 'ISO 9001 Certified', 'SOC 2 Audited', 'Since 2015'].map((cert) => (
-                <span key={cert} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-green-200 text-xs font-medium text-slate-700 shadow-sm">
-                  <CheckCircle2 className="w-3 h-3 text-green-600" />
-                  {cert}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Stat cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-            {[
-              { val: '2015', label: 'Founded', sub: 'Trusted since day one' },
-              { val: '500K+', label: 'Verifications Done', sub: 'Across India' },
-              { val: 'Pan-India', label: 'Coverage', sub: 'Multi-location reach' },
-              { val: '3 Certs', label: 'Certifications', sub: 'ISO 27001 · ISO 9001 · SOC 2' },
-            ].map((s) => (
-              <div key={s.label} className="bg-white/80 backdrop-blur-sm border border-green-100 rounded-2xl p-5 shadow-sm">
-                <p className="text-2xl font-extrabold text-green-700">{s.val}</p>
-                <p className="text-sm font-semibold text-slate-900 mt-0.5">{s.label}</p>
-                <p className="text-xs text-slate-500 mt-0.5">{s.sub}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServiceHero
+        badge="Document Verification Since 2015"
+        title="India's Trusted Partner for"
+        titleAccent="Document Verification Services"
+        description="Incomplete, inconsistent, or unverifiable documentation can impact onboarding, lending, and assessment processes. Since 2015, Brighto India has provided Document Verification Services to help organizations with structured document review, information validation, and verification reporting."
+        primaryCta="Request Consultation"
+        secondaryCta="View Our Services"
+        accentColor="#15803d"
+        accentLight="#f0fdf4"
+        accentBorder="#bbf7d0"
+        gridStroke="#86EFAC"
+        blob1="#4ade80"
+        blob2="#86efac"
+        blob3="#34d399"
+        breadcrumb="Document Verification"
+        breadcrumbHref="/services/document-verification"
+        stats={[
+          { val: '2015',      label: 'Founded',             sub: 'Trusted since day one',           color: '#15803d', bg: '#f0fdf4', border: '#bbf7d0' },
+          { val: '500K+',     label: 'Verifications Done',  sub: 'Across India',                    color: '#0891b2', bg: '#f0fdfa', border: '#a5f3fc' },
+          { val: 'Pan-India', label: 'Coverage',            sub: 'Multi-location reach',            color: '#059669', bg: '#ecfdf5', border: '#a7f3d0' },
+          { val: '3 Certs',   label: 'Certifications',      sub: 'ISO 27001 · ISO 9001 · SOC 2',    color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+        ]}
+      />
 
       {/* ── ABOUT ── */}
       <section className="py-16 md:py-24 bg-white">
@@ -363,9 +317,9 @@ export default function DocumentVerificationPage() {
               <p className="text-white font-bold text-lg">Need Document Verification Support?</p>
               <p className="text-green-100 text-sm mt-1">Our team can help assess your requirements and recommend the right approach.</p>
             </div>
-            <button className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-green-800 rounded-xl font-bold text-sm hover:bg-green-50 transition-all">
+            <Link href="/contact" className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-green-800 rounded-xl font-bold text-sm hover:bg-green-50 transition-all">
               Get in Touch <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -522,12 +476,12 @@ export default function DocumentVerificationPage() {
             Whether you require identity document verification, address validation, employment document review, financial document verification, or business document assessment support, our team can recommend an approach aligned with your operational requirements.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="px-8 py-3.5 bg-white text-green-800 rounded-xl font-bold text-sm hover:bg-green-50 transition-all hover:shadow-lg inline-flex items-center gap-2">
+            <Link href="/contact" className="px-8 py-3.5 bg-white text-green-800 rounded-xl font-bold text-sm hover:bg-green-50 transition-all hover:shadow-lg inline-flex items-center gap-2">
               Request a Consultation <ArrowRight className="w-4 h-4" />
-            </button>
-            <button className="px-8 py-3.5 border border-green-400 text-white rounded-xl font-semibold text-sm hover:bg-green-600 transition-all">
+            </Link>
+            <Link href="/contact" className="px-8 py-3.5 border border-green-400 text-white rounded-xl font-semibold text-sm hover:bg-green-600 transition-all">
               Contact Our Team
-            </button>
+            </Link>
           </div>
         </div>
       </section>
