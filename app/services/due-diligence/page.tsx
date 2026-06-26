@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { BrightoHeader } from '@/components/brighto-header'
-import { BrightoCTAFooter } from '@/components/brighto-cta-footer'
+import { BrightoFooter } from '@/components/brighto-cta-footer'
 import {
   ArrowRight, CheckCircle2, Shield, BarChart3,
   Users, Building2, Landmark, Cpu, HeartPulse, Package, ClipboardList,
@@ -506,7 +506,7 @@ export default function DueDiligencePage() {
         </div>
       </section>
 
-      <BrightoCTAFooter />
+      <BrightoFooter />
     </div>
   )
 }

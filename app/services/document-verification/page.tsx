@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { BrightoHeader } from '@/components/brighto-header'
-import { BrightoCTAFooter } from '@/components/brighto-cta-footer'
+import { BrightoFooter } from '@/components/brighto-cta-footer'
 import {
   ArrowRight, CheckCircle2, Shield, FileText, FileSearch,
   Users, Building2, Landmark, Cpu, ClipboardList,
@@ -470,7 +470,7 @@ export default function DocumentVerificationPage() {
         </div>
       </section>
 
-      <BrightoCTAFooter />
+      <BrightoFooter />
     </div>
   )
 }
