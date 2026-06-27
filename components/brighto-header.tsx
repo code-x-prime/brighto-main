@@ -8,7 +8,7 @@ import { Menu, X, ChevronDown, CheckCircle2, FileText, Search, MapPin, Shield, F
 const SERVICES_DROPDOWN = [
   { label: 'Due Diligence Services', desc: 'Verify facts & key info prior to significant business moves.', href: '/services/due-diligence', icon: CheckCircle2 },
   { label: 'Loan Application Verification', desc: 'Applicant detail checks to improve credit reviews.', href: '/services/loan-application-verification', icon: FileText },
-  { label: 'Field Investigation (FI)', desc: 'On-ground independent verifications of profiles.', href: '#services', icon: Search },
+  { label: 'Field Investigation (FI)', desc: 'On-ground independent verifications of profiles.', href: '/services/field-investigation', icon: Search },
   { label: 'Contact Point Verification (CPV)', desc: 'Verify home, office, and business locations.', href: '/services/contact-point-verification', icon: MapPin },
   { label: 'RCU Support', desc: 'Investigative support & internal risk checks.', href: '/services/rcu-support', icon: Shield },
   { label: 'Document Verification', desc: 'Verification of ID papers & financial files.', href: '/services/document-verification', icon: FileCheck },

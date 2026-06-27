@@ -26,7 +26,7 @@ export function BrightoServices() {
       title: 'Field Investigation (FI)',
       description: 'On-ground verification services providing independent checks that confirm details in loan files and other business needs for lenders and financial institutions.',
       icon: '/icons/field-investigation.svg',
-      href: '#services',
+      href: '/services/field-investigation',
       size: 'medium',
       gradient: 'from-orange-50 to-orange-100',
     },

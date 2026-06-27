@@ -36,17 +36,17 @@ const CONTACT_INFO = [
   {
     icon: Phone,
     label: 'Call Us',
-    value: '+91-9876-543-210',
-    sub: 'Mon–Sat, 9 AM – 6 PM IST',
-    href: 'tel:+919876543210',
+    value: '783 - 848 - 4441',
+    sub: 'Mon-Sat, 9 AM - 6 PM IST',
+    href: 'tel:7838484441',
     color: '#059669',
     bg: '#f0fdf4',
     border: '#a7f3d0',
   },
   {
     icon: MapPin,
-    label: 'Our Offices',
-    value: 'Mumbai & Delhi',
+    label: 'Office Address',
+    value: 'C-83, 1st Floor, Sector-2, Noida, India',
     sub: 'Pan-India operations',
     href: '#',
     color: '#d97706',
@@ -56,8 +56,8 @@ const CONTACT_INFO = [
   {
     icon: Clock,
     label: 'Working Hours',
-    value: 'Mon – Sat',
-    sub: '9:00 AM – 6:00 PM IST',
+    value: 'Mon-Sat',
+    sub: '9:00 AM - 6:00 PM IST',
     href: '#',
     color: '#7c3aed',
     bg: '#faf5ff',
@@ -66,7 +66,7 @@ const CONTACT_INFO = [
 ]
 
 const WHY_CONTACT = [
-  { icon: Shield, text: 'ISO 27001 · ISO 9001 · SOC 2 Audited' },
+  { icon: Shield, text: 'ISO 27001 | ISO 9001 | SOC 2 Audited' },
   { icon: CheckCircle2, text: 'Trusted by banks, NBFCs, fintechs & enterprises' },
   { icon: Building2, text: 'Pan-India verification & investigation network' },
   { icon: Clock, text: 'Quick turnaround, structured reporting' },
@@ -364,10 +364,10 @@ export default function ContactPage() {
               <div className="bg-emerald-50 border border-emerald-200 rounded-3xl p-7">
                 <p className="text-xs font-bold text-emerald-700 uppercase tracking-widest mb-3">Certifications</p>
                 <div className="space-y-2.5">
-                  {['ISO 27001 Certified — Information Security', 'ISO 9001 Certified — Quality Management', 'SOC 2 Audited — Data Protection'].map((c) => (
-                    <div key={c} className="flex items-center gap-2.5">
+                  {['ISO 27001 Certified', 'ISO 9001 Certified', 'SOC 2 Audited'].map((cert) => (
+                    <div key={cert} className="flex items-center gap-2.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span className="text-sm text-emerald-900 font-medium">{c}</span>
+                      <span className="text-sm text-emerald-900 font-medium">{cert}</span>
                     </div>
                   ))}
                 </div>
@@ -446,3 +446,4 @@ export default function ContactPage() {
     </>
   )
 }
+

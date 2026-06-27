@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -37,7 +37,7 @@ export function BrightoFooter() {
                 {[
                   { label: 'Due Diligence', href: '/services/due-diligence' },
                   { label: 'Loan Application Verification', href: '/services/loan-application-verification' },
-                  { label: 'Field Investigation', href: '#services' },
+                  { label: 'Field Investigation', href: '/services/field-investigation' },
                   { label: 'CPV Solutions', href: '/services/contact-point-verification' },
                   { label: 'RCU Support', href: '/services/rcu-support' },
                   { label: 'Document Verification', href: '/services/document-verification' },
@@ -85,18 +85,18 @@ export function BrightoFooter() {
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+919876543210" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
-                    <FiPhone className="w-3.5 h-3.5 shrink-0" /> +91-9876-543-210
+                  <a href="tel:7838484441" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
+                    <FiPhone className="w-3.5 h-3.5 shrink-0" /> 783 - 848 - 4441
                   </a>
                 </li>
                 <li>
                   <Link href="/contact" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
-                    <FiMapPin className="w-3.5 h-3.5 shrink-0" /> Mumbai, Delhi
+                    <FiMapPin className="w-3.5 h-3.5 shrink-0" /> C-83, 1st Floor, Sector-2, Noida, India
                   </Link>
                 </li>
                 <li className="pt-1">
                   <Link href="/contact" className="text-xs font-semibold text-blue-900 hover:text-blue-700 transition-colors">
-                    â†’ Visit Contact Page
+                    {'->'} Visit Contact Page
                   </Link>
                 </li>
               </ul>
@@ -144,7 +144,7 @@ export function BrightoFooter() {
       {/* Copyright */}
       <div className="mx-auto mb-6 mt-6 flex flex-col justify-between text-center text-xs md:max-w-7xl px-4">
         <div className="flex flex-row flex-wrap items-center justify-center gap-1 text-slate-500">
-          <span>Â© {new Date().getFullYear()}</span>
+          <span>(c) {new Date().getFullYear()}</span>
           <span>Brighto India design and develop by</span>
           <a
             href="https://groxmedia.in/"
@@ -187,7 +187,7 @@ export function BrightoCTAFooter() {
 
             {/* Description */}
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl mx-auto opacity-0 animate-fade-in-up delay-300 relative z-10">
-              Whether you need Due Diligence Services, Loan Application Verification, Field Investigation, CPV, RCU support, or any other specialized checks â€” our team stands ready to discuss your situation and suggest the right way forward.
+              Whether you need Due Diligence Services, Loan Application Verification, Field Investigation, CPV, RCU support, or any other specialized checks - our team stands ready to discuss your situation and suggest the right way forward.
             </p>
 
             {/* Action Buttons */}
@@ -271,4 +271,5 @@ export function BrightoCTAFooter() {
     </>
   )
 }
+
 
