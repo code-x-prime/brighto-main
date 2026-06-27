@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -7,19 +7,18 @@ import { Menu, X, ChevronDown, CheckCircle2, FileText, Search, MapPin, Shield, F
 
 const SERVICES_DROPDOWN = [
   { label: 'Due Diligence Services', desc: 'Verify facts & key info prior to significant business moves.', href: '/services/due-diligence', icon: CheckCircle2 },
-  { label: 'Loan Application Verification', desc: 'Applicant detail checks to improve credit reviews.', href: '#services', icon: FileText },
+  { label: 'Loan Application Verification', desc: 'Applicant detail checks to improve credit reviews.', href: '/services/loan-application-verification', icon: FileText },
   { label: 'Field Investigation (FI)', desc: 'On-ground independent verifications of profiles.', href: '#services', icon: Search },
   { label: 'Contact Point Verification (CPV)', desc: 'Verify home, office, and business locations.', href: '/services/contact-point-verification', icon: MapPin },
   { label: 'RCU Support', desc: 'Investigative support & internal risk checks.', href: '/services/rcu-support', icon: Shield },
   { label: 'Document Verification', desc: 'Verification of ID papers & financial files.', href: '/services/document-verification', icon: FileCheck },
-  { label: 'Fraud Risk Assessment', desc: 'Spot potential risks and control weaknesses.', href: '#services', icon: AlertTriangle },
-  { label: 'Credit Appraisal Support', desc: 'Information collection for credit review.', href: '#services', icon: CreditCard },
+  { label: 'Fraud Risk Assessment', desc: 'Spot potential risks and control weaknesses.', href: '/services/fraud-risk-assessment', icon: AlertTriangle },
+  { label: 'Credit Appraisal Support', desc: 'Information collection for credit review.', href: '/services/credit-appraisal-support', icon: CreditCard },
 ]
 
 const NAV_ITEMS = [
-  { label: 'Solutions', href: '#ecosystem' },
+  { label: 'Home', href: '/' },
   { label: 'Services', href: '#services', dropdown: true, isServices: true },
-  { label: 'Industries', href: '#industries' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '/contact' },
 ]
@@ -38,11 +37,10 @@ export function BrightoHeader() {
 
   return (
     <header
-      className={`transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm'
-          : 'bg-transparent border-b border-transparent'
-      }`}
+      className={`transition-all duration-300 ${scrolled
+        ? 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm'
+        : 'bg-transparent border-b border-transparent'
+        }`}
       style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9999 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
@@ -51,7 +49,7 @@ export function BrightoHeader() {
         <Link href="/" className="flex items-center shrink-0">
           <Image
             src="/Brighto-Logo.png"
-            alt="Brighto India — Trusted Risk, Verification & Technology Solutions Partner"
+            alt="Brighto India â€” Trusted Risk, Verification & Technology Solutions Partner"
             width={180}
             height={52}
             className="h-12 object-contain"
@@ -66,19 +64,18 @@ export function BrightoHeader() {
             if (item.dropdown) {
               const isOpen = servicesOpen
               const setIsOpen = setServicesOpen
-              
+
               return (
-                <div 
-                  key={item.label} 
+                <div
+                  key={item.label}
                   className="relative"
                   onMouseLeave={() => setIsOpen(false)}
                 >
                   <button
                     onClick={() => setIsOpen((p) => !p)}
                     onMouseEnter={() => setIsOpen(true)}
-                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      isOpen ? 'text-blue-900 bg-blue-50' : 'text-slate-700 hover:text-blue-900 hover:bg-slate-50'
-                    }`}
+                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${isOpen ? 'text-blue-900 bg-blue-50' : 'text-slate-700 hover:text-blue-900 hover:bg-slate-50'
+                      }`}
                   >
                     {item.label}
                     <ChevronDown
@@ -169,7 +166,7 @@ export function BrightoHeader() {
               if (item.dropdown) {
                 const isMobOpen = mobileServicesOpen
                 const setMobOpen = setMobileServicesOpen
-                
+
                 return (
                   <div key={item.label}>
                     <button
@@ -232,3 +229,4 @@ export function BrightoHeader() {
     </header>
   )
 }
+

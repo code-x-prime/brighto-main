@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,9 +16,9 @@ export function BrightoServices() {
     },
     {
       title: 'Loan Application Verification',
-      description: 'Strong verification support to lenders, banks, NBFCs, and fintech firms — checking applicant details through proper steps to improve loan checks and risk reviews.',
+      description: 'Strong verification support to lenders, banks, NBFCs, and fintech firms â€” checking applicant details through proper steps to improve loan checks and risk reviews.',
       icon: '/icons/loan-application-verification.svg',
-      href: '#services',
+      href: '/services/loan-application-verification',
       size: 'medium',
       gradient: 'from-slate-50 to-slate-100',
     },
@@ -32,7 +32,7 @@ export function BrightoServices() {
     },
     {
       title: 'Contact Point Verification (CPV)',
-      description: 'Verify home addresses, office locations, and business locations through structured checks — a key role in strengthening lending and financial verification.',
+      description: 'Verify home addresses, office locations, and business locations through structured checks â€” a key role in strengthening lending and financial verification.',
       icon: '/icons/contact-point-verification.svg',
       href: '/services/contact-point-verification',
       size: 'medium',
@@ -48,7 +48,7 @@ export function BrightoServices() {
     },
     {
       title: 'Document Verification',
-      description: 'Handle verification for ID papers, financial records, business files, and other important documents — following pre-defined steps that support internal reviews.',
+      description: 'Handle verification for ID papers, financial records, business files, and other important documents â€” following pre-defined steps that support internal reviews.',
       icon: '/icons/document-verification.svg',
       href: '/services/document-verification',
       size: 'medium',
@@ -58,7 +58,7 @@ export function BrightoServices() {
       title: 'Fraud Risk Assessment',
       description: 'Spot potential risks through checks and investigations. Our clear method strengthens risk review systems and supports better control setups for businesses.',
       icon: '/icons/fraud-risk-assessment.svg',
-      href: '#services',
+      href: '/services/fraud-risk-assessment',
       size: 'medium',
       gradient: 'from-red-50 to-red-100',
     },
@@ -66,7 +66,7 @@ export function BrightoServices() {
       title: 'Credit Appraisal Support',
       description: 'Help financial institutions collect information, run verifications, and provide inputs that feed into their own credit review work.',
       icon: '/icons/credit-appraisal-support.svg',
-      href: '#services',
+      href: '/services/credit-appraisal-support',
       size: 'large',
       gradient: 'from-indigo-50 to-indigo-100',
       featured: true,
@@ -82,7 +82,7 @@ export function BrightoServices() {
             Our Core Services
           </h2>
           <p className="text-base sm:text-lg text-slate-700 max-w-2xl">
-            Brighto India works as a reliable partner for verification and risk intelligence — on-the-ground checks, document reviews, investigative support, and structured reporting.
+            Brighto India works as a reliable partner for verification and risk intelligence â€” on-the-ground checks, document reviews, investigative support, and structured reporting.
           </p>
         </div>
 
@@ -119,7 +119,7 @@ export function BrightoServices() {
                   </div>
                   {isLarge && (
                     <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/30">
-                      <div className="text-xs font-semibold text-blue-900 uppercase tracking-wider">Learn More →</div>
+                      <div className="text-xs font-semibold text-blue-900 uppercase tracking-wider">Learn More â†’</div>
                     </div>
                   )}
                 </div>
@@ -131,3 +131,6 @@ export function BrightoServices() {
     </section>
   )
 }
+
+
+

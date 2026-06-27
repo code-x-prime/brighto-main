@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -36,10 +36,13 @@ export function BrightoFooter() {
               <ul className="flex flex-col space-y-2">
                 {[
                   { label: 'Due Diligence', href: '/services/due-diligence' },
+                  { label: 'Loan Application Verification', href: '/services/loan-application-verification' },
                   { label: 'Field Investigation', href: '#services' },
                   { label: 'CPV Solutions', href: '/services/contact-point-verification' },
                   { label: 'RCU Support', href: '/services/rcu-support' },
                   { label: 'Document Verification', href: '/services/document-verification' },
+                  { label: 'Fraud Risk Assessment', href: '/services/fraud-risk-assessment' },
+                  { label: 'Credit Appraisal Support', href: '/services/credit-appraisal-support' },
                 ].map((item) => (
                   <li key={item.label}>
                     <Link href={item.href} className="text-sm text-slate-500 hover:text-blue-900 md:text-xs transition-colors">
@@ -93,7 +96,7 @@ export function BrightoFooter() {
                 </li>
                 <li className="pt-1">
                   <Link href="/contact" className="text-xs font-semibold text-blue-900 hover:text-blue-700 transition-colors">
-                    → Visit Contact Page
+                    â†’ Visit Contact Page
                   </Link>
                 </li>
               </ul>
@@ -141,7 +144,7 @@ export function BrightoFooter() {
       {/* Copyright */}
       <div className="mx-auto mb-6 mt-6 flex flex-col justify-between text-center text-xs md:max-w-7xl px-4">
         <div className="flex flex-row flex-wrap items-center justify-center gap-1 text-slate-500">
-          <span>© {new Date().getFullYear()}</span>
+          <span>Â© {new Date().getFullYear()}</span>
           <span>Brighto India design and develop by</span>
           <a
             href="https://groxmedia.in/"
@@ -184,7 +187,7 @@ export function BrightoCTAFooter() {
 
             {/* Description */}
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl mx-auto opacity-0 animate-fade-in-up delay-300 relative z-10">
-              Whether you need Due Diligence Services, Loan Application Verification, Field Investigation, CPV, RCU support, or any other specialized checks — our team stands ready to discuss your situation and suggest the right way forward.
+              Whether you need Due Diligence Services, Loan Application Verification, Field Investigation, CPV, RCU support, or any other specialized checks â€” our team stands ready to discuss your situation and suggest the right way forward.
             </p>
 
             {/* Action Buttons */}
@@ -268,3 +271,4 @@ export function BrightoCTAFooter() {
     </>
   )
 }
+
