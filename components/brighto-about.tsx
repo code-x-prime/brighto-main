@@ -1,6 +1,8 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
 const CERTS = [
   { label: 'ISO 27001 Certified', sub: 'Information Security', icon: '/icons/information-security.svg' },
@@ -24,20 +26,17 @@ export function BrightoAbout() {
     <section id="about" className="py-12 lg:py-16 bg-slate-50 border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-
-          {/* Left — heading + cert badges */}
           <div className="space-y-8 lg:sticky lg:top-32">
             <div>
               <p className="text-sm font-semibold text-blue-900 mb-3 tracking-wide uppercase">About Brighto India</p>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-950 leading-tight mb-6" style={{ fontFamily: 'var(--font-manrope)' }}>
-                India's Most Reliable Risk, Verification & Technology Solutions Partner
+                India's most reliable risk, verification, and technology solutions partner.
               </h2>
               <p className="text-base text-slate-600 leading-relaxed">
-                Since 2015, Brighto Credit Information Private Limited has been empowering banks, NBFCs, fintech companies, financial institutions, and enterprises with reliable risk management, verification, audit, and technology solutions.
+                Since 2015, Brighto Credit Information Private Limited has helped banks, NBFCs, fintech companies, financial institutions, and enterprises with verification, risk management, audit support, and technology-led operations.
               </p>
             </div>
 
-            {/* Cert cards */}
             <div className="space-y-3">
               {CERTS.map((cert) => (
                 <div key={cert.label} className="flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-xl hover:border-emerald-300 hover:shadow-sm transition-all">
@@ -60,24 +59,22 @@ export function BrightoAbout() {
             </div>
           </div>
 
-          {/* Right — full description + service list */}
           <div className="space-y-8">
             <div className="space-y-5 text-slate-700 leading-relaxed text-base">
               <p>
-                Driven by a commitment to accuracy, integrity, and innovation, we help organizations make informed decisions, strengthen compliance, and enhance operational efficiency.
+                We focus on accuracy, integrity, and speed so teams can make informed decisions with less back-and-forth. Our approach combines experienced field teams, structured workflows, and technology-assisted operations.
               </p>
               <p>
-                As an ISO 27001-certified, ISO 9001-certified, and SOC 2 Audited organization, Brighto adheres to globally recognized standards for information security, quality management, and data protection. Our unwavering focus on confidentiality, process excellence, and customer satisfaction has earned the trust of leading institutions across the country.
+                As an ISO 27001-certified, ISO 9001-certified, and SOC 2 Audited organization, we work to globally recognized standards for information security, quality management, and data protection.
               </p>
               <p>
-                By combining experienced professionals with advanced technology and robust operational frameworks, we deliver scalable, secure, and business-focused solutions tailored to the evolving needs of the financial and enterprise ecosystem.
+                That mix of discipline and flexibility helps us deliver scalable, secure, and business-focused services tailored to the needs of the financial and enterprise ecosystem.
               </p>
               <blockquote className="border-l-4 border-orange-500 pl-5 italic text-slate-600 bg-orange-50/50 py-3 pr-4 rounded-r-xl">
-                "At Brighto, we don't just verify information — we enable confidence, reduce risk, and build long-term value for our clients through trust, transparency, and excellence."
+                "At Brighto, we do not just verify information - we help clients reduce risk, improve clarity, and build long-term trust."
               </blockquote>
             </div>
 
-            {/* Service list */}
             <div>
               <p className="text-sm font-semibold text-slate-900 mb-4">Our integrated portfolio includes:</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -89,8 +86,17 @@ export function BrightoAbout() {
                 ))}
               </div>
             </div>
-          </div>
 
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <Link href="/about" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-900 text-white font-semibold hover:bg-blue-950 transition-all hover:shadow-lg">
+                Explore Full About Page
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-300 text-slate-900 font-semibold hover:bg-white hover:shadow-sm transition-all">
+                Talk to Our Team
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>

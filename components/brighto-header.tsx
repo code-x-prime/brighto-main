@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -19,7 +19,7 @@ const SERVICES_DROPDOWN = [
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '#services', dropdown: true, isServices: true },
-  { label: 'About', href: '#about' },
+  { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -49,7 +49,7 @@ export function BrightoHeader() {
         <Link href="/" className="flex items-center shrink-0">
           <Image
             src="/Brighto-Logo.png"
-            alt="Brighto India â€” Trusted Risk, Verification & Technology Solutions Partner"
+            alt="Brighto India — Trusted Risk, Verification & Technology Solutions Partner"
             width={180}
             height={52}
             className="h-12 object-contain"
