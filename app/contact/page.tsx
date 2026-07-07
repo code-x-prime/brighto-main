@@ -80,6 +80,7 @@ export default function ContactPage() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [emailStatus, setEmailStatus] = useState<'sent' | 'failed' | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -88,9 +89,34 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 1200))
-    setLoading(false)
-    setSubmitted(true)
+    setEmailStatus(null)
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          subject: form.service || 'General Enquiry',
+          message: `Company: ${form.company}\n\n${form.message}`,
+        }),
+      })
+
+      const data = await res.json()
+
+      if (res.ok) {
+        setEmailStatus(data.emailSent ? 'sent' : 'failed')
+        setSubmitted(true)
+      } else {
+        setEmailStatus('failed')
+      }
+    } catch {
+      setEmailStatus('failed')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -184,8 +210,13 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-xl font-bold text-slate-900">Message Received!</h3>
                   <p className="text-slate-500 text-sm max-w-xs">Thank you for reaching out. Our team will contact you within 24 hours to discuss your requirements.</p>
+                  {emailStatus && (
+                    <div className={`px-4 py-2 rounded-lg text-xs font-medium ${emailStatus === 'sent' ? 'bg-green-50 text-green-700' : 'bg-yellow-50 text-yellow-700'}`}>
+                      {emailStatus === 'sent' ? 'Confirmation email sent to your inbox' : 'Email notification pending - we still received your message'}
+                    </div>
+                  )}
                   <button
-                    onClick={() => { setSubmitted(false); setForm({ name: '', company: '', email: '', phone: '', service: '', message: '' }) }}
+                    onClick={() => { setSubmitted(false); setEmailStatus(null); setForm({ name: '', company: '', email: '', phone: '', service: '', message: '' }) }}
                     className="mt-2 px-5 py-2.5 border border-slate-300 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
                   >
                     Send Another Message

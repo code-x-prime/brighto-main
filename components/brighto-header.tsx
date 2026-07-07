@@ -20,6 +20,7 @@ const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '#services', dropdown: true, isServices: true },
   { label: 'About', href: '/about' },
+  { label: 'Career', href: '/career' },
   { label: 'Contact', href: '/contact' },
 ]
 

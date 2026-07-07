@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Job {
+  id          String   @id @default(cuid())
+  title       String
+  department  String
+  location    String
+  type        String   @default("Full-time")
+  experience  String
+  description String
+  requirements String
+  isActive    Boolean  @default(true)
+  applications JobApplication[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model JobApplication {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  message   String?
+  resumeUrl String
+  resumeKey String
+  status    String   @default("pending")
+  jobId     String
+  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  status    String   @default("new")
+  emailSent Boolean  @default(false)
+  notes     ContactNote[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ContactNote {
+  id        String   @id @default(cuid())
+  content   String
+  submission ContactSubmission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+  submissionId String
+  createdAt DateTime @default(now())
+}
