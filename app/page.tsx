@@ -6,8 +6,7 @@ import { BrightoServices } from '@/components/brighto-services'
 import { BrightoEcosystem } from '@/components/brighto-ecosystem'
 import { BrightoIndustries } from '@/components/brighto-industries'
 import { BrightoProcess } from '@/components/brighto-process'
-import { BrightoTestimonials } from '@/components/brighto-testimonials'
-import { BrightoInsights } from '@/components/brighto-insights'
+import { GoogleReviews } from '@/components/google-reviews'
 import { BrightoFAQ } from '@/components/brighto-faq'
 import { BrightoCTAFooter } from '@/components/brighto-cta-footer'
 
@@ -22,8 +21,7 @@ export default function Home() {
       <BrightoEcosystem />
       <BrightoIndustries />
       <BrightoProcess />
-      <BrightoTestimonials />
-      <BrightoInsights />
+      <GoogleReviews />
       <BrightoFAQ />
       <BrightoCTAFooter />
     </main>
