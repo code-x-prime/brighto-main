@@ -6,10 +6,9 @@ import Image from 'next/image'
 export function BrightoTrustNetwork() {
   const brands = [
     { name: 'Crediscout', initials: 'CS', desc: 'Background verification — employment, education, address, vendor & contractor screening', logo: '/CrediScout-Logo2.png' },
-    { name: 'Hubcheck', initials: 'HC', desc: 'Warehouse audits, stock verification, collateral reviews for commodity finance' },
+    { name: 'Hubcheck', initials: 'HC', desc: 'Warehouse audits, stock verification, collateral reviews for commodity finance', logo: '/Hubcheck-Logo.png' },
     { name: 'Credify India', initials: 'CI', desc: 'Verification APIs — KYC, KYB, digital onboarding, banking & compliance APIs', logo: '/Credify-Logo2.png' },
     { name: 'Truering', initials: 'TR', desc: 'Telecalling CRM — inbound/outbound calling, cloud phone, lead tracking, auto dialers', logo: '/TrueRing-Logo2.png' },
-    { name: 'Brighto Risk', initials: 'BR', desc: 'Deep risk intelligence & fraud identification suite across enterprise networks', logo: '/Brighto-Logo.png' },
   ]
 
   return (
@@ -71,7 +70,7 @@ export function BrightoTrustNetwork() {
                       </div>
                     )}
                     <h3 className="font-bold text-slate-900 group-hover:text-blue-900 transition-colors">
-                      {brand.name}
+                       {brand.name}
                     </h3>
                     <p className="text-xs text-slate-500 mt-2 leading-relaxed">
                       {brand.desc}
@@ -83,8 +82,8 @@ export function BrightoTrustNetwork() {
                 </div>
               ))}
 
-              {/* Tall Featured Card (Brighto Risk) */}
-              <div className="sm:col-span-2 md:col-span-1 md:row-span-2 h-full min-h-[280px] md:min-h-0">
+              {/* Featured Card (Brighto Risk) */}
+              <div className="sm:col-span-2 md:col-span-2 h-full min-h-[240px] md:min-h-0">
                 <div className="h-full bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 border border-blue-950 rounded-2xl p-6 text-white relative overflow-hidden flex flex-col justify-between group cursor-pointer hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
 
 
