@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Plus, Minus, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const faqs = [
   {
@@ -94,9 +95,9 @@ export function BrightoFAQ() {
               <p className="font-bold text-slate-900 text-sm mb-1">Can't find your answer?</p>
               <p className="text-xs text-slate-500 leading-relaxed">Our team is ready to discuss your specific verification and compliance needs.</p>
             </div>
-            <button className="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-blue-900 hover:bg-blue-950 text-white text-sm font-semibold rounded-xl transition-colors">
+            <Link href="/contact" className="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-blue-900 hover:bg-blue-950 text-white text-sm font-semibold rounded-xl transition-colors">
               Contact Support <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </Link>
           </div>
         </div>
 

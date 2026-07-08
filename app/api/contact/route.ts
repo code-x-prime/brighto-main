@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { sendEmail, contactThankYouTemplate, adminNotificationTemplate } from '@/lib/email'
+import { sendContactEmails } from '@/lib/email'
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,41 +8,48 @@ export async function POST(request: NextRequest) {
     const { name, email, phone, subject, message } = body
 
     if (!name || !email || !subject || !message) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+      return NextResponse.json({ error: 'Please fill in all required fields' }, { status: 400 })
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return NextResponse.json({ error: 'Please enter a valid email address' }, { status: 400 })
     }
 
     // Save to database
-    const submission = await prisma.contactSubmission.create({
-      data: { name, email, phone, subject, message },
-    })
+    let submission
+    try {
+      submission = await prisma.contactSubmission.create({
+        data: { name, email, phone: phone || null, subject, message },
+      })
+    } catch {
+      return NextResponse.json({ error: 'Failed to save your message. Please try again.' }, { status: 500 })
+    }
 
-    // Send thank you email to user
-    const userEmailResult = await sendEmail({
-      to: email,
-      subject: `Thank you for contacting Brighto India - ${subject}`,
-      html: contactThankYouTemplate(name),
-    })
-
-    // Send notification to admin
-    const adminEmailResult = await sendEmail({
-      to: process.env.ADMIN_EMAIL || 'admin@brightoindia.com',
-      subject: `New Contact: ${subject}`,
-      html: adminNotificationTemplate(name, email, subject, message),
-    })
+    // Send emails (thank you to user + notification to admin)
+    let emailSent = false
+    try {
+      emailSent = await sendContactEmails({ name, email, subject, message })
+    } catch {
+      // Email failed but submission saved
+    }
 
     // Update email status
-    await prisma.contactSubmission.update({
-      where: { id: submission.id },
-      data: { emailSent: userEmailResult.success },
-    })
+    try {
+      await prisma.contactSubmission.update({
+        where: { id: submission.id },
+        data: { emailSent },
+      })
+    } catch {
+      // Update failed but not critical
+    }
 
     return NextResponse.json({
       success: true,
       id: submission.id,
-      emailSent: userEmailResult.success,
+      emailSent,
     })
-  } catch (error) {
-    console.error('Contact form error:', error)
-    return NextResponse.json({ error: 'Failed to submit form' }, { status: 500 })
+  } catch {
+    return NextResponse.json({ error: 'Something went wrong. Please try again later.' }, { status: 500 })
   }
 }

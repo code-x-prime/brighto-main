@@ -2,6 +2,7 @@
 
 import { ArrowRight } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 
 const ROTATING_HEADLINES = [
@@ -11,9 +12,25 @@ const ROTATING_HEADLINES = [
   { primary: 'Due Diligence,', highlight: 'Risk Management', rest: 'Solutions', highlightClass: 'text-orange-600' },
 ]
 
+const DEFAULT_DASHBOARD = {
+  verificationRequests: '2,847',
+  verificationGrowth: '+12% week',
+  verificationProgress: '74',
+  activeCases: '543',
+  riskAlerts: '28',
+  fraudFlags: '5',
+  investigationProgress: '78',
+  avgTurnaround: '3.2',
+  avgTurnaroundUnit: 'days',
+  avgTurnaroundChange: '0.4 days vs last month',
+  complianceMet: '4',
+  complianceTotal: '5',
+}
+
 export function BrightoHero() {
   const [activeHeadline, setActiveHeadline] = useState(0)
   const [fadeOut, setFadeOut] = useState(false)
+  const [dashboard, setDashboard] = useState(DEFAULT_DASHBOARD)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,6 +42,38 @@ export function BrightoHero() {
     }, 4500)
 
     return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    async function fetchDashboard() {
+      try {
+        const res = await fetch('/api/dashboard')
+        const data = await res.json()
+        if (data.success && !data.isDefault) {
+          const statsMap: Record<string, string> = {}
+          data.stats.forEach((s: { key: string; value: string }) => {
+            statsMap[s.key] = s.value
+          })
+          setDashboard({
+            verificationRequests: statsMap.verificationRequests || DEFAULT_DASHBOARD.verificationRequests,
+            verificationGrowth: statsMap.verificationGrowth || DEFAULT_DASHBOARD.verificationGrowth,
+            verificationProgress: statsMap.verificationProgress || DEFAULT_DASHBOARD.verificationProgress,
+            activeCases: statsMap.activeCases || DEFAULT_DASHBOARD.activeCases,
+            riskAlerts: statsMap.riskAlerts || DEFAULT_DASHBOARD.riskAlerts,
+            fraudFlags: statsMap.fraudFlags || DEFAULT_DASHBOARD.fraudFlags,
+            investigationProgress: statsMap.investigationProgress || DEFAULT_DASHBOARD.investigationProgress,
+            avgTurnaround: statsMap.avgTurnaround || DEFAULT_DASHBOARD.avgTurnaround,
+            avgTurnaroundUnit: statsMap.avgTurnaroundUnit || DEFAULT_DASHBOARD.avgTurnaroundUnit,
+            avgTurnaroundChange: statsMap.avgTurnaroundChange || DEFAULT_DASHBOARD.avgTurnaroundChange,
+            complianceMet: statsMap.complianceMet || DEFAULT_DASHBOARD.complianceMet,
+            complianceTotal: statsMap.complianceTotal || DEFAULT_DASHBOARD.complianceTotal,
+          })
+        }
+      } catch {
+        // Use defaults
+      }
+    }
+    fetchDashboard()
   }, [])
 
   return (
@@ -124,13 +173,13 @@ export function BrightoHero() {
 
             {/* CTA Buttons with Hover Lift */}
             <div className="flex gap-4 pt-4">
-              <button className="px-6 py-3 bg-blue-900 text-white rounded-lg font-medium hover:bg-blue-950 transition-all duration-250 hover:shadow-lg hover:translate-y-[-4px] flex items-center gap-2">
+              <Link href="/contact" className="px-6 py-3 bg-blue-900 text-white rounded-lg font-medium hover:bg-blue-950 transition-all duration-250 hover:shadow-lg hover:translate-y-[-4px] flex items-center gap-2">
                 Request Consultation
                 <ArrowRight className="w-4 h-4" />
-              </button>
-              <button className="px-6 py-3 border border-slate-300 text-slate-900 rounded-lg font-medium hover:bg-slate-50 transition-all duration-250 hover:shadow-md hover:translate-y-[-4px]">
+              </Link>
+              <Link href="/services" className="px-6 py-3 border border-slate-300 text-slate-900 rounded-lg font-medium hover:bg-slate-50 transition-all duration-250 hover:shadow-md hover:translate-y-[-4px]">
                 Explore Services
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -161,20 +210,20 @@ export function BrightoHero() {
                   <div className="rounded-2xl p-4 border border-blue-100" style={{ background: 'linear-gradient(135deg,#eff6ff,#eef2ff)' }}>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-bold text-blue-800 uppercase tracking-wider">Verification Requests</span>
-                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">↑ +12% week</span>
+                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">↑ {dashboard.verificationGrowth}</span>
                     </div>
-                    <div className="text-4xl font-black text-blue-900 tracking-tight">2,847</div>
+                    <div className="text-4xl font-black text-blue-900 tracking-tight">{dashboard.verificationRequests}</div>
                     <div className="mt-3 w-full h-2 bg-blue-100 rounded-full overflow-hidden">
-                      <div className="h-full bg-blue-900 rounded-full" style={{ width: '74%' }} />
+                      <div className="h-full bg-blue-900 rounded-full" style={{ width: `${dashboard.verificationProgress}%` }} />
                     </div>
                   </div>
 
                   {/* 3-stat grid */}
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { label: 'Active Cases', val: '543', dot: '#10B981', bg: '#f0fdf4', border: '#bbf7d0' },
-                      { label: 'Risk Alerts', val: '28', dot: '#F97316', bg: '#fff7ed', border: '#fed7aa' },
-                      { label: 'Fraud Flags', val: '5', dot: '#EF4444', bg: '#fef2f2', border: '#fecaca' },
+                      { label: 'Active Cases', val: dashboard.activeCases, dot: '#10B981', bg: '#f0fdf4', border: '#bbf7d0' },
+                      { label: 'Risk Alerts', val: dashboard.riskAlerts, dot: '#F97316', bg: '#fff7ed', border: '#fed7aa' },
+                      { label: 'Fraud Flags', val: dashboard.fraudFlags, dot: '#EF4444', bg: '#fef2f2', border: '#fecaca' },
                     ].map((s) => (
                       <div key={s.label} className="rounded-xl p-3 text-center border" style={{ background: s.bg, borderColor: s.border }}>
                         <div className="w-2 h-2 rounded-full mx-auto mb-1.5" style={{ background: s.dot }} />
@@ -188,11 +237,11 @@ export function BrightoHero() {
                   <div className="border-t border-slate-100 pt-4">
                     <div className="flex items-center justify-between mb-2.5">
                       <span className="text-xs font-bold text-slate-700">Compliance Status</span>
-                      <span className="text-[11px] text-slate-400">4/5 requirements met</span>
+                      <span className="text-[11px] text-slate-400">{dashboard.complianceMet}/{dashboard.complianceTotal} requirements met</span>
                     </div>
                     <div className="flex gap-1.5">
-                      {[...Array(5)].map((_, i) => (
-                        <div key={i} className="flex-1 h-2 rounded-full" style={{ background: i < 4 ? '#10B981' : '#E2E8F0' }} />
+                      {[...Array(parseInt(dashboard.complianceTotal))].map((_, i) => (
+                        <div key={i} className="flex-1 h-2 rounded-full" style={{ background: i < parseInt(dashboard.complianceMet) ? '#10B981' : '#E2E8F0' }} />
                       ))}
                     </div>
                   </div>
@@ -208,9 +257,9 @@ export function BrightoHero() {
                   <span className="text-[10px] font-semibold text-slate-500">Investigation Progress</span>
                   <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                 </div>
-                <div className="text-3xl font-black text-blue-900">78%</div>
+                <div className="text-3xl font-black text-blue-900">{dashboard.investigationProgress}%</div>
                 <div className="w-full h-1.5 bg-blue-100 rounded-full mt-2 overflow-hidden">
-                  <div className="h-full bg-blue-900 rounded-full" style={{ width: '78%' }} />
+                  <div className="h-full bg-blue-900 rounded-full" style={{ width: `${dashboard.investigationProgress}%` }} />
                 </div>
               </div>
 
@@ -223,8 +272,8 @@ export function BrightoHero() {
                   <span className="text-[10px] font-semibold text-slate-500">Avg Turnaround</span>
                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 </div>
-                <div className="text-3xl font-black text-emerald-600">3.2 <span className="text-base font-semibold">days</span></div>
-                <div className="text-[10px] text-slate-400 mt-1">↓ 0.4 days vs last month</div>
+                <div className="text-3xl font-black text-emerald-600">{dashboard.avgTurnaround} <span className="text-base font-semibold">{dashboard.avgTurnaroundUnit}</span></div>
+                <div className="text-[10px] text-slate-400 mt-1">↓ {dashboard.avgTurnaroundChange}</div>
               </div>
 
             </div>

@@ -1,26 +1,33 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+
+function getAuthHeaders(): Record<string, string> {
+  if (typeof window === 'undefined') return {}
+  const token = localStorage.getItem('admin-token')
+  if (token) return { Authorization: `Bearer ${token}` }
+  return {}
+}
 
 export default function AdminPage() {
-  const router = useRouter()
-
   useEffect(() => {
     async function checkAuth() {
       try {
-        const res = await fetch('/api/auth/me')
+        const res = await fetch('/api/auth/me', {
+          credentials: 'include',
+          headers: getAuthHeaders(),
+        })
         if (res.ok) {
-          router.push('/admin/dashboard')
+          window.location.href = '/admin/dashboard'
         } else {
-          router.push('/admin/login')
+          window.location.href = '/admin/login'
         }
       } catch {
-        router.push('/admin/login')
+        window.location.href = '/admin/login'
       }
     }
     checkAuth()
-  }, [router])
+  }, [])
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center">

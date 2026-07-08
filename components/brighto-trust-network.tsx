@@ -2,6 +2,7 @@
 
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function BrightoTrustNetwork() {
   const brands = [
@@ -31,13 +32,13 @@ export function BrightoTrustNetwork() {
               We collaborate with India's leading verification, risk intelligence, and identity platforms to deliver fast, secure, and accurate compliance solutions.
             </p>
             <div className="pt-2">
-              <a
-                href="#consultation"
+              <Link
+                href="/contact"
                 className="inline-flex items-center gap-2 text-blue-900 font-semibold hover:text-blue-950 hover:underline transition-all group"
               >
                 Become a Partner
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -70,7 +71,7 @@ export function BrightoTrustNetwork() {
                       </div>
                     )}
                     <h3 className="font-bold text-slate-900 group-hover:text-blue-900 transition-colors">
-                       {brand.name}
+                      {brand.name}
                     </h3>
                     <p className="text-xs text-slate-500 mt-2 leading-relaxed">
                       {brand.desc}

@@ -15,12 +15,12 @@ function verifyAuth(request: NextRequest) {
 
 export async function GET() {
   try {
-    const jobs = await prisma.job.findMany({
-      orderBy: { createdAt: 'desc' },
+    const testimonials = await prisma.testimonial.findMany({
+      orderBy: { sortOrder: 'asc' },
     })
-    return NextResponse.json({ success: true, jobs })
+    return NextResponse.json({ success: true, testimonials })
   } catch {
-    return NextResponse.json({ success: true, jobs: [] })
+    return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 })
   }
 }
 
@@ -31,20 +31,20 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json()
-    const job = await prisma.job.create({
+    const testimonial = await prisma.testimonial.create({
       data: {
-        title: body.title,
-        department: body.department,
-        location: body.location,
-        type: body.type || 'Full-time',
-        experience: body.experience,
-        description: body.description,
-        requirements: body.requirements,
+        name: body.name,
+        role: body.role,
+        company: body.company,
+        content: body.content,
+        rating: body.rating ?? 5,
+        avatar: body.avatar || null,
         isActive: body.isActive ?? true,
+        sortOrder: body.sortOrder ?? 0,
       },
     })
-    return NextResponse.json({ success: true, job })
+    return NextResponse.json({ success: true, testimonial })
   } catch {
-    return NextResponse.json({ error: 'Failed to create job' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to create' }, { status: 500 })
   }
 }

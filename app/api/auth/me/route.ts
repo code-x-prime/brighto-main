@@ -5,7 +5,17 @@ const JWT_SECRET = process.env.JWT_SECRET || 'brighto-admin-secret-key-2024'
 
 export async function GET(request: NextRequest) {
   try {
-    const token = request.cookies.get('admin-token')?.value
+    // Check cookie first
+    let token = request.cookies.get('admin-token')?.value
+
+    // Check Authorization header
+    if (!token) {
+      const authHeader = request.headers.get('authorization')
+      if (authHeader?.startsWith('Bearer ')) {
+        token = authHeader.slice(7)
+      }
+    }
+
     if (!token) {
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
     }

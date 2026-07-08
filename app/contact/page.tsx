@@ -81,6 +81,7 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [emailStatus, setEmailStatus] = useState<'sent' | 'failed' | null>(null)
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -90,6 +91,7 @@ export default function ContactPage() {
     e.preventDefault()
     setLoading(true)
     setEmailStatus(null)
+    setErrorMsg('')
 
     try {
       const res = await fetch('/api/contact', {
@@ -110,10 +112,10 @@ export default function ContactPage() {
         setEmailStatus(data.emailSent ? 'sent' : 'failed')
         setSubmitted(true)
       } else {
-        setEmailStatus('failed')
+        setErrorMsg(data.error || 'Something went wrong. Please try again.')
       }
     } catch {
-      setEmailStatus('failed')
+      setErrorMsg('Network error. Please check your connection and try again.')
     } finally {
       setLoading(false)
     }
@@ -319,6 +321,15 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  {errorMsg && (
+                    <div className="flex items-center gap-2 px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
+                      <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {errorMsg}
+                    </div>
+                  )}
+
                   <button
                     type="submit"
                     disabled={loading}
@@ -338,7 +349,10 @@ export default function ContactPage() {
                   </button>
 
                   <p className="text-xs text-slate-400 text-center">
-                    By submitting, you agree to our privacy policy. We never share your data with third parties.
+                    By submitting, you agree to our{' '}
+                    <Link href="/privacy-policy" className="text-blue-600 hover:underline" target="_blank">
+                      privacy policy
+                    </Link>. We never share your data with third parties.
                   </p>
                 </form>
               )}

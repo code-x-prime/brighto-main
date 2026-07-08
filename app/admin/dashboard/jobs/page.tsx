@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Plus, Edit, Trash2, ToggleLeft, ToggleRight } from 'lucide-react'
+import { Plus, Edit, Trash2, ToggleLeft, ToggleRight, Briefcase, MapPin, Clock, Search } from 'lucide-react'
+import { authFetch } from '@/lib/auth-client'
 
 interface Job {
   id: string
@@ -18,6 +19,7 @@ interface Job {
 export default function JobsPage() {
   const [jobs, setJobs] = useState<Job[]>([])
   const [loading, setLoading] = useState(true)
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     fetchJobs()
@@ -25,7 +27,7 @@ export default function JobsPage() {
 
   async function fetchJobs() {
     try {
-      const res = await fetch('/api/jobs')
+      const res = await authFetch('/api/jobs')
       const data = await res.json()
       if (data.success) setJobs(data.jobs)
     } catch {
@@ -37,7 +39,7 @@ export default function JobsPage() {
 
   async function toggleActive(id: string, current: boolean) {
     try {
-      await fetch(`/api/jobs/${id}`, {
+      await authFetch(`/api/jobs/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ isActive: !current }),
@@ -51,88 +53,129 @@ export default function JobsPage() {
   async function deleteJob(id: string) {
     if (!confirm('Are you sure you want to delete this job?')) return
     try {
-      await fetch(`/api/jobs/${id}`, { method: 'DELETE' })
+      await authFetch(`/api/jobs/${id}`, { method: 'DELETE' })
       setJobs(jobs.filter((j) => j.id !== id))
     } catch {
       console.error('Failed to delete job')
     }
   }
 
+  const filtered = jobs.filter(j =>
+    j.title.toLowerCase().includes(search.toLowerCase()) ||
+    j.department.toLowerCase().includes(search.toLowerCase()) ||
+    j.location.toLowerCase().includes(search.toLowerCase())
+  )
+
+  const activeCount = jobs.filter(j => j.isActive).length
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-slate-900">All Jobs</h2>
+        <div>
+          <h1 className="text-2xl font-semibold text-zinc-900">Jobs</h1>
+          <p className="text-sm text-zinc-500 mt-0.5">{jobs.length} total, {activeCount} active</p>
+        </div>
         <Link
           href="/admin/dashboard/jobs/new"
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+          className="flex items-center gap-2 px-4 py-2.5 bg-zinc-950 text-white rounded-lg text-sm font-medium hover:bg-zinc-800 transition-colors"
         >
           <Plus className="w-4 h-4" />
           Add Job
         </Link>
       </div>
 
+      <div className="mb-4">
+        <div className="relative max-w-sm">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search jobs..."
+            className="w-full pl-9 pr-3 py-2 border border-zinc-200 rounded-lg text-sm focus:ring-2 focus:ring-zinc-950/10 focus:border-zinc-400 outline-none transition-all"
+          />
+        </div>
+      </div>
+
       {loading ? (
-        <div className="text-center py-20 text-gray-500">Loading...</div>
-      ) : jobs.length === 0 ? (
-        <div className="text-center py-20 text-gray-500">No jobs found. Add your first job!</div>
+        <div className="flex items-center justify-center py-20 text-zinc-500">
+          <div className="w-5 h-5 border-2 border-zinc-300 border-t-zinc-600 rounded-full animate-spin mr-2" />
+          Loading...
+        </div>
+      ) : filtered.length === 0 ? (
+        <div className="bg-white rounded-xl border border-zinc-200 py-20 text-center">
+          <Briefcase className="w-10 h-10 text-zinc-300 mx-auto mb-3" />
+          <p className="text-zinc-500 text-sm">{search ? 'No jobs match your search' : 'No jobs yet. Create your first job opening!'}</p>
+        </div>
       ) : (
-        <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div className="bg-white rounded-xl border border-zinc-200 overflow-hidden">
           <table className="w-full">
-            <thead className="bg-slate-50 border-b border-slate-200">
-              <tr>
-                <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase">Title</th>
-                <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase">Department</th>
-                <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase">Location</th>
-                <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase">Status</th>
-                <th className="text-right px-6 py-3 text-xs font-semibold text-slate-500 uppercase">Actions</th>
+            <thead>
+              <tr className="border-b border-zinc-100">
+                <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Job</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Department</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Location</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Type</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Status</th>
+                <th className="text-right px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
-              {jobs.map((job) => (
-                <tr key={job.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="font-medium text-slate-900">{job.title}</div>
-                    <div className="text-xs text-slate-500">{job.type} · {job.experience}</div>
+            <tbody>
+              {filtered.map((job) => (
+                <tr key={job.id} className="border-b border-zinc-50 last:border-0 hover:bg-zinc-50/50 transition-colors">
+                  <td className="px-5 py-3.5">
+                    <div className="font-medium text-zinc-900 text-sm">{job.title}</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">{job.experience}</div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-slate-600">{job.department}</td>
-                  <td className="px-6 py-4 text-sm text-slate-600">{job.location}</td>
-                  <td className="px-6 py-4">
-                    <span
-                      className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        job.isActive
-                          ? 'bg-green-50 text-green-700'
-                          : 'bg-red-50 text-red-700'
-                      }`}
-                    >
-                      {job.isActive ? 'Active' : 'Inactive'}
+                  <td className="px-5 py-3.5">
+                    <span className="inline-flex items-center gap-1 text-sm text-zinc-600">
+                      <Building2 className="w-3.5 h-3.5 text-zinc-400" />
+                      {job.department}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center justify-end gap-2">
+                  <td className="px-5 py-3.5">
+                    <span className="inline-flex items-center gap-1 text-sm text-zinc-600">
+                      <MapPin className="w-3.5 h-3.5 text-zinc-400" />
+                      {job.location}
+                    </span>
+                  </td>
+                  <td className="px-5 py-3.5">
+                    <span className="inline-flex items-center gap-1 text-sm text-zinc-600">
+                      <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                      {job.type}
+                    </span>
+                  </td>
+                  <td className="px-5 py-3.5">
+                    <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${job.isActive ? 'bg-emerald-50 text-emerald-700' : 'bg-zinc-100 text-zinc-500'}`}>
+                      {job.isActive ? 'Active' : 'Draft'}
+                    </span>
+                  </td>
+                  <td className="px-5 py-3.5">
+                    <div className="flex items-center justify-end gap-1">
                       <button
                         onClick={() => toggleActive(job.id, job.isActive)}
-                        className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                        className="p-1.5 hover:bg-zinc-100 rounded-md transition-colors"
                         title={job.isActive ? 'Deactivate' : 'Activate'}
                       >
                         {job.isActive ? (
-                          <ToggleRight className="w-5 h-5 text-green-600" />
+                          <ToggleRight className="w-4 h-4 text-emerald-600" />
                         ) : (
-                          <ToggleLeft className="w-5 h-5 text-red-500" />
+                          <ToggleLeft className="w-4 h-4 text-zinc-400" />
                         )}
                       </button>
                       <Link
                         href={`/admin/dashboard/jobs/${job.id}/edit`}
-                        className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                        className="p-1.5 hover:bg-zinc-100 rounded-md transition-colors"
                         title="Edit"
                       >
-                        <Edit className="w-5 h-5 text-blue-600" />
+                        <Edit className="w-4 h-4 text-zinc-600" />
                       </Link>
                       <button
                         onClick={() => deleteJob(job.id)}
-                        className="p-2 hover:bg-red-50 rounded-lg transition-colors"
+                        className="p-1.5 hover:bg-red-50 rounded-md transition-colors"
                         title="Delete"
                       >
-                        <Trash2 className="w-5 h-5 text-red-500" />
+                        <Trash2 className="w-4 h-4 text-red-500" />
                       </button>
                     </div>
                   </td>

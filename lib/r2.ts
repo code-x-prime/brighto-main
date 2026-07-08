@@ -20,6 +20,7 @@ export async function uploadToR2(file: File, key: string): Promise<{ url: string
     Key: key,
     Body: Buffer.from(bytes),
     ContentType: file.type,
+    ContentDisposition: `inline; filename="${file.name}"`,
   }))
 
   const url = `${process.env.R2_PUBLIC_URL}/${key}`

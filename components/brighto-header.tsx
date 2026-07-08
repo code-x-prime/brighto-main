@@ -24,7 +24,7 @@ const NAV_ITEMS = [
   { label: 'Contact', href: '/contact' },
 ]
 
-export function BrightoHeader() {
+export function BrightoHeader({ dark = false }: { dark?: boolean }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
@@ -35,6 +35,10 @@ export function BrightoHeader() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const navTextColor = dark && !scrolled ? 'text-white hover:text-white/80' : 'text-slate-700 hover:text-blue-900'
+  const navBgHover = dark && !scrolled ? 'hover:bg-white/10' : 'hover:bg-slate-50'
+  const logoFilter = dark && !scrolled ? 'brightness-0 invert' : ''
 
   return (
     <header
@@ -53,7 +57,7 @@ export function BrightoHeader() {
             alt="Brighto India — Trusted Risk, Verification & Technology Solutions Partner"
             width={180}
             height={52}
-            className="h-12 object-contain"
+            className={`h-12 object-contain ${logoFilter}`}
             style={{ width: 'auto' }}
             priority
           />
@@ -75,7 +79,7 @@ export function BrightoHeader() {
                   <button
                     onClick={() => setIsOpen((p) => !p)}
                     onMouseEnter={() => setIsOpen(true)}
-                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${isOpen ? 'text-blue-900 bg-blue-50' : 'text-slate-700 hover:text-blue-900 hover:bg-slate-50'
+                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${isOpen ? 'text-blue-900 bg-blue-50' : `${navTextColor} ${navBgHover}`
                       }`}
                   >
                     {item.label}
@@ -132,7 +136,7 @@ export function BrightoHeader() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-blue-900 hover:bg-slate-50 transition-colors"
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${navTextColor} ${navBgHover}`}
               >
                 {item.label}
               </Link>
@@ -152,9 +156,9 @@ export function BrightoHeader() {
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? (
-            <X className="w-5 h-5 text-slate-900" />
+            <X className={`w-5 h-5 ${dark && !scrolled ? 'text-white' : 'text-slate-900'}`} />
           ) : (
-            <Menu className="w-5 h-5 text-slate-900" />
+            <Menu className={`w-5 h-5 ${dark && !scrolled ? 'text-white' : 'text-slate-900'}`} />
           )}
         </button>
       </div>
