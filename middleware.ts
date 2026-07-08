@@ -111,6 +111,33 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // Handle CORS for /api/jobs, /api/jobs/apply, and /api/contact
+  if (pathname.startsWith('/api/jobs') || pathname === '/api/contact') {
+    const origin = request.headers.get('origin')
+    const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:3000').split(',')
+    const isAllowed = origin && (allowedOrigins.includes(origin) || allowedOrigins.includes('*'))
+
+    if (request.method === 'OPTIONS') {
+      const response = new NextResponse(null, { status: 204 })
+      if (isAllowed && origin) {
+        response.headers.set('Access-Control-Allow-Origin', origin)
+        response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        response.headers.set('Access-Control-Allow-Credentials', 'true')
+      }
+      return response
+    }
+
+    const response = NextResponse.next()
+    if (isAllowed && origin) {
+      response.headers.set('Access-Control-Allow-Origin', origin)
+      response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+      response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+      response.headers.set('Access-Control-Allow-Credentials', 'true')
+    }
+    return response
+  }
+
   return NextResponse.next()
 }
 
@@ -119,5 +146,7 @@ export const config = {
     '/admin/:path*',
     '/api/admin/:path*',
     '/api/dashboard',
+    '/api/jobs/:path*',
+    '/api/contact',
   ],
 }

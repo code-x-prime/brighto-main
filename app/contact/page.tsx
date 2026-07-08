@@ -269,6 +269,7 @@ export default function ContactPage() {
                         required
                         placeholder="you@company.com"
                         className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 transition-colors"
+                        suppressHydrationWarning
                       />
                     </div>
                     <div>
