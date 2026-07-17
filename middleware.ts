@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const JWT_SECRET = process.env.JWT_SECRET || 'Ottg7eqqS4QHGtmEg7trUYhxaxZnvmmyezew6Fc+Avk='
+const JWT_SECRET = process.env.JWT_SECRET
+if (!JWT_SECRET) {
+  console.error('CRITICAL: JWT_SECRET environment variable is not set')
+}
 
 function getToken(request: NextRequest): string | undefined {
   // Check cookie first
@@ -148,5 +151,6 @@ export const config = {
     '/api/dashboard',
     '/api/jobs/:path*',
     '/api/contact',
+    '/api/auth/:path*',
   ],
 }

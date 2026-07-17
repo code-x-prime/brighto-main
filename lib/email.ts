@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer'
+import { escapeHtml } from './email-escape'
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp-relay.brevo.com',
@@ -85,6 +86,7 @@ export async function sendJobApplicationEmails(data: {
 // ==================== TEMPLATES ====================
 
 export function contactThankYouTemplate(name: string) {
+  const safeName = escapeHtml(name)
   return `
     <!DOCTYPE html>
     <html>
@@ -111,7 +113,7 @@ export function contactThankYouTemplate(name: string) {
           <p>Trusted Risk & Verification Partner</p>
         </div>
         <div class="content">
-          <p class="greeting">Hi ${name},</p>
+          <p class="greeting">Hi ${safeName},</p>
           <p class="message">
             Thank you for reaching out to us! We've received your message and our team will get back to you within 24 hours.
           </p>
@@ -137,6 +139,10 @@ export function contactThankYouTemplate(name: string) {
 }
 
 export function adminNotificationTemplate(name: string, email: string, subject: string, message: string) {
+  const safeName = escapeHtml(name)
+  const safeEmail = escapeHtml(email)
+  const safeSubject = escapeHtml(subject)
+  const safeMessage = escapeHtml(message)
   return `
     <!DOCTYPE html>
     <html>
@@ -149,8 +155,8 @@ export function adminNotificationTemplate(name: string, email: string, subject: 
         .content { padding: 30px; }
         .field { margin-bottom: 15px; }
         .label { font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
-        .value { color: #1e293b; font-size: 15px; background: #f8fafc; padding: 12px; border-radius: 8px; }
-        .message-box { background: #fffbeb; border: 1px solid #fcd34d; padding: 15px; border-radius: 8px; margin-top: 10px; }
+        .value { color: #1e293b; font-size: 15px; background: #f8fafc; padding: 12px; border-radius: 8px; word-break: break-word; }
+        .message-box { background: #fffbeb; border: 1px solid #fcd34d; padding: 15px; border-radius: 8px; margin-top: 10px; white-space: pre-wrap; word-break: break-word; }
         .footer { background: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0; }
         .footer p { color: #94a3b8; font-size: 12px; margin: 5px 0; }
       </style>
@@ -163,19 +169,19 @@ export function adminNotificationTemplate(name: string, email: string, subject: 
         <div class="content">
           <div class="field">
             <div class="label">Name</div>
-            <div class="value">${name}</div>
+            <div class="value">${safeName}</div>
           </div>
           <div class="field">
             <div class="label">Email</div>
-            <div class="value">${email}</div>
+            <div class="value">${safeEmail}</div>
           </div>
           <div class="field">
             <div class="label">Subject</div>
-            <div class="value">${subject}</div>
+            <div class="value">${safeSubject}</div>
           </div>
           <div class="field">
             <div class="label">Message</div>
-            <div class="message-box">${message}</div>
+            <div class="message-box">${safeMessage}</div>
           </div>
         </div>
         <div class="footer">
@@ -188,6 +194,8 @@ export function adminNotificationTemplate(name: string, email: string, subject: 
 }
 
 export function jobApplicationThankYouTemplate(name: string, jobTitle: string) {
+  const safeName = escapeHtml(name)
+  const safeJobTitle = escapeHtml(jobTitle)
   return `
     <!DOCTYPE html>
     <html>
@@ -217,13 +225,13 @@ export function jobApplicationThankYouTemplate(name: string, jobTitle: string) {
           <p>Application Received</p>
         </div>
         <div class="content">
-          <p class="greeting">Hi ${name},</p>
+          <p class="greeting">Hi ${safeName},</p>
           <p class="message">
             Thank you for applying to Brighto India! We've received your application and our HR team will review it shortly.
           </p>
           <div class="job-card">
             <h3>Position Applied</h3>
-            <p>${jobTitle}</p>
+            <p>${safeJobTitle}</p>
           </div>
           <div class="highlight">
             <p>We typically respond within 5-7 business days. If your profile matches our requirements, we'll reach out to you for the next steps.</p>
@@ -244,6 +252,10 @@ export function jobApplicationThankYouTemplate(name: string, jobTitle: string) {
 }
 
 export function jobApplicationAdminTemplate(name: string, email: string, jobTitle: string, department: string) {
+  const safeName = escapeHtml(name)
+  const safeEmail = escapeHtml(email)
+  const safeJobTitle = escapeHtml(jobTitle)
+  const safeDepartment = escapeHtml(department)
   return `
     <!DOCTYPE html>
     <html>
@@ -256,7 +268,7 @@ export function jobApplicationAdminTemplate(name: string, email: string, jobTitl
         .content { padding: 30px; }
         .field { margin-bottom: 15px; }
         .label { font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
-        .value { color: #1e293b; font-size: 15px; background: #f8fafc; padding: 12px; border-radius: 8px; }
+        .value { color: #1e293b; font-size: 15px; background: #f8fafc; padding: 12px; border-radius: 8px; word-break: break-word; }
         .highlight { background: #faf5ff; border: 1px solid #ddd6fe; padding: 15px; border-radius: 8px; margin-top: 15px; }
         .highlight p { margin: 0; color: #7c3aed; font-size: 14px; }
         .footer { background: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0; }
@@ -271,19 +283,19 @@ export function jobApplicationAdminTemplate(name: string, email: string, jobTitl
         <div class="content">
           <div class="field">
             <div class="label">Applicant Name</div>
-            <div class="value">${name}</div>
+            <div class="value">${safeName}</div>
           </div>
           <div class="field">
             <div class="label">Email</div>
-            <div class="value">${email}</div>
+            <div class="value">${safeEmail}</div>
           </div>
           <div class="field">
             <div class="label">Position</div>
-            <div class="value">${jobTitle}</div>
+            <div class="value">${safeJobTitle}</div>
           </div>
           <div class="field">
             <div class="label">Department</div>
-            <div class="value">${department}</div>
+            <div class="value">${safeDepartment}</div>
           </div>
           <div class="highlight">
             <p>Login to admin panel to view resume and full application details.</p>

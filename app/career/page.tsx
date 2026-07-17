@@ -49,6 +49,7 @@ export default function CareerPage() {
   const [applyError, setApplyError] = useState('')
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
   const [resume, setResume] = useState<File | null>(null)
+  const [consent, setConsent] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
 
   const fetchJobs = useCallback(async () => {
@@ -101,6 +102,7 @@ export default function CareerPage() {
     setApplyError('')
     setForm({ name: '', email: '', phone: '', message: '' })
     setResume(null)
+    setConsent(false)
   }
 
   async function handleApply(e: React.FormEvent) {
@@ -117,6 +119,7 @@ export default function CareerPage() {
       formData.append('message', form.message)
       formData.append('jobId', selectedJob.id)
       formData.append('resume', resume)
+      formData.append('consent', consent ? 'true' : '')
 
       const res = await fetch('/api/jobs/apply', { method: 'POST', body: formData })
       const data = await res.json()
@@ -500,9 +503,25 @@ export default function CareerPage() {
                     />
                   </div>
 
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="career-consent"
+                      checked={consent}
+                      onChange={(e) => setConsent(e.target.checked)}
+                      className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500/20"
+                      required
+                    />
+                    <label htmlFor="career-consent" className="text-sm text-slate-500 leading-relaxed">
+                      I consent to the processing of my personal data in accordance with the{' '}
+                      <Link href="/privacy-policy" className="text-blue-600 hover:underline" target="_blank">Privacy Policy</Link>.
+                      I understand that my data will be used for recruitment purposes.
+                    </label>
+                  </div>
+
                   <button
                     type="submit"
-                    disabled={applying}
+                    disabled={applying || !consent}
                     className="w-full py-3.5 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2 transition-all"
                   >
                     {applying ? (

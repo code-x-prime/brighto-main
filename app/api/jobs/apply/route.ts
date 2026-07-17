@@ -2,43 +2,71 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { uploadToR2 } from '@/lib/r2'
 import { sendJobApplicationEmails } from '@/lib/email'
+import { jobApplicationSchema } from '@/lib/validation'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024
+const ALLOWED_TYPES = [
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+]
 
 export async function POST(request: NextRequest) {
   try {
-    const formData = await request.formData()
-    const name = formData.get('name') as string
-    const email = formData.get('email') as string
-    const phone = formData.get('phone') as string
-    const message = formData.get('message') as string
-    const jobId = formData.get('jobId') as string
-    const resume = formData.get('resume') as File
-
-    if (!name || !email || !phone || !jobId || !resume) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    const ip = getClientIp(request)
+    const rl = rateLimit(`apply:${ip}`, 3, 60_000)
+    if (!rl.success) {
+      return NextResponse.json(
+        { error: 'Too many applications. Please try again later.' },
+        { status: 429 }
+      )
     }
 
-    if (resume.size > 5 * 1024 * 1024) {
+    const formData = await request.formData()
+    const rawData = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      message: (formData.get('message') as string) || '',
+      jobId: formData.get('jobId') as string,
+      consent: formData.get('consent') as string,
+    }
+
+    const parsed = jobApplicationSchema.safeParse(rawData)
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.issues[0]?.message || 'Invalid input' },
+        { status: 400 }
+      )
+    }
+
+    const { name, email, phone, message, jobId } = parsed.data
+
+    const resume = formData.get('resume') as File | null
+    if (!resume || !(resume instanceof File)) {
+      return NextResponse.json({ error: 'Resume is required' }, { status: 400 })
+    }
+
+    if (resume.size > MAX_FILE_SIZE) {
       return NextResponse.json({ error: 'File size must be less than 5MB' }, { status: 400 })
     }
 
-    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
-    if (!allowedTypes.includes(resume.type)) {
+    if (!ALLOWED_TYPES.includes(resume.type)) {
       return NextResponse.json({ error: 'Only PDF or DOCX files are allowed' }, { status: 400 })
     }
 
-    // Get job details for email
     const job = await prisma.job.findUnique({ where: { id: jobId } })
     if (!job) {
       return NextResponse.json({ error: 'Job not found' }, { status: 404 })
     }
 
-    // Upload to R2 with folder
     const folder = process.env.UPLOAD_FOLDER || 'resumes'
+    const safeName = name.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 50)
     const ext = resume.name.split('.').pop() || 'pdf'
-    const fileName = `${folder}/${jobId}/${Date.now()}-${name.replace(/\s+/g, '-')}.${ext}`
+    const fileName = `${folder}/${jobId}/${Date.now()}-${safeName}.${ext}`
     const { url, key } = await uploadToR2(resume, fileName)
 
-    // Save to database
     const application = await prisma.jobApplication.create({
       data: {
         name,
@@ -51,7 +79,6 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Send emails (thank you to applicant + notification to admin)
     let emailSent = false
     try {
       emailSent = await sendJobApplicationEmails({
@@ -65,8 +92,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ success: true, application, emailSent })
-  } catch (error) {
-    console.error('Application error:', error)
+  } catch {
     return NextResponse.json({ error: 'Failed to submit application' }, { status: 500 })
   }
 }

@@ -2,23 +2,45 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { loginSchema } from '@/lib/validation'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
-const JWT_SECRET = process.env.JWT_SECRET || 'brighto-admin-secret-key-2024'
+const JWT_SECRET = process.env.JWT_SECRET
+if (!JWT_SECRET) {
+  console.error('CRITICAL: JWT_SECRET environment variable is not set')
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password } = await request.json()
-
-    if (!email || !password) {
-      return NextResponse.json({ error: 'Email and password required' }, { status: 400 })
+    if (!JWT_SECRET) {
+      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 })
     }
+
+    const ip = getClientIp(request)
+    const rl = rateLimit(`login:${ip}`, 5, 15 * 60_000)
+    if (!rl.success) {
+      return NextResponse.json(
+        { error: 'Too many login attempts. Please try again later.' },
+        { status: 429 }
+      )
+    }
+
+    const body = await request.json()
+    const parsed = loginSchema.safeParse(body)
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.issues[0]?.message || 'Invalid input' },
+        { status: 400 }
+      )
+    }
+
+    const { email, password } = parsed.data
 
     let admin
     try {
       admin = await prisma.admin.findUnique({ where: { email } })
-    } catch (dbError) {
-      console.error('Database error:', dbError)
-      return NextResponse.json({ error: 'Database connection failed' }, { status: 500 })
+    } catch {
+      return NextResponse.json({ error: 'Service temporarily unavailable' }, { status: 503 })
     }
 
     if (!admin) {
@@ -36,9 +58,7 @@ export async function POST(request: NextRequest) {
       { expiresIn: '24h' }
     )
 
-    console.log('Login successful')
-
-    // Return token in body AND set cookie
+    const isProduction = process.env.NODE_ENV === 'production'
     const response = NextResponse.json({
       success: true,
       token,
@@ -47,7 +67,7 @@ export async function POST(request: NextRequest) {
 
     response.cookies.set('admin-token', token, {
       httpOnly: true,
-      secure: false,
+      secure: isProduction,
       sameSite: 'lax',
       maxAge: 86400,
       path: '/',
@@ -55,8 +75,7 @@ export async function POST(request: NextRequest) {
 
     return response
 
-  } catch (error) {
-    console.error('Login error:', error)
+  } catch {
     return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
   }
 }

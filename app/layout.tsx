@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, Amiko } from 'next/font/google'
 import LenisProvider from '@/components/lenis-provider'
@@ -108,7 +107,6 @@ export default function RootLayout({
         <LenisProvider />
         {children}
         <WhatsAppButton />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )

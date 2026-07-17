@@ -26,9 +26,9 @@ const CONTACT_INFO = [
   {
     icon: Mail,
     label: 'Email Us',
-    value: 'hello@brighto.in',
+    value: 'Support@brightoindia.com',
     sub: 'We respond within 24 hours',
-    href: 'mailto:hello@brighto.in',
+    href: 'mailto:Support@brightoindia.com',
     color: '#091C8C',
     bg: '#eef2ff',
     border: '#c7d2fe',
@@ -36,9 +36,9 @@ const CONTACT_INFO = [
   {
     icon: Phone,
     label: 'Call Us',
-    value: '783 - 848 - 4441',
+    value: '9311463901',
     sub: 'Mon-Sat, 9 AM - 6 PM IST',
-    href: 'tel:7838484441',
+    href: 'tel:9311463901',
     color: '#059669',
     bg: '#f0fdf4',
     border: '#a7f3d0',
@@ -76,7 +76,7 @@ const WHY_CONTACT = [
 
 export default function ContactPage() {
   const [form, setForm] = useState({
-    name: '', company: '', email: '', phone: '', service: '', message: '',
+    name: '', company: '', email: '', phone: '', service: '', message: '', consent: false, website: '',
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -103,6 +103,8 @@ export default function ContactPage() {
           phone: form.phone,
           subject: form.service || 'General Enquiry',
           message: `Company: ${form.company}\n\n${form.message}`,
+          consent: form.consent ? 'true' : '',
+          website: form.website,
         }),
       })
 
@@ -218,7 +220,7 @@ export default function ContactPage() {
                     </div>
                   )}
                   <button
-                    onClick={() => { setSubmitted(false); setEmailStatus(null); setForm({ name: '', company: '', email: '', phone: '', service: '', message: '' }) }}
+                    onClick={() => { setSubmitted(false); setEmailStatus(null); setForm({ name: '', company: '', email: '', phone: '', service: '', message: '', consent: false, website: '' }) }}
                     className="mt-2 px-5 py-2.5 border border-slate-300 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
                   >
                     Send Another Message
@@ -331,9 +333,39 @@ export default function ContactPage() {
                     </div>
                   )}
 
+                  {/* Honeypot - hidden from humans, visible to bots */}
+                  <div className="absolute opacity-0 pointer-events-none h-0 overflow-hidden" aria-hidden="true">
+                    <label htmlFor="website-field">Leave this empty</label>
+                    <input
+                      id="website-field"
+                      name="website"
+                      type="text"
+                      value={form.website}
+                      onChange={handleChange}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="contact-consent"
+                      checked={form.consent}
+                      onChange={(e) => setForm((prev) => ({ ...prev, consent: e.target.checked }))}
+                      className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-900 focus:ring-blue-900/20"
+                      required
+                    />
+                    <label htmlFor="contact-consent" className="text-xs text-slate-500 leading-relaxed">
+                      I consent to the processing of my personal data in accordance with the{' '}
+                      <Link href="/privacy-policy" className="text-blue-600 hover:underline" target="_blank">Privacy Policy</Link>.
+                      I understand that my data will be used to respond to my enquiry and will be retained as described.
+                    </label>
+                  </div>
+
                   <button
                     type="submit"
-                    disabled={loading}
+                    disabled={loading || !form.consent}
                     className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-blue-900 hover:bg-blue-950 disabled:opacity-60 text-white rounded-xl font-bold text-base transition-all hover:shadow-xl hover:-translate-y-0.5"
                   >
                     {loading ? (
@@ -352,8 +384,12 @@ export default function ContactPage() {
                   <p className="text-xs text-slate-400 text-center">
                     By submitting, you agree to our{' '}
                     <Link href="/privacy-policy" className="text-blue-600 hover:underline" target="_blank">
-                      privacy policy
-                    </Link>. We never share your data with third parties.
+                      Privacy Policy
+                    </Link>{' '}
+                    and{' '}
+                    <Link href="/terms-and-conditions" className="text-blue-600 hover:underline" target="_blank">
+                      Terms &amp; Conditions
+                    </Link>.
                   </p>
                 </form>
               )}

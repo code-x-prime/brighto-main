@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Plus, Edit, Trash2, ToggleLeft, ToggleRight, Briefcase, MapPin, Clock, Search } from 'lucide-react'
+import { Plus, Edit, Trash2, ToggleLeft, ToggleRight, Briefcase, MapPin, Clock, Search, Building2 } from 'lucide-react'
 import { authFetch } from '@/lib/auth-client'
 
 interface Job {

@@ -7,7 +7,7 @@ export function WhatsAppButton() {
   const pathname = usePathname()
   if (pathname.startsWith('/admin')) return null
 
-  const phone = '919876543210'
+  const phone = '919311463901'
   const message = encodeURIComponent('Hello Brighto India! I would like to know more about your verification and due diligence services. Could you please share the details?')
   const url = `https://wa.me/${phone}?text=${message}`
 

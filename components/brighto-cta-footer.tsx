@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { FaXTwitter, FaInstagram, FaFacebookF, FaLinkedinIn, FaYoutube } from 'react-icons/fa6'
+import { FaLinkedinIn } from 'react-icons/fa6'
 import { FiMail, FiPhone, FiMapPin, FiArrowUp } from 'react-icons/fi'
 
 export function BrightoFooter() {
@@ -67,11 +67,17 @@ export function BrightoFooter() {
             <div>
               <h4 className="font-semibold text-slate-900 text-sm mb-4">Resources</h4>
               <ul className="flex flex-col space-y-2">
-                {['Blog & Insights', 'Case Studies', 'Documentation', 'API Docs', 'Support Center'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm text-slate-500 hover:text-blue-900 md:text-xs transition-colors">
-                      {item}
-                    </a>
+                {[
+                  { label: 'Blog & Insights', href: '#' },
+                  { label: 'Case Studies', href: '#' },
+                  { label: 'Privacy Policy', href: '/privacy-policy' },
+                  { label: 'Terms & Conditions', href: '/terms-and-conditions' },
+                  { label: 'Cookie Policy', href: '/cookie-policy' },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.href} className="text-sm text-slate-500 hover:text-blue-900 md:text-xs transition-colors">
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -80,13 +86,13 @@ export function BrightoFooter() {
               <h4 className="font-semibold text-slate-900 text-sm mb-4">Contact</h4>
               <ul className="flex flex-col space-y-2">
                 <li>
-                  <a href="mailto:hello@brighto.in" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
-                    <FiMail className="w-3.5 h-3.5 shrink-0" /> hello@brighto.in
+                  <a href="mailto:Support@brightoindia.com" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
+                    <FiMail className="w-3.5 h-3.5 shrink-0" /> Support@brightoindia.com
                   </a>
                 </li>
                 <li>
-                  <a href="tel:7838484441" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
-                    <FiPhone className="w-3.5 h-3.5 shrink-0" /> 783 - 848 - 4441
+                  <a href="tel:9311463901" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
+                    <FiPhone className="w-3.5 h-3.5 shrink-0" /> 9311463901
                   </a>
                 </li>
                 <li>
@@ -110,12 +116,8 @@ export function BrightoFooter() {
       <div className="flex flex-col items-center justify-center gap-6 py-4">
         <div className="flex flex-wrap items-center justify-center gap-4 px-6">
           {[
-            { icon: FiMail, href: 'mailto:hello@brighto.in' },
-            { icon: FaXTwitter, href: 'https://x.com' },
-            { icon: FaInstagram, href: 'https://instagram.com' },
-            { icon: FaFacebookF, href: 'https://facebook.com' },
-            { icon: FaLinkedinIn, href: 'https://linkedin.com' },
-            { icon: FaYoutube, href: 'https://youtube.com' },
+            { icon: FiMail, href: 'mailto:Support@brightoindia.com' },
+            { icon: FaLinkedinIn, href: 'https://www.linkedin.com/company/brighto-credit-information-pvt.-ltd./' },
           ].map((social, idx) => {
             const Icon = social.icon
             return (

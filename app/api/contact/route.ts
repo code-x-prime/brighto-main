@@ -1,22 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { sendContactEmails } from '@/lib/email'
+import { contactFormSchema } from '@/lib/validation'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = getClientIp(request)
+    const rl = rateLimit(`contact:${ip}`, 5, 60_000)
+    if (!rl.success) {
+      return NextResponse.json(
+        { error: 'Too many submissions. Please try again later.' },
+        { status: 429 }
+      )
+    }
+
     const body = await request.json()
-    const { name, email, phone, subject, message } = body
-
-    if (!name || !email || !subject || !message) {
-      return NextResponse.json({ error: 'Please fill in all required fields' }, { status: 400 })
+    const parsed = contactFormSchema.safeParse(body)
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.issues[0]?.message || 'Invalid input' },
+        { status: 400 }
+      )
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return NextResponse.json({ error: 'Please enter a valid email address' }, { status: 400 })
+    const { name, email, phone, subject, message, website } = parsed.data
+
+    if (website) {
+      return NextResponse.json({ success: true })
     }
 
-    // Save to database
     let submission
     try {
       submission = await prisma.contactSubmission.create({
@@ -26,7 +39,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to save your message. Please try again.' }, { status: 500 })
     }
 
-    // Send emails (thank you to user + notification to admin)
     let emailSent = false
     try {
       emailSent = await sendContactEmails({ name, email, subject, message })
@@ -34,7 +46,6 @@ export async function POST(request: NextRequest) {
       // Email failed but submission saved
     }
 
-    // Update email status
     try {
       await prisma.contactSubmission.update({
         where: { id: submission.id },
