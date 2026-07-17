@@ -161,8 +161,8 @@ export default function PrivacyPolicyPage() {
                 </div>
                 <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
                   <p className="font-semibold text-slate-700 text-sm">Hosting Provider</p>
-                  <p className="text-slate-500 text-sm">Vercel (Website hosting and analytics)</p>
-                  <p className="text-slate-400 text-xs mt-1">Data processed: Usage data, IP addresses | Stored in: Global CDN</p>
+                  <p className="text-slate-500 text-sm">Hostinger VPS (Website hosting)</p>
+                  <p className="text-slate-400 text-xs mt-1">Data processed: Usage data, IP addresses | Stored in: India</p>
                 </div>
               </div>
               <p className="text-slate-600 leading-relaxed mt-3">
