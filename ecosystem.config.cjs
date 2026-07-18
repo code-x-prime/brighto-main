@@ -7,7 +7,7 @@ module.exports = {
       cwd: "/root/brighto-main",
       env: {
         NODE_ENV: "production",
-        PORT: 7006
+        PORT: 7007
       }
     }
   ]
