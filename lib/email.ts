@@ -50,7 +50,7 @@ export async function sendContactEmails(data: {
 
   // Notification to admin
   await sendEmail({
-    to: process.env.ADMIN_EMAIL || 'admin@brightoindia.com',
+    to: process.env.ADMIN_EMAIL || 'support@brightoindia.com',
     subject: `New Contact: ${subject}`,
     html: adminNotificationTemplate(name, email, subject, message),
   })
@@ -75,7 +75,7 @@ export async function sendJobApplicationEmails(data: {
 
   // Notification to admin
   await sendEmail({
-    to: process.env.ADMIN_EMAIL || 'admin@brightoindia.com',
+    to: process.env.ADMIN_EMAIL || 'support@brightoindia.com',
     subject: `New Job Application: ${jobTitle} (${department})`,
     html: jobApplicationAdminTemplate(name, email, jobTitle, department),
   })

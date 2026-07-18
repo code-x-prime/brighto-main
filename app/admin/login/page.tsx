@@ -73,7 +73,7 @@ export default function AdminLogin() {
                   name="email"
                   required
                   className="w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-lg text-sm focus:ring-2 focus:ring-zinc-950/10 focus:border-zinc-400 outline-none transition-all"
-                  placeholder="admin@brightoindia.com"
+                  placeholder="username@email.com"
                 />
               </div>
             </div>
@@ -117,12 +117,6 @@ export default function AdminLogin() {
               )}
             </button>
           </form>
-
-          <div className="mt-6 pt-6 border-t border-zinc-100 text-center">
-            <p className="text-xs text-zinc-400">
-              admin@brightoindia.com / admin123
-            </p>
-          </div>
         </div>
       </div>
     </div>
