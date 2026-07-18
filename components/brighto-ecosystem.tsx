@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const ecosystem = [
   {
@@ -12,6 +13,7 @@ const ecosystem = [
     accent: '#3B82F6',
     letter: 'CS',
     logo: '/CrediScout-Logo2.png',
+    url: '#',
   },
   {
     name: 'Hubcheck',
@@ -21,6 +23,7 @@ const ecosystem = [
     accent: '#F97316',
     letter: 'HC',
     logo: '/Hubcheck-Logo.png',
+    url: 'https://hubcheck.in',
   },
   {
     name: 'Credify India',
@@ -30,6 +33,7 @@ const ecosystem = [
     accent: '#10B981',
     letter: 'CI',
     logo: '/Credify-Logo2.png',
+    url: '#',
   },
   {
     name: 'Truering',
@@ -39,6 +43,7 @@ const ecosystem = [
     accent: '#8B5CF6',
     letter: 'TR',
     logo: '/TrueRing-Logo2.png',
+    url: '#',
   },
 ]
 
@@ -188,42 +193,53 @@ export function BrightoEcosystem() {
 
             {/* Surrounding nodes */}
             {[
-              { cx: 155, cy: 85, label: 'Crediscout', sub: 'Background', accent: '#3B82F6', logo: '/CrediScout-Logo2.png' },
-              { cx: 645, cy: 85, label: 'Hubcheck', sub: 'Warehouse', accent: '#F97316', logo: '/Hubcheck-Logo.png' },
-              { cx: 155, cy: 315, label: 'Credify', sub: 'APIs', accent: '#10B981', logo: '/Credify-Logo2.png' },
-              { cx: 645, cy: 315, label: 'Truering', sub: 'CRM', accent: '#8B5CF6', logo: '/TrueRing-Logo2.png' },
-            ].map((node, idx) => (
-              <g key={idx} className="cursor-pointer group">
-                {/* Outer ring pulse */}
-                <circle cx={node.cx} cy={node.cy} r="58" fill="none" stroke={node.accent} strokeWidth="1" opacity="0.2" className="animate-pulse" style={{ animationDelay: `${idx * 0.5}s` }} />
-                {/* Main node */}
-                <circle cx={node.cx} cy={node.cy} r="48" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" filter="url(#eco-shadow)" />
-                {/* Accent top arc */}
-                <path
-                  d={`M ${node.cx - 30} ${node.cy - 37} A 48 48 0 0 1 ${node.cx + 30} ${node.cy - 37}`}
-                  fill="none"
-                  stroke={node.accent}
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  opacity="0.75"
-                />
-                {node.logo ? (
-                  <image
-                    href={node.logo}
-                    x={node.cx - 42}
-                    y={node.cy - 21}
-                    width="84"
-                    height="42"
-                    preserveAspectRatio="xMidYMid meet"
+              { cx: 155, cy: 85, label: 'Crediscout', sub: 'Background', accent: '#3B82F6', logo: '/CrediScout-Logo2.png', url: '#' },
+              { cx: 645, cy: 85, label: 'Hubcheck', sub: 'Warehouse', accent: '#F97316', logo: '/Hubcheck-Logo.png', url: 'https://hubcheck.in' },
+              { cx: 155, cy: 315, label: 'Credify', sub: 'APIs', accent: '#10B981', logo: '/Credify-Logo2.png', url: '#' },
+              { cx: 645, cy: 315, label: 'Truering', sub: 'CRM', accent: '#8B5CF6', logo: '/TrueRing-Logo2.png', url: '#' },
+            ].map((node, idx) => {
+              const NodeContent = (
+                <g key={idx} className="cursor-pointer group">
+                  {/* Outer ring pulse */}
+                  <circle cx={node.cx} cy={node.cy} r="58" fill="none" stroke={node.accent} strokeWidth="1" opacity="0.2" className="animate-pulse" style={{ animationDelay: `${idx * 0.5}s` }} />
+                  {/* Main node */}
+                  <circle cx={node.cx} cy={node.cy} r="48" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" filter="url(#eco-shadow)" />
+                  {/* Accent top arc */}
+                  <path
+                    d={`M ${node.cx - 30} ${node.cy - 37} A 48 48 0 0 1 ${node.cx + 30} ${node.cy - 37}`}
+                    fill="none"
+                    stroke={node.accent}
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    opacity="0.75"
                   />
-                ) : (
-                  <>
-                    <text x={node.cx} y={node.cy + 5} textAnchor="middle" fontSize="14" fontWeight="700" fill="#0F172A" fontFamily="var(--font-manrope)">{node.label}</text>
-                    <text x={node.cx} y={node.cy + 21} textAnchor="middle" fontSize="11" fontWeight="500" fill={node.accent} fontFamily="var(--font-manrope)">{node.sub}</text>
-                  </>
-                )}
-              </g>
-            ))}
+                  {node.logo ? (
+                    <image
+                      href={node.logo}
+                      x={node.cx - 42}
+                      y={node.cy - 21}
+                      width="84"
+                      height="42"
+                      preserveAspectRatio="xMidYMid meet"
+                    />
+                  ) : (
+                    <>
+                      <text x={node.cx} y={node.cy + 5} textAnchor="middle" fontSize="14" fontWeight="700" fill="#0F172A" fontFamily="var(--font-manrope)">{node.label}</text>
+                      <text x={node.cx} y={node.cy + 21} textAnchor="middle" fontSize="11" fontWeight="500" fill={node.accent} fontFamily="var(--font-manrope)">{node.sub}</text>
+                    </>
+                  )}
+                </g>
+              );
+
+              if (node.url && node.url !== '#') {
+                return (
+                  <a key={idx} href={node.url} target="_blank" rel="noopener noreferrer">
+                    {NodeContent}
+                  </a>
+                );
+              }
+              return NodeContent;
+            })}
           </svg>
 
           <style>{`
@@ -255,12 +271,9 @@ export function BrightoEcosystem() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {ecosystem.map((item, idx) => {
             const isHovered = hovered === idx
-            return (
+            const CardContent = (
               <div
-                key={idx}
-                onMouseEnter={() => setHovered(idx)}
-                onMouseLeave={() => setHovered(null)}
-                className="group relative rounded-2xl border p-6 flex flex-col gap-4 cursor-pointer transition-all duration-300 overflow-hidden bg-white"
+                className="group relative rounded-2xl border p-6 flex flex-col gap-4 cursor-pointer transition-all duration-300 overflow-hidden bg-white h-full text-left"
                 style={{
                   borderColor: isHovered ? `${item.accent}50` : '#e2e8f0',
                   boxShadow: isHovered
@@ -336,7 +349,26 @@ export function BrightoEcosystem() {
                   Powered by {item.name}
                 </p>
               </div>
-            )
+            );
+
+            if (item.url && item.url !== '#') {
+              return (
+                <Link key={idx} href={item.url} target="_blank" rel="noopener noreferrer" className="block h-full">
+                  {CardContent}
+                </Link>
+              );
+            }
+
+            return (
+              <div
+                key={idx}
+                onMouseEnter={() => setHovered(idx)}
+                onMouseLeave={() => setHovered(null)}
+                className="h-full"
+              >
+                {CardContent}
+              </div>
+            );
           })}
         </div>
 
