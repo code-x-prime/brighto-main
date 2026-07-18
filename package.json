@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "prisma generate && next build",
-    "start": "next start",
+    "start": "cross-env NODE_ENV=production node server.mjs",
     "lint": "eslint .",
     "db:generate": "npx prisma generate",
     "db:push": "npx prisma db push",
@@ -25,6 +25,7 @@
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cross-env": "^10.1.0",
     "dotenv": "^17.4.2",
     "embla-carousel-auto-scroll": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
