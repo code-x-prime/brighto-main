@@ -197,7 +197,7 @@ export default function AboutPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-slate-950/10 to-transparent" />
                   <div className="absolute bottom-5 left-5 right-5">
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur text-xs font-bold text-blue-900 shadow-sm">
-                      ISO 27001 - ISO 9001 Certified
+                      ISO 27001 - ISO 9001 - PDPD Ready
                     </div>
                   </div>
                 </div>

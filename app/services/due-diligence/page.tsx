@@ -213,7 +213,7 @@ export default function DueDiligencePage() {
                 <div className="absolute inset-0 bg-linear-to-t from-slate-950/50 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-blue-900">
-                    ISO 27001 · ISO 9001 Certified
+                    ISO 27001 · ISO 9001 · PDPD Ready
                   </span>
                 </div>
               </div>

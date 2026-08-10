@@ -161,7 +161,7 @@ export function BrightoHero() {
 
             {/* Certifications */}
             <div className="flex flex-wrap gap-3">
-              {['ISO 27001 Certified', 'ISO 9001 Certified'].map((cert) => (
+              {['ISO 27001 Certified', 'ISO 9001 Certified', 'PDPD Ready'].map((cert) => (
                 <span key={cert} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs font-semibold text-emerald-800">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                   {cert}
