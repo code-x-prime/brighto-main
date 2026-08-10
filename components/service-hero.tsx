@@ -93,7 +93,7 @@ export function ServiceHero({
   blob3,
   breadcrumb,
   breadcrumbHref,
-  certs = ['ISO 27001 Certified', 'ISO 9001 Certified', 'SOC 2 Audited'],
+  certs = ['ISO 27001 Certified', 'ISO 9001 Certified'],
 }: ServiceHeroProps) {
   const GRID_SIZE = 44
 

@@ -178,9 +178,9 @@ export default function FraudRiskAssessmentPage() {
         breadcrumbHref="/services/fraud-risk-assessment"
         stats={[
           { val: '2015', label: 'Serving Since', sub: 'Decade of experience', color: '#dc2626', bg: '#fef2f2', border: '#fecaca' },
-          { val: '500K+', label: 'Cases Supported', sub: 'Across India', color: '#d97706', bg: '#fffbeb', border: '#fde68a' },
+          { val: '10+', label: 'Years of Experience', sub: 'In fraud risk assessment', color: '#d97706', bg: '#fffbeb', border: '#fde68a' },
           { val: 'Pan-India', label: 'Coverage', sub: 'Multi-geography reach', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
-          { val: '3 Certs', label: 'ISO + SOC 2', sub: 'Internationally audited', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+          { val: '2 Certs', label: 'ISO 27001 + 9001', sub: 'Internationally certified', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
         ]}
       />
 
@@ -195,7 +195,7 @@ export default function FraudRiskAssessmentPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-slate-600 leading-relaxed text-base">
                 <p>Since 2015, Brighto India has been a trusted partner in Fraud Risk Assessment Support Services, working with banks, NBFCs, housing finance companies, fintech companies, insurance providers, and other businesses to improve risk management and verification.</p>
                 <p>Our team brings expertise in information validation, loan application verification, contact point verification, on-site investigations, document validation, and evaluation support, enabling companies to establish structured review frameworks.</p>
-                <p className="sm:col-span-2">As an ISO 27001 Certified, ISO 9001 Certified, and SOC 2 Audited company, Brighto India adheres to established standards for data safety, quality management, and protection while providing process-based validation, investigations, and risk evaluation support.</p>
+                <p className="sm:col-span-2">As an ISO 27001 Certified and ISO 9001 Certified company, Brighto India adheres to established standards for data safety and quality management while providing process-based validation, investigations, and risk evaluation support.</p>
               </div>
             </div>
             <div className="lg:col-span-2">
@@ -210,7 +210,7 @@ export default function FraudRiskAssessmentPage() {
                 <div className="absolute inset-0 bg-linear-to-t from-red-950/50 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-red-900">
-                    ISO 27001 - ISO 9001 - SOC 2 Audited
+                    ISO 27001 - ISO 9001 Certified
                   </span>
                 </div>
               </div>

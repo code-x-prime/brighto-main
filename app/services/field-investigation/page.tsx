@@ -122,9 +122,9 @@ export default function FieldInvestigationPage() {
         breadcrumbHref="/services/field-investigation"
         stats={[
           { val: '2015', label: 'Serving Since', sub: 'Decade of experience', color: '#0f766e', bg: '#f0fdfa', border: '#99f6e4' },
-          { val: '500K+', label: 'Cases Supported', sub: 'Across India', color: '#0ea5a4', bg: '#f0fdfa', border: '#99f6e4' },
+          { val: '10+', label: 'Years of Experience', sub: 'In field investigation', color: '#0ea5a4', bg: '#f0fdfa', border: '#99f6e4' },
           { val: 'Pan-India', label: 'Coverage', sub: 'Multi-geography reach', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
-          { val: '3 Certs', label: 'ISO + SOC 2', sub: 'Internationally audited', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+          { val: '2 Certs', label: 'ISO 27001 + 9001', sub: 'Internationally certified', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
         ]}
       />
 
@@ -137,7 +137,7 @@ export default function FieldInvestigationPage() {
                 About Brighto India
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-slate-600 leading-relaxed text-base">
-                <p>Brighto India is an ISO 27001 Certified, ISO 9001 Certified, and SOC 2 Audited company that delivers consistent Field Investigation (FI) Services for banks, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises.</p>
+                <p>Brighto India is an ISO 27001 Certified and ISO 9001 Certified company that delivers consistent Field Investigation (FI) Services for banks, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises.</p>
                 <p>Since 2015, we have delivered independent field investigations alongside due diligence, loan application verification, contact point verification, document verification, and information validation services, helping organizations strengthen consistent review and assessment processes.</p>
                 <p className="sm:col-span-2">Our investigation support is structured to help clients review information through on-the-ground checks, documented observations, and clear reporting while staying within the agreed scope of work.</p>
               </div>
@@ -154,7 +154,7 @@ export default function FieldInvestigationPage() {
                 <div className="absolute inset-0 bg-linear-to-t from-teal-950/50 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-teal-900">
-                    ISO 27001 - ISO 9001 - SOC 2 Audited
+                    ISO 27001 - ISO 9001 Certified
                   </span>
                 </div>
               </div>

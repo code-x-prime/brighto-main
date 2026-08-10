@@ -5,9 +5,8 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
 const CERTS = [
-  { label: 'ISO 27001 Certified', sub: 'Information Security', icon: '/icons/information-security.svg' },
-  { label: 'ISO 9001 Certified', sub: 'Quality Management', icon: '/icons/quality-management.svg' },
-  { label: 'SOC 2 Audited', sub: 'Data Protection', icon: '/icons/data-protection.svg' },
+  { label: 'ISO 27001 Certified', sub: 'Information Security', icon: '/icons/iso-27001-badge.png' },
+  { label: 'ISO 9001 Certified', sub: 'Quality Management', icon: '/icons/iso-9001-badge.png' },
 ]
 
 const SERVICES_LIST = [
@@ -40,13 +39,13 @@ export function BrightoAbout() {
             <div className="space-y-3">
               {CERTS.map((cert) => (
                 <div key={cert.label} className="flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-xl hover:border-emerald-300 hover:shadow-sm transition-all">
-                  <div className="w-10 h-10 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 flex items-center justify-center shrink-0">
                     <Image
                       src={cert.icon}
                       alt={cert.label}
-                      width={24}
-                      height={24}
-                      style={{ filter: 'invert(40%) sepia(80%) saturate(400%) hue-rotate(120deg) brightness(0.8)' }}
+                      width={48}
+                      height={48}
+                      className="object-contain"
                     />
                   </div>
                   <div>
@@ -65,7 +64,7 @@ export function BrightoAbout() {
                 We focus on accuracy, integrity, and speed so teams can make informed decisions with less back-and-forth. Our approach combines experienced field teams, structured workflows, and technology-assisted operations.
               </p>
               <p>
-                As an ISO 27001-certified, ISO 9001-certified, and SOC 2 Audited organization, we work to globally recognized standards for information security, quality management, and data protection.
+                As an ISO 27001-certified and ISO 9001-certified organization, we work to globally recognized standards for information security and quality management.
               </p>
               <p>
                 That mix of discipline and flexibility helps us deliver scalable, secure, and business-focused services tailored to the needs of the financial and enterprise ecosystem.

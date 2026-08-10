@@ -144,17 +144,18 @@ export function BrightoFooter() {
       </div>
 
       {/* Copyright */}
-      <div className="mx-auto mb-6 mt-6 flex flex-col justify-between text-center text-xs md:max-w-7xl px-4">
+      <div className="mx-auto mb-6 mt-6 flex flex-col items-center justify-between gap-1 text-center text-xs md:max-w-7xl px-4">
+        <span className="text-slate-500">Brighto Credit Information Private Limited</span>
         <div className="flex flex-row flex-wrap items-center justify-center gap-1 text-slate-500">
-          <span>(c) {new Date().getFullYear()}</span>
-          <span>Brighto India design and develop by</span>
+          <span>&copy; {new Date().getFullYear()} Brighto India. All rights reserved.</span>
+          <span>Website designed &amp; developed by</span>
           <a
             href="https://groxmedia.in/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-bold text-slate-800 hover:text-blue-900 transition-colors"
           >
-            &quot;Grox Media&quot;
+            Grox Media
           </a>
         </div>
       </div>

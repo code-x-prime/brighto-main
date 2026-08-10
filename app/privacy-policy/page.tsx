@@ -132,7 +132,7 @@ export default function PrivacyPolicyPage() {
                 <li>AES-256 encryption for data at rest</li>
                 <li>TLS 1.3 encryption for data in transit</li>
                 <li>ISO 27001 certified information security management</li>
-                <li>SOC 2 Type II audited controls</li>
+                <li>ISO 9001 certified quality management</li>
                 <li>Role-based access controls with least-privilege principle</li>
                 <li>Regular security audits and penetration testing</li>
                 <li>Secure file upload with type and size validation</li>

@@ -16,7 +16,7 @@ const steps = [
   },
   {
     number: '02',
-    title: 'Case Assignment',
+    title: 'Case Allocation',
     description: 'We hand over cases in accordance with predefined workflows — the right team, right expertise, right geography matched to each case automatically.',
     icon: Briefcase,
     tag: 'Allocation',
@@ -25,7 +25,7 @@ const steps = [
   },
   {
     number: '03',
-    title: 'Verification & Investigation',
+    title: 'Field Verification',
     description: 'Teams carry out the actual verifications and field investigations on the ground — physical visits, document checks, applicant interviews, and multi-source validation.',
     icon: Microscope,
     tag: 'Field Work',
@@ -43,7 +43,7 @@ const steps = [
   },
   {
     number: '05',
-    title: 'Risk Assessment',
+    title: 'Risk Analysis',
     description: 'We study all findings and synthesize them into a clear risk picture — flagging anomalies, fraud signals, and compliance gaps for the client.',
     icon: BarChart3,
     tag: 'Analysis',
@@ -52,7 +52,7 @@ const steps = [
   },
   {
     number: '06',
-    title: 'Reporting',
+    title: 'Report Delivery',
     description: 'Clients receive clear, structured, audit-ready reports they can use directly for final decisions, credit approvals, or regulatory submissions.',
     icon: FileCheck,
     tag: 'Delivery',

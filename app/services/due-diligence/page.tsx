@@ -10,7 +10,7 @@ import { ServiceOfferings } from '@/components/service-offerings'
 export const metadata: Metadata = {
   title: "Due Diligence Services India | Brighto India – Verified Risk & Business Decisions",
   description:
-    "Brighto India provides structured Due Diligence Services since 2015 — business, financial, customer, vendor & enterprise due diligence across India. ISO 27001 | ISO 9001 | SOC 2 Audited.",
+    "Brighto India provides structured Due Diligence Services since 2015 — business, financial, customer, vendor & enterprise due diligence across India. ISO 27001 | ISO 9001 Certified.",
   keywords: [
     'due diligence services India', 'business due diligence', 'financial due diligence',
     'vendor due diligence', 'customer due diligence', 'Brighto India due diligence',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/services/due-diligence' },
   openGraph: {
     title: "Due Diligence Services India | Brighto India",
-    description: "Structured Due Diligence Services since 2015 for banks, NBFCs, fintechs & enterprises. ISO 27001 | ISO 9001 | SOC 2 Audited.",
+    description: "Structured Due Diligence Services since 2015 for banks, NBFCs, fintechs & enterprises. ISO 27001 | ISO 9001 Certified.",
     url: 'https://www.brightoindia.com/services/due-diligence',
     siteName: 'Brighto India',
     locale: 'en_IN',
@@ -138,7 +138,7 @@ const FAQS = [
   },
   {
     q: 'Is Brighto India certified for due diligence services?',
-    a: 'Yes. Brighto India is ISO 27001 Certified, ISO 9001 Certified, and SOC 2 Audited, reflecting our commitment to information security, quality management, and data protection.',
+    a: 'Yes. Brighto India is ISO 27001 Certified and ISO 9001 Certified, reflecting our commitment to information security and quality management.',
   },
   {
     q: 'Does Brighto India provide pan-India due diligence support?',
@@ -174,9 +174,9 @@ export default function DueDiligencePage() {
         breadcrumbHref="/services/due-diligence"
         stats={[
           { val: '2015',      label: 'Serving Since',   sub: 'Decade of experience',     color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
-          { val: '500K+',     label: 'Cases Verified',  sub: 'Across India',              color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+          { val: '10+',       label: 'Years of Experience', sub: 'In due diligence',      color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
           { val: 'Pan-India', label: 'Coverage',        sub: 'Multi-geography reach',     color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
-          { val: '3 Certs',   label: 'ISO + SOC 2',     sub: 'Internationally audited',   color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+          { val: '2 Certs',   label: 'ISO 27001 + 9001', sub: 'Internationally certified', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
         ]}
       />
 
@@ -197,7 +197,7 @@ export default function DueDiligencePage() {
                   Our expertise spans due diligence, field investigation, loan application verification, contact point verification, document verification, and credit appraisal support, helping organizations build consistent frameworks for verification and assessment.
                 </p>
                 <p className="sm:col-span-2">
-                  As an ISO 27001 Certified, ISO 9001 Certified, and SOC 2 Audited organization, Brighto India follows established standards for information security, quality management, and data protection across every due diligence engagement.
+                  As an ISO 27001 Certified and ISO 9001 Certified organization, Brighto India follows established standards for information security and quality management across every due diligence engagement.
                 </p>
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function DueDiligencePage() {
                 <div className="absolute inset-0 bg-linear-to-t from-slate-950/50 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-blue-900">
-                    ISO 27001 · ISO 9001 · SOC 2 Audited
+                    ISO 27001 · ISO 9001 Certified
                   </span>
                 </div>
               </div>

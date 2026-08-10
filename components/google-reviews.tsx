@@ -13,19 +13,6 @@ interface Testimonial {
   avatar: string | null
 }
 
-const FALLBACK_TESTIMONIALS: Testimonial[] = [
-  { id: '1', name: 'Rajesh Sharma', role: 'CTO', company: 'InfoTech Solutions', content: 'Brighto India delivered exceptional results. Their team understood our requirements perfectly and provided a seamless experience from start to finish.', rating: 5, avatar: null },
-  { id: '2', name: 'Priya Mehta', role: 'Operations Head', company: 'GlobalServ', content: 'Professional, reliable, and highly skilled. Brighto has been our trusted partner for over 3 years now. Highly recommended!', rating: 5, avatar: null },
-  { id: '3', name: 'Amit Verma', role: 'Founder', company: 'StartupHub', content: 'Outstanding service quality. The team went above and beyond to deliver on time. Will definitely work with them again.', rating: 5, avatar: null },
-  { id: '4', name: 'Sunita Kapoor', role: 'VP Engineering', company: 'NexGen Labs', content: 'Brighto India transformed our operations. Their expertise in verification services is unmatched in the industry.', rating: 4, avatar: null },
-  { id: '5', name: 'Vikram Singh', role: 'Director', company: 'Pinnacle Corp', content: 'Excellent customer support and attention to detail. Brighto made the entire process smooth and hassle-free.', rating: 5, avatar: null },
-  { id: '6', name: 'Neha Gupta', role: 'HR Manager', company: 'TalentFirst', content: 'We have partnered with Brighto for background verification. Their accuracy and turnaround time is impressive.', rating: 5, avatar: null },
-  { id: '7', name: 'Mohd. Salman', role: 'CEO', company: 'BlueWave Tech', content: 'Highly professional team. Brighto India consistently delivers quality results. A trusted partner for our verification needs.', rating: 4, avatar: null },
-  { id: '8', name: 'Anita Desai', role: 'COO', company: 'CloudSync', content: 'Brighto India is a game-changer. Their verification platform is fast, accurate, and easy to use. Five stars!', rating: 5, avatar: null },
-  { id: '9', name: 'Deepak Joshi', role: 'Manager', company: 'Vertex Industries', content: 'Great experience working with Brighto. Their team is responsive, knowledgeable, and delivers on promises.', rating: 5, avatar: null },
-  { id: '10', name: 'Kavita Reddy', role: 'Head of Compliance', company: 'SecureNet', content: 'Brighto India has been instrumental in streamlining our verification process. Excellent service and support.', rating: 4, avatar: null },
-]
-
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   const initials = testimonial.name
     .split(' ')
@@ -71,7 +58,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 }
 
 export function GoogleReviews() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>(FALLBACK_TESTIMONIALS)
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
 
   useEffect(() => {
     fetch('/api/testimonials')
@@ -84,6 +71,10 @@ export function GoogleReviews() {
       .catch(() => {})
   }, [])
 
+  if (testimonials.length === 0) {
+    return null
+  }
+
   const row1 = testimonials.slice(0, Math.ceil(testimonials.length / 2))
   const row2 = testimonials.slice(Math.ceil(testimonials.length / 2))
 
@@ -94,7 +85,7 @@ export function GoogleReviews() {
           Testimonials
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-          Trusted by <span className="text-blue-600">Industry Leaders</span>
+          Trusted by <span className="text-blue-600">Businesses Across India</span>
         </h2>
         <p className="text-slate-500 mt-3 max-w-xl mx-auto text-sm">
           See what our clients have to say about working with Brighto India
@@ -110,6 +101,7 @@ export function GoogleReviews() {
           </div>
         </div>
 
+        {row2.length > 0 && (
         <div className="flex overflow-hidden relative w-full mask-gradient">
           <div className="flex gap-5 animate-marquee-reverse whitespace-nowrap py-4 group/row">
             {[...row2, ...row2].map((t, idx) => (
@@ -117,6 +109,7 @@ export function GoogleReviews() {
             ))}
           </div>
         </div>
+        )}
       </div>
 
       <style>{`

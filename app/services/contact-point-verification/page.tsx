@@ -10,7 +10,7 @@ import { ServiceOfferings } from '@/components/service-offerings'
 export const metadata: Metadata = {
   title: 'Contact Point Verification (CPV) Services India | Brighto India',
   description:
-    'Brighto India provides structured Contact Point Verification (CPV) Services since 2015 — residence, office, business & contact validation across India. ISO 27001 | ISO 9001 | SOC 2 Audited.',
+    'Brighto India provides structured Contact Point Verification (CPV) Services since 2015 — residence, office, business & contact validation across India. ISO 27001 | ISO 9001 Certified.',
   keywords: [
     'contact point verification services India', 'CPV services', 'residence verification',
     'office verification', 'business verification', 'field verification India',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/services/contact-point-verification' },
   openGraph: {
     title: 'Contact Point Verification (CPV) Services India | Brighto India',
-    description: 'Structured CPV services for banks, NBFCs, fintechs & enterprises since 2015. ISO 27001 | ISO 9001 | SOC 2 Audited.',
+    description: 'Structured CPV services for banks, NBFCs, fintechs & enterprises since 2015. ISO 27001 | ISO 9001 Certified.',
     url: 'https://www.brightoindia.com/services/contact-point-verification',
     siteName: 'Brighto India',
     locale: 'en_IN',
@@ -115,9 +115,9 @@ export default function CPVPage() {
         breadcrumbHref="/services/contact-point-verification"
         stats={[
           { val: '2015',      label: 'Serving Since',   sub: 'Decade of CPV expertise',   color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
-          { val: '500K+',     label: 'Cases Verified',  sub: 'Across India',               color: '#0891b2', bg: '#f0fdfa', border: '#a5f3fc' },
+          { val: '10+',       label: 'Years of Experience', sub: 'In CPV',                 color: '#0891b2', bg: '#f0fdfa', border: '#a5f3fc' },
           { val: 'Pan-India', label: 'Field Coverage',  sub: 'Multi-geography reach',      color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
-          { val: '3 Certs',   label: 'ISO + SOC 2',     sub: 'Internationally audited',    color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+          { val: '2 Certs',   label: 'ISO 27001 + 9001', sub: 'Internationally certified', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
         ]}
       />
 
@@ -133,7 +133,7 @@ export default function CPVPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-slate-600 leading-relaxed text-base">
                 <p>Brighto India works with banks, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises by offering structured Contact Point Verification (CPV) Services that strengthen data checks and review processes.</p>
                 <p>We know due diligence, loan checks, field visits, and risk review support, so we help organizations set up reliable verification methods and reporting systems.</p>
-                <p className="sm:col-span-2">As an ISO 27001-certified, ISO 9001-certified, and SOC 2 Audited organization, Brighto India adheres to clear rules for data safety, quality work, and protection in all its verification work.</p>
+                <p className="sm:col-span-2">As an ISO 27001-certified and ISO 9001-certified organization, Brighto India adheres to clear rules for data safety and quality work in all its verification work.</p>
               </div>
             </div>
             <div className="lg:col-span-2">
@@ -148,7 +148,7 @@ export default function CPVPage() {
                 <div className="absolute inset-0 bg-linear-to-t from-blue-950/50 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-blue-900">
-                    ISO 27001 · ISO 9001 · SOC 2 Audited
+                    ISO 27001 · ISO 9001 Certified
                   </span>
                 </div>
               </div>

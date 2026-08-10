@@ -9,7 +9,7 @@ export function BrightoTrustNetwork() {
     { name: 'Crediscout', initials: 'CS', desc: 'Background verification — employment, education, address, vendor & contractor screening', logo: '/CrediScout-Logo2.png', url: '#' },
     { name: 'Hubcheck', initials: 'HC', desc: 'Warehouse audits, stock verification, collateral reviews for commodity finance', logo: '/Hubcheck-Logo.png', url: 'https://hubcheck.in' },
     { name: 'Credify India', initials: 'CI', desc: 'Verification APIs — KYC, KYB, digital onboarding, banking & compliance APIs', logo: '/Credify-Logo2.png', url: '#' },
-    { name: 'Truering', initials: 'TR', desc: 'Telecalling CRM — inbound/outbound calling, cloud phone, lead tracking, auto dialers', logo: '/TrueRing-Logo2.png', url: '#' },
+    { name: 'Truering', initials: 'TR', desc: 'Telecalling CRM — inbound/outbound calling, cloud phone, lead tracking, auto dialers', logo: '/TrueRing-Logo2.png', url: 'https://www.truering.in/' },
   ]
 
   return (
@@ -26,10 +26,10 @@ export function BrightoTrustNetwork() {
               className="text-4xl lg:text-5xl font-bold text-slate-950 leading-tight"
               style={{ fontFamily: 'var(--font-manrope)' }}
             >
-              Our Network of Partners
+              Our Technology & Service Ecosystem
             </h2>
             <p className="text-lg text-slate-600 leading-relaxed">
-              We collaborate with India's leading verification, risk intelligence, and identity platforms to deliver fast, secure, and accurate compliance solutions.
+              Brighto India's own verification and risk management services are complemented by selected partner platforms for identity, warehouse audits, and telecalling infrastructure.
             </p>
             <div className="pt-2">
               <Link
@@ -44,7 +44,7 @@ export function BrightoTrustNetwork() {
 
           {/* Right Column: Grid and Tall Card */}
           <div className="lg:col-span-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
               {/* Partner Brand Cards */}
               {brands.map((brand, idx) => {
@@ -93,37 +93,6 @@ export function BrightoTrustNetwork() {
 
                 return <div key={idx}>{CardContent}</div>;
               })}
-
-              {/* Featured Card (Brighto Risk) */}
-              <div className="sm:col-span-2 md:col-span-2 h-full min-h-[240px] md:min-h-0">
-                <div className="h-full bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 border border-blue-950 rounded-2xl p-6 text-white relative overflow-hidden flex flex-col justify-between group cursor-pointer hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-
-
-                  {/* Subtle Background Art */}
-                  <div
-                    className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-400 via-transparent to-transparent"
-                  />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-orange-500 rounded-full blur-3xl opacity-10" />
-
-                  {/* Header / Top Info */}
-                  <div className="relative z-10">
-                    <div className="flex justify-between items-start">
-                    </div>
-                    <h3 className="text-xl font-bold mt-3">Brighto Risk</h3>
-                    <p className="text-xs text-blue-200 mt-2 leading-relaxed">
-                      Deep intelligence & fraud identification suite deployed across enterprise networks.
-                    </p>
-                  </div>
-
-                  {/* Bottom Stats / Action */}
-                  <div className="relative z-10 pt-4">
-                    <div className="text-4xl font-extrabold text-orange-500 tracking-tight">500K+</div>
-                    <div className="text-xs text-slate-300 mt-1">Cases Verified Across India</div>
-
-                  </div>
-
-                </div>
-              </div>
 
             </div>
           </div>

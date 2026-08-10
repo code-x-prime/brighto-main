@@ -10,7 +10,7 @@ import { ServiceOfferings } from '@/components/service-offerings'
 export const metadata: Metadata = {
   title: "Document Verification Services India | Brighto India – Trusted Information Validation",
   description:
-    "Brighto India provides structured Document Verification Services since 2015 — identity, address, employment, financial & business document review across India. ISO 27001 | ISO 9001 | SOC 2 Audited.",
+    "Brighto India provides structured Document Verification Services since 2015 — identity, address, employment, financial & business document review across India. ISO 27001 | ISO 9001 Certified.",
   keywords: [
     'document verification services India', 'identity document verification', 'address document verification',
     'employment document verification', 'financial document verification', 'business document verification',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/services/document-verification' },
   openGraph: {
     title: "Document Verification Services India | Brighto India",
-    description: "Structured Document Verification Services since 2015 for banks, NBFCs, fintechs & enterprises. ISO 27001 | ISO 9001 | SOC 2 Audited.",
+    description: "Structured Document Verification Services since 2015 for banks, NBFCs, fintechs & enterprises. ISO 27001 | ISO 9001 Certified.",
     url: 'https://www.brightoindia.com/services/document-verification',
     siteName: 'Brighto India',
     locale: 'en_IN',
@@ -105,9 +105,9 @@ export default function DocumentVerificationPage() {
         breadcrumbHref="/services/document-verification"
         stats={[
           { val: '2015',      label: 'Founded',             sub: 'Trusted since day one',           color: '#15803d', bg: '#f0fdf4', border: '#bbf7d0' },
-          { val: '500K+',     label: 'Verifications Done',  sub: 'Across India',                    color: '#0891b2', bg: '#f0fdfa', border: '#a5f3fc' },
+          { val: '10+',       label: 'Years of Experience', sub: 'In document verification',        color: '#0891b2', bg: '#f0fdfa', border: '#a5f3fc' },
           { val: 'Pan-India', label: 'Coverage',            sub: 'Multi-location reach',            color: '#059669', bg: '#ecfdf5', border: '#a7f3d0' },
-          { val: '3 Certs',   label: 'Certifications',      sub: 'ISO 27001 · ISO 9001 · SOC 2',    color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+          { val: '2 Certs',   label: 'Certifications',      sub: 'ISO 27001 · ISO 9001',            color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
         ]}
       />
 
@@ -121,7 +121,7 @@ export default function DocumentVerificationPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-slate-600 leading-relaxed text-sm">
                 <p>Brighto India works with financial institutions, NBFCs, housing finance companies, fintech companies, insurance providers, and enterprises. We deliver Document Verification Services built to strengthen information validation and review processes.</p>
                 <p>Our experience covers due diligence, loan application verification, contact point verification, field investigation, and document review support. This enables organizations to maintain consistent verification practices across their operational workflows.</p>
-                <p className="sm:col-span-2">As an ISO 27001 Certified, ISO 9001 Certified, and SOC 2 Audited organization, Brighto India follows established standards for information security, quality management, and data protection across its verification and assessment operations.</p>
+                <p className="sm:col-span-2">As an ISO 27001 Certified and ISO 9001 Certified organization, Brighto India follows established standards for information security and quality management across its verification and assessment operations.</p>
               </div>
             </div>
             <div className="lg:col-span-2">
@@ -136,7 +136,7 @@ export default function DocumentVerificationPage() {
                 <div className="absolute inset-0 bg-linear-to-t from-green-950/50 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-green-900">
-                    ISO 27001 · ISO 9001 · SOC 2 Audited
+                    ISO 27001 · ISO 9001 Certified
                   </span>
                 </div>
               </div>

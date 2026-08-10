@@ -109,9 +109,9 @@ export default function LoanApplicationVerificationPage() {
         breadcrumbHref="/services/loan-application-verification"
         stats={[
           { val: '2015', label: 'Serving Since', sub: 'Decade of experience', color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
-          { val: '500K+', label: 'Cases Supported', sub: 'Across India', color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+          { val: '10+', label: 'Years of Experience', sub: 'In loan application verification', color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
           { val: 'Pan-India', label: 'Coverage', sub: 'Multi-geography reach', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
-          { val: '3 Certs', label: 'ISO + SOC 2', sub: 'Internationally audited', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+          { val: '2 Certs', label: 'ISO 27001 + 9001', sub: 'Internationally certified', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
         ]}
       />
 
@@ -126,7 +126,7 @@ export default function LoanApplicationVerificationPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-slate-600 leading-relaxed text-base">
                 <p>Verification is at the core of every reliable lending process. Since 2015, Brighto India has combined verification expertise, field investigations, document reviews, and structured reporting to help financial institutions strengthen Loan Application Verification processes.</p>
                 <p>We support banks, NBFCs, housing finance companies, fintech lenders, and microfinance groups that need a dependable partner for checking applicant details and supporting internal review work.</p>
-                <p className="sm:col-span-2">As an ISO 27001 Certified, ISO 9001 Certified, and SOC 2 Audited organization, we follow established standards for information security, quality management, and data protection across every engagement.</p>
+                <p className="sm:col-span-2">As an ISO 27001 Certified and ISO 9001 Certified organization, we follow established standards for information security and quality management across every engagement.</p>
               </div>
             </div>
             <div className="lg:col-span-2">
@@ -141,7 +141,7 @@ export default function LoanApplicationVerificationPage() {
                 <div className="absolute inset-0 bg-linear-to-t from-blue-950/50 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-blue-900">
-                    ISO 27001 - ISO 9001 - SOC 2 Audited
+                    ISO 27001 - ISO 9001 Certified
                   </span>
                 </div>
               </div>

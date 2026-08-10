@@ -25,9 +25,9 @@ export const metadata: Metadata = {
 
 const STATS = [
   { value: '2015', label: 'Founded', sub: 'A decade of steady growth' },
-  { value: '500K+', label: 'Cases Supported', sub: 'Across India and beyond' },
+  { value: '10+', label: 'Years of Experience', sub: 'In verification and due diligence' },
   { value: 'PAN-India', label: 'Coverage', sub: 'Field teams and partner reach' },
-  { value: '3', label: 'Certifications', sub: 'ISO 27001, ISO 9001, SOC 2' },
+  { value: '2', label: 'Certifications', sub: 'ISO 27001, ISO 9001' },
 ]
 
 const PILLARS = [
@@ -197,7 +197,7 @@ export default function AboutPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-slate-950/10 to-transparent" />
                   <div className="absolute bottom-5 left-5 right-5">
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur text-xs font-bold text-blue-900 shadow-sm">
-                      ISO 27001 - ISO 9001 - SOC 2 Audited
+                      ISO 27001 - ISO 9001 Certified
                     </div>
                   </div>
                 </div>
@@ -360,8 +360,8 @@ export default function AboutPage() {
                     <div className="text-xs font-semibold text-slate-600 mt-1">Information security focus</div>
                   </div>
                   <div className="rounded-2xl bg-white/90 backdrop-blur p-4 text-slate-950">
-                    <div className="text-2xl font-black">SOC 2</div>
-                    <div className="text-xs font-semibold text-slate-600 mt-1">Data protection and controls</div>
+                    <div className="text-2xl font-black">ISO 9001</div>
+                    <div className="text-xs font-semibold text-slate-600 mt-1">Quality management focus</div>
                   </div>
                 </div>
               </div>
@@ -379,7 +379,6 @@ export default function AboutPage() {
                 {[
                   'ISO 27001 Certified - Information Security',
                   'ISO 9001 Certified - Quality Management',
-                  'SOC 2 Audited - Data Protection',
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 bg-slate-50">
                     <BadgeCheck className="w-5 h-5 text-emerald-600 shrink-0" />

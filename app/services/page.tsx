@@ -126,10 +126,10 @@ export default function ServicesPage() {
           {/* Stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl">
             {[
-              { val: '500K+', label: 'Cases Verified', color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+              { val: '10+', label: 'Years of Experience', color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
               { val: '2015', label: 'Serving Since', color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
               { val: 'PAN India', label: 'Coverage', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
-              { val: '3 Certs', label: 'ISO + SOC 2', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+              { val: '2 Certs', label: 'ISO 27001 + 9001', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
             ].map((stat) => (
               <div key={stat.label} className="rounded-xl p-4 border" style={{ backgroundColor: stat.bg, borderColor: stat.border }}>
                 <div className="text-2xl font-black" style={{ color: stat.color, fontFamily: 'var(--font-manrope)' }}>{stat.val}</div>

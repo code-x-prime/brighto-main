@@ -9,7 +9,7 @@ const ROTATING_HEADLINES = [
   { primary: 'Due Diligence,', highlight: 'Field Investigation', rest: '& CPV Solutions', highlightClass: 'text-orange-600' },
   { primary: 'Due Diligence,', highlight: 'Fraud Detection', rest: '& Risk Intelligence', highlightClass: 'text-orange-600' },
   { primary: 'Due Diligence,', highlight: 'Compliance', rest: '& Verification Services', highlightClass: 'text-orange-600' },
-  { primary: 'Due Diligence,', highlight: 'Risk Management', rest: 'Solutions', highlightClass: 'text-orange-600' },
+  { primary: 'Due Diligence,', highlight: 'Risk Management', rest: '& Solutions', highlightClass: 'text-orange-600' },
 ]
 
 const DEFAULT_DASHBOARD = {
@@ -126,7 +126,7 @@ export function BrightoHero() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full">
               <div className="w-2 h-2 rounded-full bg-blue-900 animate-pulse" />
-              <span className="text-sm font-medium text-blue-900">Trusted Risk, Verification & Technology Partner since 2015</span>
+              <span className="text-sm font-medium text-blue-900">India's Trusted Verification, Due Diligence & Risk Intelligence Partner since 2015</span>
             </div>
 
             {/* Headline with Rotation */}
@@ -135,7 +135,7 @@ export function BrightoHero() {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-950 leading-tight"
                 style={{ fontFamily: 'var(--font-manrope)' }}
               >
-                Due Diligence,
+                Due Diligence,{' '}
                 <span
                   className="block transition-all duration-300"
                   style={{
@@ -156,12 +156,12 @@ export function BrightoHero() {
 
             {/* Supporting Text */}
             <p className="text-lg text-slate-700 leading-relaxed max-w-lg">
-              Delivering secure, compliant, and technology-driven business solutions for financial institutions and enterprises since 2015.
+              Pan-India field verification, investigation and risk support for Banks, NBFCs, Fintechs, Insurance Companies and Enterprises.
             </p>
 
             {/* Certifications */}
             <div className="flex flex-wrap gap-3">
-              {['ISO 27001 Certified', 'ISO 9001 Certified', 'SOC 2 Audited'].map((cert) => (
+              {['ISO 27001 Certified', 'ISO 9001 Certified'].map((cert) => (
                 <span key={cert} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs font-semibold text-emerald-800">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                   {cert}
@@ -197,10 +197,9 @@ export function BrightoHero() {
                     <div className="w-3 h-3 rounded-full bg-amber-400" />
                     <div className="w-3 h-3 rounded-full bg-emerald-400" />
                   </div>
-                  <span className="text-xs font-semibold text-slate-500 tracking-wide">Verification Dashboard</span>
+                  <span className="text-xs font-semibold text-slate-500 tracking-wide">Illustrative Verification Dashboard</span>
                   <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] font-bold text-emerald-600">LIVE</span>
+                    <span className="text-[10px] font-bold text-slate-400">SAMPLE</span>
                   </div>
                 </div>
 

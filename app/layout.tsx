@@ -18,7 +18,7 @@ const amiko = Amiko({
 export const metadata: Metadata = {
   title: "Brighto India – India's Trusted Risk, Verification & Technology Solutions Partner",
   description:
-    'Brighto India (Brighto Credit Information Pvt Ltd) delivers Due Diligence, Loan Application Verification, Field Investigation (FI), CPV, RCU Support, Background Verification, Warehouse Audits, and Verification API solutions for banks, NBFCs, fintechs, housing finance companies, and enterprises across India. ISO 27001 | ISO 9001 | SOC 2 Audited. Trusted since 2015.',
+    'Brighto India (Brighto Credit Information Pvt Ltd) delivers Due Diligence, Loan Application Verification, Field Investigation (FI), CPV, RCU Support, Background Verification, Warehouse Audits, and Verification API solutions for banks, NBFCs, fintechs, housing finance companies, and enterprises across India. ISO 27001 | ISO 9001 Certified. Trusted since 2015.',
   keywords: [
     'Brighto India',
     'due diligence services India',
@@ -39,7 +39,6 @@ export const metadata: Metadata = {
     'Credify India',
     'Truering',
     'ISO 27001 verification company India',
-    'SOC 2 audited India',
   ],
   authors: [{ name: 'Brighto Credit Information Private Limited' }],
   creator: 'Brighto India',
@@ -69,7 +68,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Brighto India – India's Trusted Risk & Verification Partner",
     description:
-      'ISO 27001 | ISO 9001 | SOC 2 Audited. Due Diligence, FI, CPV, RCU, Background Verification & API solutions for banks, NBFCs, fintechs.',
+      'ISO 27001 | ISO 9001 Certified. Due Diligence, FI, CPV, RCU, Background Verification & API solutions for banks, NBFCs, fintechs.',
     images: ['/Brighto-Logo.png'],
   },
   robots: {

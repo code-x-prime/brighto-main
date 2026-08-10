@@ -122,9 +122,9 @@ export default function CreditAppraisalSupportPage() {
         breadcrumbHref="/services/credit-appraisal-support"
         stats={[
           { val: '2015', label: 'Serving Since', sub: 'Decade of experience', color: '#b45309', bg: '#fffbeb', border: '#fde68a' },
-          { val: '500K+', label: 'Cases Supported', sub: 'Across India', color: '#c2410c', bg: '#fff7ed', border: '#fdba74' },
+          { val: '10+', label: 'Years of Experience', sub: 'In credit appraisal support', color: '#c2410c', bg: '#fff7ed', border: '#fdba74' },
           { val: 'Pan-India', label: 'Coverage', sub: 'Multi-geography reach', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
-          { val: '3 Certs', label: 'ISO + SOC 2', sub: 'Internationally audited', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+          { val: '2 Certs', label: 'ISO 27001 + 9001', sub: 'Internationally certified', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
         ]}
       />
 
@@ -139,7 +139,7 @@ export default function CreditAppraisalSupportPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-slate-600 leading-relaxed text-base">
                 <p>Brighto India works with banks, NBFCs, housing finance companies, fintech companies, and other lenders by providing Credit Appraisal Support Services designed to streamline loan checks and reviews.</p>
                 <p>We handle due diligence, verify loan applications, contact points, and documents, conduct field investigations, and provide risk assessment support. This lets organizations establish consistent methods to verify details and conduct reviews.</p>
-                <p className="sm:col-span-2">As an ISO 27001 Certified, ISO 9001 Certified, and SOC 2 Audited company, Brighto India follows established standards for keeping data safe, managing quality, and protecting information as we carry out process-driven verification and assessment support services.</p>
+                <p className="sm:col-span-2">As an ISO 27001 Certified and ISO 9001 Certified company, Brighto India follows established standards for keeping data safe and managing quality as we carry out process-driven verification and assessment support services.</p>
               </div>
             </div>
             <div className="lg:col-span-2">
@@ -154,7 +154,7 @@ export default function CreditAppraisalSupportPage() {
                 <div className="absolute inset-0 bg-linear-to-t from-amber-950/50 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-amber-900">
-                    ISO 27001 - ISO 9001 - SOC 2 Audited
+                    ISO 27001 - ISO 9001 Certified
                   </span>
                 </div>
               </div>

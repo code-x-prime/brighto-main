@@ -41,6 +41,21 @@ const faqs = [
     answer: "Yes. Companies that want automated checks and fast onboarding can use Credify India's API solutions.",
     tag: 'API',
   },
+  {
+    question: 'What is your turnaround time?',
+    answer: 'Turnaround time depends on the service and location, but most field verification and due diligence cases are completed within a few business days of case allocation.',
+    tag: 'Turnaround',
+  },
+  {
+    question: 'Do you provide pan-India field verification?',
+    answer: 'Yes. Brighto India supports field investigation, CPV, and due diligence services across metro, urban, and semi-urban locations pan-India.',
+    tag: 'Coverage',
+  },
+  {
+    question: 'How can I request a verification service?',
+    answer: 'You can reach out through our Contact page or write to our support team with your requirement, and our team will get back to you to scope the engagement.',
+    tag: 'Get Started',
+  },
 ]
 
 export function BrightoFAQ() {
