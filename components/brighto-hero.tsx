@@ -130,7 +130,7 @@ export function BrightoHero() {
             </div>
 
             {/* Headline with Rotation */}
-            <div className="min-h-[150px] sm:min-h-[180px] md:min-h-[220px] lg:min-h-[260px] flex items-start">
+            <div className="min-h-27.5 sm:min-h-[180px] md:min-h-[220px] lg:min-h-[260px] flex items-start">
               <h1
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-950 leading-tight"
                 style={{ fontFamily: 'var(--font-manrope)' }}
