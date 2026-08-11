@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Briefcase, MapPin, Building2, Clock, FileText, CheckCircle } from 'lucide-react'
+import { IconArrowLeft, IconBriefcase, IconMapPin, IconBuilding, IconClock, IconFileText, IconCircleCheck } from '@tabler/icons-react'
 import Link from 'next/link'
 import { authFetch } from '@/lib/auth-client'
 
@@ -40,7 +40,7 @@ export default function NewJobPage() {
   return (
     <div className="max-w-3xl">
       <Link href="/admin/dashboard/jobs" className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-900 mb-6 transition-colors">
-        <ArrowLeft className="w-4 h-4" />
+        <IconArrowLeft className="w-4 h-4" />
         Back to Jobs
       </Link>
 
@@ -52,7 +52,7 @@ export default function NewJobPage() {
       <form onSubmit={handleSubmit}>
         <div className="bg-white rounded-xl border border-zinc-200 p-6 mb-6">
           <h2 className="text-sm font-semibold text-zinc-900 mb-5 flex items-center gap-2">
-            <Briefcase className="w-4 h-4 text-zinc-400" />
+            <IconBriefcase className="w-4 h-4 text-zinc-400" />
             Basic Information
           </h2>
           <div className="space-y-4">
@@ -71,7 +71,7 @@ export default function NewJobPage() {
               <div>
                 <label className="block text-sm font-medium text-zinc-700 mb-1.5">Department</label>
                 <div className="relative">
-                  <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                  <IconBuilding className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                   <input
                     type="text"
                     required
@@ -85,7 +85,7 @@ export default function NewJobPage() {
               <div>
                 <label className="block text-sm font-medium text-zinc-700 mb-1.5">Location</label>
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                  <IconMapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                   <input
                     type="text"
                     required
@@ -101,7 +101,7 @@ export default function NewJobPage() {
               <div>
                 <label className="block text-sm font-medium text-zinc-700 mb-1.5">Job Type</label>
                 <div className="relative">
-                  <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                  <IconClock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                   <select
                     value={form.type}
                     onChange={(e) => setForm({ ...form, type: e.target.value })}
@@ -131,7 +131,7 @@ export default function NewJobPage() {
 
         <div className="bg-white rounded-xl border border-zinc-200 p-6 mb-6">
           <h2 className="text-sm font-semibold text-zinc-900 mb-5 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-zinc-400" />
+            <IconFileText className="w-4 h-4 text-zinc-400" />
             Description & Requirements
           </h2>
           <div className="space-y-4">
@@ -163,7 +163,7 @@ export default function NewJobPage() {
         <div className="bg-white rounded-xl border border-zinc-200 p-6 mb-6">
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-zinc-100">
-              <CheckCircle className={`w-5 h-5 ${form.isActive ? 'text-emerald-600' : 'text-zinc-400'}`} />
+              <IconCircleCheck className={`w-5 h-5 ${form.isActive ? 'text-emerald-600' : 'text-zinc-400'}`} />
             </div>
             <div className="flex-1">
               <label htmlFor="isActive" className="text-sm font-medium text-zinc-900 cursor-pointer">Publish immediately</label>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
-import { ArrowLeft } from 'lucide-react'
+import { IconArrowLeft } from '@tabler/icons-react'
 import Link from 'next/link'
 
 export default function EditJobPage() {
@@ -76,7 +76,7 @@ export default function EditJobPage() {
   return (
     <div className="max-w-2xl">
       <Link href="/admin/dashboard/jobs" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 mb-6">
-        <ArrowLeft className="w-4 h-4" />
+        <IconArrowLeft className="w-4 h-4" />
         Back to Jobs
       </Link>
 

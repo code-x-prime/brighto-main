@@ -2,19 +2,20 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
-  ArrowRight,
-  BadgeCheck,
-  Building2,
-  FileCheck,
-  Globe2,
-  Handshake,
-  ShieldCheck,
-  Sparkles,
-  Target,
-  Users,
-} from 'lucide-react'
+  IconArrowRight,
+  IconRosetteDiscountCheck,
+  IconBuilding,
+  IconFileCheck,
+  IconWorld,
+  IconHeartHandshake,
+  IconShieldCheck,
+  IconSparkles,
+  IconTarget,
+  IconUsers,
+} from '@tabler/icons-react'
 import { BrightoHeader } from '@/components/brighto-header'
 import { BrightoCTAFooter } from '@/components/brighto-cta-footer'
+import { BrightoTeamPreview } from '@/components/brighto-team'
 
 export const metadata: Metadata = {
   title: 'About Brighto India | Verification, Risk & Technology Solutions',
@@ -32,7 +33,7 @@ const STATS = [
 
 const PILLARS = [
   {
-    icon: ShieldCheck,
+    icon: IconShieldCheck,
     title: 'Trust and Compliance',
     desc: 'We keep security, process discipline, and audit readiness at the center of every engagement.',
     color: '#091C8C',
@@ -40,7 +41,7 @@ const PILLARS = [
     border: '#c7d2fe',
   },
   {
-    icon: Users,
+    icon: IconUsers,
     title: 'Human-led Verification',
     desc: 'Experienced teams handle field work, document checks, and review support with care and consistency.',
     color: '#0f766e',
@@ -48,7 +49,7 @@ const PILLARS = [
     border: '#99f6e4',
   },
   {
-    icon: Globe2,
+    icon: IconWorld,
     title: 'Pan-India Execution',
     desc: 'Our operating network supports cases across cities, towns, and remote locations with the same quality bar.',
     color: '#d97706',
@@ -56,7 +57,7 @@ const PILLARS = [
     border: '#fde68a',
   },
   {
-    icon: FileCheck,
+    icon: IconFileCheck,
     title: 'Structured Reporting',
     desc: 'We deliver clear, decision-ready outputs so clients can move faster without losing control of detail.',
     color: '#7c3aed',
@@ -64,7 +65,7 @@ const PILLARS = [
     border: '#ddd6fe',
   },
   {
-    icon: Target,
+    icon: IconTarget,
     title: 'Risk Intelligence',
     desc: 'Our work is designed to surface inconsistencies, strengthen review processes, and reduce avoidable risk.',
     color: '#b91c1c',
@@ -72,7 +73,7 @@ const PILLARS = [
     border: '#fecaca',
   },
   {
-    icon: Handshake,
+    icon: IconHeartHandshake,
     title: 'Partnership Mindset',
     desc: 'We stay close to client workflows and tailor engagement models to each team, portfolio, and use case.',
     color: '#2563eb',
@@ -147,7 +148,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-200 bg-blue-50 text-blue-900 text-xs font-bold uppercase tracking-[0.24em]">
-                <Sparkles className="w-3.5 h-3.5" />
+                <IconSparkles className="w-3.5 h-3.5" />
                 About Brighto India
               </div>
 
@@ -166,7 +167,7 @@ export default function AboutPage() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-900 text-white font-semibold hover:bg-blue-950 transition-all hover:shadow-lg">
                   Talk to Our Team
-                  <ArrowRight className="w-4 h-4" />
+                  <IconArrowRight className="w-4 h-4" />
                 </Link>
                 <Link href="/services/due-diligence" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-300 text-slate-900 font-semibold hover:bg-white hover:shadow-sm transition-all">
                   Explore Services
@@ -258,7 +259,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {SERVICES.map((item) => (
                   <div key={item} className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-50 border border-transparent hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                    <BadgeCheck className="w-4 h-4 text-blue-900 shrink-0" />
+                    <IconRosetteDiscountCheck className="w-4 h-4 text-blue-900 shrink-0" />
                     <span className="text-sm font-medium text-slate-700">{item}</span>
                   </div>
                 ))}
@@ -381,7 +382,7 @@ export default function AboutPage() {
                   'ISO 9001 Certified - Quality Management',
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 bg-slate-50">
-                    <BadgeCheck className="w-5 h-5 text-emerald-600 shrink-0" />
+                    <IconRosetteDiscountCheck className="w-5 h-5 text-emerald-600 shrink-0" />
                     <span className="text-sm font-medium text-slate-700">{item}</span>
                   </div>
                 ))}
@@ -389,7 +390,7 @@ export default function AboutPage() {
               <div className="flex flex-col sm:flex-row gap-3 pt-3">
                 <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-900 text-white font-semibold hover:bg-blue-950 transition-all hover:shadow-lg">
                   Request Consultation
-                  <ArrowRight className="w-4 h-4" />
+                  <IconArrowRight className="w-4 h-4" />
                 </Link>
                 <Link href="/services/fraud-risk-assessment" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-300 text-slate-900 font-semibold hover:bg-slate-50 transition-all">
                   View Risk Services
@@ -399,6 +400,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <BrightoTeamPreview />
 
       <BrightoCTAFooter />
     </main>

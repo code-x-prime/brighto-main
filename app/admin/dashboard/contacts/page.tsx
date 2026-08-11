@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Trash2, Eye, Mail, MailOpen, Clock, CheckCircle, XCircle, X, MessageSquare, Search, User } from 'lucide-react'
+import { IconTrash, IconEye, IconMail, IconMailOpened, IconClock, IconCircleCheck, IconCircleX, IconX, IconMessage, IconSearch, IconUser } from '@tabler/icons-react'
 import { authFetch } from '@/lib/auth-client'
 
 interface Note {
@@ -24,11 +24,11 @@ interface Submission {
 }
 
 const STATUS_OPTIONS = [
-  { value: 'new', label: 'New', icon: Mail, color: 'bg-blue-50 text-blue-700 border-blue-200' },
-  { value: 'in_progress', label: 'In Progress', icon: Clock, color: 'bg-amber-50 text-amber-700 border-amber-200' },
-  { value: 'contacted', label: 'Contacted', icon: MailOpen, color: 'bg-purple-50 text-purple-700 border-purple-200' },
-  { value: 'resolved', label: 'Resolved', icon: CheckCircle, color: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-  { value: 'closed', label: 'Closed', icon: XCircle, color: 'bg-zinc-100 text-zinc-500 border-zinc-200' },
+  { value: 'new', label: 'New', icon: IconMail, color: 'bg-blue-50 text-blue-700 border-blue-200' },
+  { value: 'in_progress', label: 'In Progress', icon: IconClock, color: 'bg-amber-50 text-amber-700 border-amber-200' },
+  { value: 'contacted', label: 'Contacted', icon: IconMailOpened, color: 'bg-purple-50 text-purple-700 border-purple-200' },
+  { value: 'resolved', label: 'Resolved', icon: IconCircleCheck, color: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+  { value: 'closed', label: 'Closed', icon: IconCircleX, color: 'bg-zinc-100 text-zinc-500 border-zinc-200' },
 ]
 
 export default function ContactsPage() {
@@ -153,7 +153,7 @@ export default function ContactsPage() {
 
       <div className="flex flex-wrap items-center gap-3 mb-5">
         <div className="relative flex-1 max-w-xs">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+          <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <input
             type="text"
             value={search}
@@ -192,7 +192,7 @@ export default function ContactsPage() {
         </div>
       ) : filtered.length === 0 ? (
         <div className="bg-white rounded-xl border border-zinc-200 py-20 text-center">
-          <MessageSquare className="w-10 h-10 text-zinc-300 mx-auto mb-3" />
+          <IconMessage className="w-10 h-10 text-zinc-300 mx-auto mb-3" />
           <p className="text-zinc-500 text-sm">{search || filter !== 'all' ? 'No contacts match your filters' : 'No contact submissions yet'}</p>
         </div>
       ) : (
@@ -216,7 +216,7 @@ export default function ContactsPage() {
                     <td className="px-5 py-3.5">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center">
-                          <User className="w-4 h-4 text-zinc-500" />
+                          <IconUser className="w-4 h-4 text-zinc-500" />
                         </div>
                         <div>
                           <div className="font-medium text-zinc-900 text-sm">{sub.name}</div>
@@ -238,7 +238,7 @@ export default function ContactsPage() {
                     </td>
                     <td className="px-5 py-3.5">
                       <span className={`inline-flex items-center gap-1 text-xs ${sub.emailSent ? 'text-emerald-600' : 'text-red-500'}`}>
-                        {sub.emailSent ? <Mail className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
+                        {sub.emailSent ? <IconMail className="w-3 h-3" /> : <IconCircleX className="w-3 h-3" />}
                         {sub.emailSent ? 'Sent' : 'Failed'}
                       </span>
                     </td>
@@ -252,14 +252,14 @@ export default function ContactsPage() {
                           className="p-1.5 hover:bg-zinc-100 rounded-md transition-colors"
                           title="View Details"
                         >
-                          <Eye className="w-4 h-4 text-zinc-600" />
+                          <IconEye className="w-4 h-4 text-zinc-600" />
                         </button>
                         <button
                           onClick={() => deleteSubmission(sub.id)}
                           className="p-1.5 hover:bg-red-50 rounded-md transition-colors"
                           title="Delete"
                         >
-                          <Trash2 className="w-4 h-4 text-red-500" />
+                          <IconTrash className="w-4 h-4 text-red-500" />
                         </button>
                       </div>
                     </td>
@@ -278,7 +278,7 @@ export default function ContactsPage() {
             <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-100">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center">
-                  <User className="w-5 h-5 text-zinc-500" />
+                  <IconUser className="w-5 h-5 text-zinc-500" />
                 </div>
                 <div>
                   <h3 className="text-base font-semibold text-zinc-900">{selectedSubmission.name}</h3>
@@ -286,7 +286,7 @@ export default function ContactsPage() {
                 </div>
               </div>
               <button onClick={() => setSelectedSubmission(null)} className="p-1.5 hover:bg-zinc-100 rounded-lg">
-                <X className="w-5 h-5 text-zinc-400" />
+                <IconX className="w-5 h-5 text-zinc-400" />
               </button>
             </div>
 

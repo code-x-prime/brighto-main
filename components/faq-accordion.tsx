@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Plus, Minus } from 'lucide-react'
+import { IconPlus, IconMinus } from '@tabler/icons-react'
 
 interface FAQ {
   q: string
@@ -48,8 +48,8 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
                 }}
               >
                 {isOpen
-                  ? <Minus className="w-3.5 h-3.5 text-blue-700" />
-                  : <Plus className="w-3.5 h-3.5 text-slate-400" />
+                  ? <IconMinus className="w-3.5 h-3.5 text-blue-700" />
+                  : <IconPlus className="w-3.5 h-3.5 text-slate-400" />
                 }
               </div>
             </button>

@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, PlusIcon } from 'lucide-react'
+import { IconArrowRight, IconPlus } from '@tabler/icons-react'
 import Image from 'next/image'
 
 const industries = [
@@ -99,7 +99,7 @@ export function BrightoIndustries() {
 
                   {/* Corner + icons (logo-cloud style) */}
                   {showRightPlus && showBottomPlus && (
-                    <PlusIcon
+                    <IconPlus
                       className="absolute -right-3 -bottom-3 z-20 w-6 h-6 text-slate-700"
                       strokeWidth={1.5}
                     />
@@ -157,7 +157,7 @@ export function BrightoIndustries() {
         {/* <div className="mt-10 flex items-center justify-center">
           <button className="group flex items-center gap-2.5 px-6 py-3 rounded-xl border border-slate-700 text-slate-400 text-sm font-semibold hover:border-slate-500 hover:text-white transition-all duration-300">
             Explore All Industry Solutions
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <IconArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </button>
         </div> */}
 

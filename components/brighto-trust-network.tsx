@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { IconArrowRight, IconArrowUpRight } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -37,7 +37,7 @@ export function BrightoTrustNetwork() {
                 className="inline-flex items-center gap-2 text-blue-900 font-semibold hover:text-blue-950 hover:underline transition-all group"
               >
                 Become a Partner
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <IconArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </div>
@@ -78,7 +78,7 @@ export function BrightoTrustNetwork() {
                       </p>
                     </div>
                     <div className="mt-6 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ArrowUpRight className="w-4 h-4 text-blue-900" />
+                      <IconArrowUpRight className="w-4 h-4 text-blue-900" />
                     </div>
                   </div>
                 );

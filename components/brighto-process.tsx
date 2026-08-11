@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { ClipboardList, Briefcase, Microscope, CheckCircle2, BarChart3, FileCheck, ArrowRight } from 'lucide-react'
+import { IconClipboardList, IconBriefcase, IconMicroscope, IconCircleCheck, IconChartBar, IconFileCheck, IconArrowRight } from '@tabler/icons-react'
 
 const steps = [
   {
     number: '01',
     title: 'Requirement Assessment',
     description: 'We start by getting clear on client goals, project scope, and exact verification needs. Every engagement begins with a thorough intake process so no detail is missed.',
-    icon: ClipboardList,
+    icon: IconClipboardList,
     tag: 'Intake',
     color: 'blue',
     image: '/process/requirement-assessment.jpg',
@@ -18,7 +18,7 @@ const steps = [
     number: '02',
     title: 'Case Allocation',
     description: 'We hand over cases in accordance with predefined workflows — the right team, right expertise, right geography matched to each case automatically.',
-    icon: Briefcase,
+    icon: IconBriefcase,
     tag: 'Allocation',
     color: 'orange',
     image: '/process/case-assignment.jpg',
@@ -27,7 +27,7 @@ const steps = [
     number: '03',
     title: 'Field Verification',
     description: 'Teams carry out the actual verifications and field investigations on the ground — physical visits, document checks, applicant interviews, and multi-source validation.',
-    icon: Microscope,
+    icon: IconMicroscope,
     tag: 'Field Work',
     color: 'purple',
     image: '/process/verification-investigation.jpg',
@@ -36,7 +36,7 @@ const steps = [
     number: '04',
     title: 'Quality Review',
     description: 'Internal QA teams review every case to keep standards high and reports consistent. Nothing moves forward without meeting our accuracy benchmarks.',
-    icon: CheckCircle2,
+    icon: IconCircleCheck,
     tag: 'QA Check',
     color: 'emerald',
     image: '/process/quality-review.jpg',
@@ -45,7 +45,7 @@ const steps = [
     number: '05',
     title: 'Risk Analysis',
     description: 'We study all findings and synthesize them into a clear risk picture — flagging anomalies, fraud signals, and compliance gaps for the client.',
-    icon: BarChart3,
+    icon: IconChartBar,
     tag: 'Analysis',
     color: 'amber',
     image: '/process/risk-assessment.jpg',
@@ -54,7 +54,7 @@ const steps = [
     number: '06',
     title: 'Report Delivery',
     description: 'Clients receive clear, structured, audit-ready reports they can use directly for final decisions, credit approvals, or regulatory submissions.',
-    icon: FileCheck,
+    icon: IconFileCheck,
     tag: 'Delivery',
     color: 'teal',
     image: '/process/reporting.jpg',
@@ -134,7 +134,7 @@ export function BrightoProcess() {
                       : 'bg-slate-100 text-slate-500'
                     }`}>
                     {isDone && !isActive
-                      ? <CheckCircle2 className="w-5 h-5" />
+                      ? <IconCircleCheck className="w-5 h-5" />
                       : <StepIcon className="w-5 h-5" />
                     }
                   </div>
@@ -155,7 +155,7 @@ export function BrightoProcess() {
                     </p>
                   </div>
 
-                  <ArrowRight className={`w-4 h-4 ml-auto shrink-0 transition-all ${isActive ? 'text-white opacity-100 translate-x-0' : 'text-slate-300 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0'
+                  <IconArrowRight className={`w-4 h-4 ml-auto shrink-0 transition-all ${isActive ? 'text-white opacity-100 translate-x-0' : 'text-slate-300 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0'
                     }`} />
                 </button>
               )

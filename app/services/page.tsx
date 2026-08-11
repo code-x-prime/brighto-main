@@ -5,9 +5,9 @@ import { BrightoHeader } from '@/components/brighto-header'
 import { BrightoFooter } from '@/components/brighto-cta-footer'
 import { ServiceOfferings } from '@/components/service-offerings'
 import {
-  FileSearch, Building2, Search, MapPin, Shield, FileCheck, AlertTriangle, CreditCard,
-  ArrowRight, CheckCircle2
-} from 'lucide-react'
+  IconFileSearch, IconBuilding, IconSearch, IconMapPin, IconShield, IconFileCheck, IconAlertTriangle, IconCreditCard,
+  IconArrowRight, IconCircleCheck
+} from '@tabler/icons-react'
 
 const ALL_SERVICES = [
   {
@@ -156,7 +156,8 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {ALL_SERVICES.map((service, idx) => {
               const IconComp = {
-                FileSearch, Building2, Search, MapPin, Shield, FileCheck, AlertTriangle, CreditCard,
+                FileSearch: IconFileSearch, Building2: IconBuilding, Search: IconSearch, MapPin: IconMapPin,
+                Shield: IconShield, FileCheck: IconFileCheck, AlertTriangle: IconAlertTriangle, CreditCard: IconCreditCard,
               }[service.icon]
 
               return (
@@ -187,7 +188,7 @@ export default function ServicesPage() {
                   <div className="space-y-1.5 mb-5">
                     {service.features.map((feature, i) => (
                       <div key={i} className="flex items-center gap-2 text-xs text-slate-500">
-                        <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" style={{ color: service.color }} />
+                        <IconCircleCheck className="w-3.5 h-3.5 flex-shrink-0" style={{ color: service.color }} />
                         {feature}
                       </div>
                     ))}
@@ -195,7 +196,7 @@ export default function ServicesPage() {
 
                   <div className="flex items-center gap-1.5 text-sm font-semibold group-hover:gap-2.5 transition-all" style={{ color: service.color }}>
                     Learn More
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <IconArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
               )
@@ -232,7 +233,7 @@ export default function ServicesPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-base transition-all hover:shadow-2xl hover:-translate-y-0.5">
               Talk to an Expert
-              <ArrowRight className="w-5 h-5" />
+              <IconArrowRight className="w-5 h-5" />
             </Link>
             <Link href="/" className="flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 text-white rounded-xl font-bold text-base transition-all">
               Back to Home

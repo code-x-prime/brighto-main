@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Save, RotateCcw, Eye } from 'lucide-react'
+import { IconDeviceFloppy, IconRotateClockwise, IconEye } from '@tabler/icons-react'
 import { authFetch } from '@/lib/auth-client'
 
 const DEFAULTS: Record<string, string> = {
@@ -75,10 +75,10 @@ export default function DashboardSettingsPage() {
         </div>
         <div className="flex gap-3">
           <button onClick={() => setV(DEFAULTS)} className="flex items-center gap-2 px-4 py-2 border border-zinc-200 rounded-lg text-sm font-medium text-zinc-600 hover:bg-zinc-50 transition-colors">
-            <RotateCcw className="w-4 h-4" /> Reset
+            <IconRotateClockwise className="w-4 h-4" /> Reset
           </button>
           <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 px-4 py-2 bg-zinc-950 text-white rounded-lg text-sm font-medium hover:bg-zinc-800 disabled:opacity-50 transition-colors">
-            <Save className="w-4 h-4" /> {saving ? 'Saving...' : saved ? 'Saved!' : 'Save'}
+            <IconDeviceFloppy className="w-4 h-4" /> {saving ? 'Saving...' : saved ? 'Saved!' : 'Save'}
           </button>
         </div>
       </div>
@@ -89,7 +89,7 @@ export default function DashboardSettingsPage() {
         <div className="space-y-4">
           <div className="bg-white rounded-xl border border-zinc-200 p-5">
             <h3 className="text-sm font-semibold text-zinc-900 mb-4 flex items-center gap-2">
-              <Eye className="w-4 h-4 text-zinc-400" /> Verification Requests
+              <IconEye className="w-4 h-4 text-zinc-400" /> Verification Requests
             </h3>
             <div className="grid grid-cols-2 gap-4">
               <div>

@@ -2,19 +2,19 @@
 
 import Link from 'next/link'
 import {
-  ArrowRight, Building2, BarChart3, Users, FileSearch, Shield,
-  Phone, Search, FileCheck, Home, Briefcase, AlertTriangle,
-  FileText, CheckCircle2, BadgeCheck, ClipboardList, ListChecks,
-  MapPin, CreditCard, Landmark, Cpu, HeartPulse, Package,
-  Microscope, type LucideIcon,
-} from 'lucide-react'
+  IconArrowRight, IconBuilding, IconChartBar, IconUsers, IconFileSearch, IconShield,
+  IconPhone, IconSearch, IconFileCheck, IconHome, IconBriefcase, IconAlertTriangle,
+  IconFileText, IconCircleCheck, IconRosetteDiscountCheck, IconClipboardList, IconListCheck,
+  IconMapPin, IconCreditCard, IconBuildingBank, IconCpu, IconHeartRateMonitor, IconPackage,
+  IconMicroscope, type Icon as TablerIcon,
+} from '@tabler/icons-react'
 
-const ICON_MAP: Record<string, LucideIcon> = {
-  Building2, BarChart3, Users, FileSearch, Shield,
-  Phone, Search, FileCheck, Home, Briefcase, AlertTriangle,
-  FileText, CheckCircle2, BadgeCheck, ClipboardList, ListChecks,
-  MapPin, CreditCard, Landmark, Cpu, HeartPulse, Package,
-  Microscope,
+const ICON_MAP: Record<string, TablerIcon> = {
+  Building2: IconBuilding, BarChart3: IconChartBar, Users: IconUsers, FileSearch: IconFileSearch, Shield: IconShield,
+  Phone: IconPhone, Search: IconSearch, FileCheck: IconFileCheck, Home: IconHome, Briefcase: IconBriefcase, AlertTriangle: IconAlertTriangle,
+  FileText: IconFileText, CheckCircle2: IconCircleCheck, BadgeCheck: IconRosetteDiscountCheck, ClipboardList: IconClipboardList, ListChecks: IconListCheck,
+  MapPin: IconMapPin, CreditCard: IconCreditCard, Landmark: IconBuildingBank, Cpu: IconCpu, HeartPulse: IconHeartRateMonitor, Package: IconPackage,
+  Microscope: IconMicroscope,
 }
 
 
@@ -64,7 +64,7 @@ export function ServiceOfferings({
         {/* Bento Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-auto">
           {services.map((svc, i) => {
-            const Icon = ICON_MAP[svc.icon] ?? Shield
+            const Icon = ICON_MAP[svc.icon] ?? IconShield
             const total = services.length
             const isLast = i === total - 1
             const isSecondLast = i === total - 2
@@ -174,7 +174,7 @@ export function ServiceOfferings({
             href="/contact"
             className="shrink-0 flex items-center gap-2 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold transition-all"
           >
-            Talk to an Expert <ArrowRight className="w-4 h-4" />
+            Talk to an Expert <IconArrowRight className="w-4 h-4" />
           </Link>
         </div>
 

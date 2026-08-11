@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { Briefcase, LayoutDashboard, LogOut, Menu, X, Plus, MessageSquare, FileText, Settings, Star, ChevronRight, Shield } from 'lucide-react'
+import { IconBriefcase, IconLayoutDashboard, IconLogout, IconMenu2, IconX, IconPlus, IconMessage, IconFileText, IconSettings, IconStar, IconChevronRight, IconShield } from '@tabler/icons-react'
 
 function getAuthHeaders(): Record<string, string> {
   if (typeof window === 'undefined') return {}
@@ -13,13 +13,13 @@ function getAuthHeaders(): Record<string, string> {
 }
 
 const navItems = [
-  { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/admin/dashboard/contacts', label: 'Contacts', icon: MessageSquare },
-  { href: '/admin/dashboard/jobs', label: 'Jobs', icon: Briefcase },
-  { href: '/admin/dashboard/jobs/new', label: 'Add Job', icon: Plus },
-  { href: '/admin/dashboard/applications', label: 'Applications', icon: FileText },
-  { href: '/admin/dashboard/testimonials', label: 'Testimonials', icon: Star },
-  { href: '/admin/dashboard/settings', label: 'Settings', icon: Settings },
+  { href: '/admin/dashboard', label: 'Dashboard', icon: IconLayoutDashboard },
+  { href: '/admin/dashboard/contacts', label: 'Contacts', icon: IconMessage },
+  { href: '/admin/dashboard/jobs', label: 'Jobs', icon: IconBriefcase },
+  { href: '/admin/dashboard/jobs/new', label: 'Add Job', icon: IconPlus },
+  { href: '/admin/dashboard/applications', label: 'Applications', icon: IconFileText },
+  { href: '/admin/dashboard/testimonials', label: 'Testimonials', icon: IconStar },
+  { href: '/admin/dashboard/settings', label: 'Settings', icon: IconSettings },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -81,7 +81,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="px-5 py-5 border-b border-zinc-800">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center">
-              <Shield className="w-5 h-5 text-zinc-950" />
+              <IconShield className="w-5 h-5 text-zinc-950" />
             </div>
             <div>
               <h1 className="text-sm font-semibold text-white">Brighto India</h1>
@@ -128,7 +128,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             onClick={handleLogout}
             className="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-[13px] font-medium text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors"
           >
-            <LogOut className="w-4 h-4" />
+            <IconLogout className="w-4 h-4" />
             Log out
           </button>
         </div>
@@ -141,11 +141,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="flex items-center justify-between h-14 px-6">
             <div className="flex items-center gap-3">
               <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden p-1.5 hover:bg-zinc-100 rounded-lg">
-                {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {sidebarOpen ? <IconX className="w-5 h-5" /> : <IconMenu2 className="w-5 h-5" />}
               </button>
               <div className="flex items-center gap-1.5 text-sm text-zinc-500">
                 <span>Admin</span>
-                <ChevronRight className="w-3.5 h-3.5" />
+                <IconChevronRight className="w-3.5 h-3.5" />
                 <span className="text-zinc-900 font-medium">{currentLabel}</span>
               </div>
             </div>

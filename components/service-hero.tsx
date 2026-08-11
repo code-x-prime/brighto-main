@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { CheckCircle2, ArrowRight } from 'lucide-react'
+import { IconCircleCheck, IconArrowRight } from '@tabler/icons-react'
 import {
   motion,
   useMotionValue,
@@ -236,7 +236,7 @@ export function ServiceHero({
                 className="flex items-center gap-2 px-7 py-3.5 text-white rounded-xl font-semibold transition-all hover:shadow-xl hover:-translate-y-0.5"
                 style={{ background: accentColor }}
               >
-                {primaryCta} <ArrowRight className="w-4 h-4" />
+                {primaryCta} <IconArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/contact"
@@ -253,7 +253,7 @@ export function ServiceHero({
                   key={c}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs font-semibold text-emerald-800"
                 >
-                  <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                  <IconCircleCheck className="w-3 h-3 text-emerald-600" />
                   {c}
                 </span>
               ))}

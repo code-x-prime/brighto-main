@@ -4,9 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
-  ArrowRight, Mail, Phone, MapPin, Clock, CheckCircle2,
-  Building2, Shield, FileText, Users, MessageSquare, Send,
-} from 'lucide-react'
+  IconArrowRight, IconMail, IconPhone, IconMapPin, IconClock, IconCircleCheck,
+  IconBuilding, IconShield, IconFileText, IconUsers, IconMessage, IconSend,
+} from '@tabler/icons-react'
 import { BrightoHeader } from '@/components/brighto-header'
 import { BrightoCTAFooter } from '@/components/brighto-cta-footer'
 
@@ -24,7 +24,7 @@ const SERVICES = [
 
 const CONTACT_INFO = [
   {
-    icon: Mail,
+    icon: IconMail,
     label: 'Email Us',
     value: 'Support@brightoindia.com',
     sub: 'We respond within 24 hours',
@@ -34,7 +34,7 @@ const CONTACT_INFO = [
     border: '#c7d2fe',
   },
   {
-    icon: Phone,
+    icon: IconPhone,
     label: 'Call Us',
     value: '9311463901',
     sub: 'Mon-Sat, 9 AM - 6 PM IST',
@@ -44,7 +44,7 @@ const CONTACT_INFO = [
     border: '#a7f3d0',
   },
   {
-    icon: MapPin,
+    icon: IconMapPin,
     label: 'Office Address',
     value: 'C-83, 1st Floor, Sector-2, Noida, India',
     sub: 'Pan-India operations',
@@ -54,7 +54,7 @@ const CONTACT_INFO = [
     border: '#fde68a',
   },
   {
-    icon: Clock,
+    icon: IconClock,
     label: 'Working Hours',
     value: 'Mon-Sat',
     sub: '9:00 AM - 6:00 PM IST',
@@ -66,12 +66,12 @@ const CONTACT_INFO = [
 ]
 
 const WHY_CONTACT = [
-  { icon: Shield, text: 'ISO 27001 | ISO 9001 | PDPD Ready' },
-  { icon: CheckCircle2, text: 'Trusted by banks, NBFCs, fintechs & enterprises' },
-  { icon: Building2, text: 'Pan-India verification & investigation network' },
-  { icon: Clock, text: 'Quick turnaround, structured reporting' },
-  { icon: Users, text: 'Dedicated account management' },
-  { icon: FileText, text: 'Customised solutions for every requirement' },
+  { icon: IconShield, text: 'ISO 27001 | ISO 9001 | PDPD Ready' },
+  { icon: IconCircleCheck, text: 'Trusted by banks, NBFCs, fintechs & enterprises' },
+  { icon: IconBuilding, text: 'Pan-India verification & investigation network' },
+  { icon: IconClock, text: 'Quick turnaround, structured reporting' },
+  { icon: IconUsers, text: 'Dedicated account management' },
+  { icon: IconFileText, text: 'Customised solutions for every requirement' },
 ]
 
 export default function ContactPage() {
@@ -210,7 +210,7 @@ export default function ContactPage() {
               {submitted ? (
                 <div className="flex flex-col items-center justify-center py-16 text-center gap-4">
                   <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center">
-                    <CheckCircle2 className="w-8 h-8 text-emerald-600" />
+                    <IconCircleCheck className="w-8 h-8 text-emerald-600" />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900">Message Received!</h3>
                   <p className="text-slate-500 text-sm max-w-xs">Thank you for reaching out. Our team will contact you within 24 hours to discuss your requirements.</p>
@@ -377,7 +377,7 @@ export default function ContactPage() {
                         Sending...
                       </>
                     ) : (
-                      <>Send Message <Send className="w-4 h-4" /></>
+                      <>Send Message <IconSend className="w-4 h-4" /></>
                     )}
                   </button>
 
@@ -436,7 +436,7 @@ export default function ContactPage() {
                       className="flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-slate-50 hover:bg-blue-50 hover:border-blue-200 border border-transparent transition-all group"
                     >
                       <span className="text-sm font-semibold text-slate-700 group-hover:text-blue-900 transition-colors">{link.label}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700 group-hover:translate-x-0.5 transition-all" />
+                      <IconArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700 group-hover:translate-x-0.5 transition-all" />
                     </Link>
                   ))}
                 </div>
@@ -448,7 +448,7 @@ export default function ContactPage() {
                 <div className="space-y-2.5">
                   {['ISO 27001 Certified', 'ISO 9001 Certified', 'PDPD Ready'].map((cert) => (
                     <div key={cert} className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <IconCircleCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                       <span className="text-sm text-emerald-900 font-medium">{cert}</span>
                     </div>
                   ))}
@@ -476,7 +476,7 @@ export default function ContactPage() {
             ].map((office) => (
               <div key={office.city} className="rounded-2xl border p-6" style={{ background: office.bg, borderColor: office.border }}>
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 shrink-0 mt-0.5" style={{ color: office.color }} />
+                  <IconMapPin className="w-5 h-5 shrink-0 mt-0.5" style={{ color: office.color }} />
                   <div>
                     <p className="font-black text-slate-900 text-base">{office.city}</p>
                     <p className="text-xs font-bold uppercase tracking-widest mt-0.5 mb-2" style={{ color: office.color }}>{office.type}</p>
@@ -502,9 +502,9 @@ export default function ContactPage() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-3 gap-8 text-center">
             {[
-              { icon: MessageSquare, val: '24 hrs', label: 'Response Time', sub: 'We respond to all queries within 24 hours' },
-              { icon: Users, val: 'Dedicated', label: 'Account Manager', sub: 'Your single point of contact for all requirements' },
-              { icon: Shield, val: '100%', label: 'Confidential', sub: 'All information handled with strict data security' },
+              { icon: IconMessage, val: '24 hrs', label: 'Response Time', sub: 'We respond to all queries within 24 hours' },
+              { icon: IconUsers, val: 'Dedicated', label: 'Account Manager', sub: 'Your single point of contact for all requirements' },
+              { icon: IconShield, val: '100%', label: 'Confidential', sub: 'All information handled with strict data security' },
             ].map((item) => {
               const Icon = item.icon
               return (

@@ -3,17 +3,17 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, ChevronDown, CheckCircle2, FileText, Search, MapPin, Shield, FileCheck, AlertTriangle, CreditCard } from 'lucide-react'
+import { IconMenu2, IconX, IconChevronDown, IconCircleCheck, IconFileText, IconSearch, IconMapPin, IconShield, IconFileCheck, IconAlertTriangle, IconCreditCard } from '@tabler/icons-react'
 
 const SERVICES_DROPDOWN = [
-  { label: 'Due Diligence Services', desc: 'Verify facts & key info prior to significant business moves.', href: '/services/due-diligence', icon: CheckCircle2 },
-  { label: 'Loan Application Verification', desc: 'Applicant detail checks to improve credit reviews.', href: '/services/loan-application-verification', icon: FileText },
-  { label: 'Field Investigation (FI)', desc: 'On-ground independent verifications of profiles.', href: '/services/field-investigation', icon: Search },
-  { label: 'Contact Point Verification (CPV)', desc: 'Verify home, office, and business locations.', href: '/services/contact-point-verification', icon: MapPin },
-  { label: 'RCU Support', desc: 'Investigative support & internal risk checks.', href: '/services/rcu-support', icon: Shield },
-  { label: 'Document Verification', desc: 'Verification of ID papers & financial files.', href: '/services/document-verification', icon: FileCheck },
-  { label: 'Fraud Risk Assessment', desc: 'Spot potential risks and control weaknesses.', href: '/services/fraud-risk-assessment', icon: AlertTriangle },
-  { label: 'Credit Appraisal Support', desc: 'Information collection for credit review.', href: '/services/credit-appraisal-support', icon: CreditCard },
+  { label: 'Due Diligence Services', desc: 'Verify facts & key info prior to significant business moves.', href: '/services/due-diligence', icon: IconCircleCheck },
+  { label: 'Loan Application Verification', desc: 'Applicant detail checks to improve credit reviews.', href: '/services/loan-application-verification', icon: IconFileText },
+  { label: 'Field Investigation (FI)', desc: 'On-ground independent verifications of profiles.', href: '/services/field-investigation', icon: IconSearch },
+  { label: 'Contact Point Verification (CPV)', desc: 'Verify home, office, and business locations.', href: '/services/contact-point-verification', icon: IconMapPin },
+  { label: 'RCU Support', desc: 'Investigative support & internal risk checks.', href: '/services/rcu-support', icon: IconShield },
+  { label: 'Document Verification', desc: 'Verification of ID papers & financial files.', href: '/services/document-verification', icon: IconFileCheck },
+  { label: 'Fraud Risk Assessment', desc: 'Spot potential risks and control weaknesses.', href: '/services/fraud-risk-assessment', icon: IconAlertTriangle },
+  { label: 'Credit Appraisal Support', desc: 'Information collection for credit review.', href: '/services/credit-appraisal-support', icon: IconCreditCard },
 ]
 
 const NAV_ITEMS = [
@@ -83,7 +83,7 @@ export function BrightoHeader({ dark = false }: { dark?: boolean }) {
                       }`}
                   >
                     {item.label}
-                    <ChevronDown
+                    <IconChevronDown
                       className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
                     />
                   </button>
@@ -156,9 +156,9 @@ export function BrightoHeader({ dark = false }: { dark?: boolean }) {
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? (
-            <X className={`w-5 h-5 ${dark && !scrolled ? 'text-white' : 'text-slate-900'}`} />
+            <IconX className={`w-5 h-5 ${dark && !scrolled ? 'text-white' : 'text-slate-900'}`} />
           ) : (
-            <Menu className={`w-5 h-5 ${dark && !scrolled ? 'text-white' : 'text-slate-900'}`} />
+            <IconMenu2 className={`w-5 h-5 ${dark && !scrolled ? 'text-white' : 'text-slate-900'}`} />
           )}
         </button>
       </div>
@@ -179,7 +179,7 @@ export function BrightoHeader({ dark = false }: { dark?: boolean }) {
                       className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
                     >
                       {item.label}
-                      <ChevronDown
+                      <IconChevronDown
                         className={`w-4 h-4 transition-transform duration-200 ${isMobOpen ? 'rotate-180' : ''}`}
                       />
                     </button>

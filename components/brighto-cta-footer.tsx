@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { IconArrowRight } from '@tabler/icons-react'
 import { FaLinkedinIn } from 'react-icons/fa6'
 import { FiMail, FiPhone, FiMapPin, FiArrowUp } from 'react-icons/fi'
 
@@ -68,6 +68,7 @@ export function BrightoFooter() {
               <h4 className="font-semibold text-slate-900 text-sm mb-4">Resources</h4>
               <ul className="flex flex-col space-y-2">
                 {[
+                  { label: 'Our Team', href: '/team' },
                   { label: 'Blog & Insights', href: '#' },
                   { label: 'Case Studies', href: '#' },
                   { label: 'Privacy Policy', href: '/privacy-policy' },
@@ -200,7 +201,7 @@ export function BrightoCTAFooter() {
               </Link>
               <Link href="/contact" className="w-full sm:w-auto px-6 py-3 bg-blue-900 hover:bg-blue-950 text-white rounded-xl font-medium transition-all duration-200 hover:shadow-lg flex items-center justify-center gap-2 group text-sm sm:text-base">
                 Request Consultation
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <IconArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
 

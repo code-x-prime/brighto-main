@@ -1,45 +1,45 @@
 'use client'
 
-import { ArrowRight, BookOpen, TrendingUp, Shield, FileText, AlertTriangle, CheckCircle2 } from 'lucide-react'
+import { IconArrowRight, IconBook, IconTrendingUp, IconShield, IconFileText, IconAlertTriangle, IconCircleCheck } from '@tabler/icons-react'
 
 const TOPICS = [
   {
-    icon: FileText,
+    icon: IconFileText,
     category: 'Due Diligence',
     title: 'Due Diligence Tips & Best Practices',
     desc: 'Practical guidance on structuring due diligence workflows, document checklists, and field verification standards for financial institutions.',
     accent: '#3B82F6',
   },
   {
-    icon: TrendingUp,
+    icon: IconTrendingUp,
     category: 'Risk Management',
     title: 'Risk Management Ideas for Lenders',
     desc: 'Industry insights on managing lending risk, improving RCU processes, and building robust internal risk review frameworks.',
     accent: '#F97316',
   },
   {
-    icon: Shield,
+    icon: IconShield,
     category: 'Compliance',
     title: 'Compliance Changes & Regulatory Updates',
     desc: 'Stay current with RBI guidelines, KYC/AML regulatory updates, and compliance requirements affecting NBFCs, banks, and fintechs.',
     accent: '#10B981',
   },
   {
-    icon: AlertTriangle,
+    icon: IconAlertTriangle,
     category: 'Fraud Detection',
     title: 'Verification Updates & Fraud Intelligence',
     desc: 'Fresh insights on emerging fraud patterns, verification technology, and fraud containment strategies across the financial sector.',
     accent: '#EF4444',
   },
   {
-    icon: BookOpen,
+    icon: IconBook,
     category: 'Field Investigation',
     title: 'Field Investigation Insights',
     desc: 'On-ground investigation techniques, CPV standards, and how structured field checks strengthen loan application processing.',
     accent: '#8B5CF6',
   },
   {
-    icon: CheckCircle2,
+    icon: IconCircleCheck,
     category: 'Background Verification',
     title: 'Background Verification Best Practices',
     desc: 'Employee screening, vendor verification, and contractor background check frameworks for regulated industries.',
@@ -77,7 +77,7 @@ export function BrightoInsights() {
             </p>
           </div>
           <button className="shrink-0 self-start lg:self-auto flex items-center gap-2 px-5 py-2.5 border border-slate-300 text-slate-700 rounded-xl text-sm font-semibold hover:border-blue-900 hover:text-blue-900 transition-colors">
-            View All Resources <ArrowRight className="w-4 h-4" />
+            View All Resources <IconArrowRight className="w-4 h-4" />
           </button>
         </div>
 
@@ -121,7 +121,7 @@ export function BrightoInsights() {
 
                 {/* Bottom accent bar on hover */}
                 <div className="relative z-10 flex items-center gap-1.5 text-xs font-semibold text-slate-400 group-hover:text-blue-900 transition-colors">
-                  Read Article <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                  Read Article <IconArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
                 </div>
 
                 {/* Bottom border accent */}
@@ -151,7 +151,7 @@ export function BrightoInsights() {
             <p className="text-sm text-slate-400 mt-1">Browse all articles, case studies, and compliance updates from the Brighto knowledge base.</p>
           </div>
           <button className="relative z-10 shrink-0 flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-sm font-semibold transition-colors shadow-lg shadow-orange-500/20">
-            View All Resources <ArrowRight className="w-4 h-4" />
+            View All Resources <IconArrowRight className="w-4 h-4" />
           </button>
         </div>
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Star } from 'lucide-react'
+import { IconStar } from '@tabler/icons-react'
 
 interface Testimonial {
   id: string
@@ -49,7 +49,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       </div>
       <div className="flex gap-0.5 mb-3">
         {[...Array(5)].map((_, i) => (
-          <Star key={i} className={`w-4 h-4 ${i < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'text-slate-200'}`} />
+          <IconStar key={i} className={`w-4 h-4 ${i < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'text-slate-200'}`} />
         ))}
       </div>
       <p className="text-sm text-slate-600 leading-relaxed">&ldquo;{testimonial.content}&rdquo;</p>

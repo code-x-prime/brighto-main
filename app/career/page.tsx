@@ -5,10 +5,10 @@ import Link from 'next/link'
 import { BrightoHeader } from '@/components/brighto-header'
 import { BrightoFooter } from '@/components/brighto-cta-footer'
 import {
-  MapPin, Briefcase, Clock, Search, X, Upload, Send,
-  CheckCircle2, AlertCircle, Loader2, ChevronLeft, ChevronRight,
-  Building2, ArrowRight, RotateCcw,
-} from 'lucide-react'
+  IconMapPin, IconBriefcase, IconClock, IconSearch, IconX, IconUpload, IconSend,
+  IconCircleCheck, IconAlertCircle, IconLoader2, IconChevronLeft, IconChevronRight,
+  IconBuilding, IconArrowRight, IconRotateClockwise,
+} from '@tabler/icons-react'
 
 interface Job {
   id: string
@@ -211,7 +211,7 @@ export default function CareerPage() {
           {/* Search Bar */}
           <div className="max-w-2xl">
             <div className="relative">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+              <IconSearch className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
               <input
                 ref={searchRef}
                 type="text"
@@ -225,7 +225,7 @@ export default function CareerPage() {
                   onClick={() => { setSearch(''); searchRef.current?.focus() }}
                   className="absolute right-5 top-1/2 -translate-y-1/2 p-1 hover:bg-slate-100 rounded-full"
                 >
-                  <X className="w-4 h-4 text-slate-400" />
+                  <IconX className="w-4 h-4 text-slate-400" />
                 </button>
               )}
             </div>
@@ -263,7 +263,7 @@ export default function CareerPage() {
             </p>
             {debouncedSearch && (
               <button onClick={() => setSearch('')} className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1">
-                <RotateCcw className="w-3.5 h-3.5" /> Clear search
+                <IconRotateClockwise className="w-3.5 h-3.5" /> Clear search
               </button>
             )}
           </div>
@@ -276,26 +276,26 @@ export default function CareerPage() {
             </div>
           ) : error ? (
             <div className="text-center py-20 bg-white rounded-3xl border border-red-200">
-              <AlertCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
+              <IconAlertCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
               <p className="text-xl font-semibold text-slate-700 mb-2">Something went wrong</p>
               <p className="text-slate-500 mb-6">{error}</p>
               <button
                 onClick={fetchJobs}
                 className="px-6 py-3 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800 flex items-center gap-2 mx-auto"
               >
-                <RotateCcw className="w-4 h-4" /> Try Again
+                <IconRotateClockwise className="w-4 h-4" /> Try Again
               </button>
             </div>
           ) : paginatedJobs.length === 0 ? (
             <div className="text-center py-20 bg-white rounded-3xl border border-slate-200">
-              <Search className="w-16 h-16 text-slate-300 mx-auto mb-4" />
+              <IconSearch className="w-16 h-16 text-slate-300 mx-auto mb-4" />
               <p className="text-xl font-semibold text-slate-700">No jobs found</p>
               <p className="text-slate-500 mt-2 mb-6">Try adjusting your search or filters</p>
               <button
                 onClick={() => { setSearch(''); setFilter('All') }}
                 className="px-6 py-3 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800 flex items-center gap-2 mx-auto"
               >
-                <RotateCcw className="w-4 h-4" /> Reset Filters
+                <IconRotateClockwise className="w-4 h-4" /> Reset Filters
               </button>
             </div>
           ) : (
@@ -321,13 +321,13 @@ export default function CareerPage() {
                       </h3>
                       <div className="space-y-2 mb-4">
                         <div className="flex items-center gap-2 text-sm text-slate-500">
-                          <MapPin className="w-4 h-4" /> {job.location}
+                          <IconMapPin className="w-4 h-4" /> {job.location}
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
-                          <Briefcase className="w-4 h-4" /> {job.experience}
+                          <IconBriefcase className="w-4 h-4" /> {job.experience}
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
-                          <Clock className="w-4 h-4" />
+                          <IconClock className="w-4 h-4" />
                           Posted {new Date(job.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
                         </div>
                       </div>
@@ -372,7 +372,7 @@ export default function CareerPage() {
                 disabled={page === 1}
                 className="p-2 rounded-xl border border-slate-200 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <IconChevronLeft className="w-5 h-5" />
               </button>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
                 <button
@@ -392,7 +392,7 @@ export default function CareerPage() {
                 disabled={page === totalPages}
                 className="p-2 rounded-xl border border-slate-200 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
-                <ChevronRight className="w-5 h-5" />
+                <IconChevronRight className="w-5 h-5" />
               </button>
             </div>
           )}
@@ -410,7 +410,7 @@ export default function CareerPage() {
                 <p className="text-sm text-blue-600 font-medium">{selectedJob.title}</p>
               </div>
               <button onClick={() => setShowApply(false)} className="p-2 hover:bg-slate-100 rounded-xl">
-                <X className="w-5 h-5 text-slate-400" />
+                <IconX className="w-5 h-5 text-slate-400" />
               </button>
             </div>
 
@@ -418,7 +418,7 @@ export default function CareerPage() {
               {applied ? (
                 <div className="text-center py-10">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 className="w-8 h-8 text-green-600" />
+                    <IconCircleCheck className="w-8 h-8 text-green-600" />
                   </div>
                   <h4 className="text-xl font-bold text-slate-900 mb-2">Application Submitted!</h4>
                   <p className="text-slate-500 text-sm mb-6">We&apos;ll review your application and get back to you soon.</p>
@@ -433,7 +433,7 @@ export default function CareerPage() {
                 <form onSubmit={handleApply} className="space-y-4">
                   {applyError && (
                     <div className="bg-red-50 text-red-600 text-sm px-4 py-3 rounded-xl flex items-start gap-2">
-                      <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                      <IconAlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
                       {applyError}
                     </div>
                   )}
@@ -478,7 +478,7 @@ export default function CareerPage() {
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-1.5">Resume (PDF or DOCX, max 5MB) *</label>
                     <label className="flex items-center justify-center gap-3 w-full px-4 py-4 border-2 border-dashed border-slate-200 rounded-xl cursor-pointer hover:border-blue-400 hover:bg-blue-50/50 transition-all">
-                      <Upload className="w-5 h-5 text-slate-400" />
+                      <IconUpload className="w-5 h-5 text-slate-400" />
                       <span className="text-sm text-slate-500">
                         {resume ? resume.name : 'Click to upload PDF or DOCX'}
                       </span>
@@ -526,12 +526,12 @@ export default function CareerPage() {
                   >
                     {applying ? (
                       <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <IconLoader2 className="w-5 h-5 animate-spin" />
                         Submitting...
                       </>
                     ) : (
                       <>
-                        <Send className="w-4 h-4" />
+                        <IconSend className="w-4 h-4" />
                         Submit Application
                       </>
                     )}

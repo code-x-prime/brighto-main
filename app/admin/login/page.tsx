@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Lock, Mail, Eye, EyeOff } from 'lucide-react'
+import { IconLock, IconMail, IconEye, IconEyeOff } from '@tabler/icons-react'
 
 export default function AdminLogin() {
   const [showPassword, setShowPassword] = useState(false)
@@ -51,7 +51,7 @@ export default function AdminLogin() {
         <div className="bg-white rounded-xl border border-zinc-200 p-8">
           <div className="text-center mb-8">
             <div className="w-12 h-12 bg-zinc-950 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <Lock className="w-6 h-6 text-white" />
+              <IconLock className="w-6 h-6 text-white" />
             </div>
             <h1 className="text-xl font-semibold text-zinc-900">Brighto India</h1>
             <p className="text-zinc-500 text-sm mt-1">Sign in to admin panel</p>
@@ -67,7 +67,7 @@ export default function AdminLogin() {
             <div>
               <label className="block text-sm font-medium text-zinc-700 mb-1.5">Email</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                <IconMail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <input
                   type="email"
                   name="email"
@@ -81,7 +81,7 @@ export default function AdminLogin() {
             <div>
               <label className="block text-sm font-medium text-zinc-700 mb-1.5">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                <IconLock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   name="password"
@@ -94,7 +94,7 @@ export default function AdminLogin() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <IconEyeOff className="w-4 h-4" /> : <IconEye className="w-4 h-4" />}
                 </button>
               </div>
             </div>

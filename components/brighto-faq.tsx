@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Plus, Minus, ArrowRight } from 'lucide-react'
+import { IconPlus, IconMinus, IconArrowRight } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -111,7 +111,7 @@ export function BrightoFAQ() {
               <p className="text-xs text-slate-500 leading-relaxed">Our team is ready to discuss your specific verification and compliance needs.</p>
             </div>
             <Link href="/contact" className="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-blue-900 hover:bg-blue-950 text-white text-sm font-semibold rounded-xl transition-colors">
-              Contact Support <ArrowRight className="w-3.5 h-3.5" />
+              Contact Support <IconArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
@@ -168,8 +168,8 @@ export function BrightoFAQ() {
                     }}
                   >
                     {isOpen
-                      ? <Minus className="w-3.5 h-3.5 text-blue-700" />
-                      : <Plus className="w-3.5 h-3.5 text-slate-400" />
+                      ? <IconMinus className="w-3.5 h-3.5 text-blue-700" />
+                      : <IconPlus className="w-3.5 h-3.5 text-slate-400" />
                     }
                   </div>
                 </button>

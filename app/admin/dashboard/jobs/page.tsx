@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Plus, Edit, Trash2, ToggleLeft, ToggleRight, Briefcase, MapPin, Clock, Search, Building2 } from 'lucide-react'
+import { IconPlus, IconEdit, IconTrash, IconToggleLeft, IconToggleRight, IconBriefcase, IconMapPin, IconClock, IconSearch, IconBuilding } from '@tabler/icons-react'
 import { authFetch } from '@/lib/auth-client'
 
 interface Job {
@@ -79,14 +79,14 @@ export default function JobsPage() {
           href="/admin/dashboard/jobs/new"
           className="flex items-center gap-2 px-4 py-2.5 bg-zinc-950 text-white rounded-lg text-sm font-medium hover:bg-zinc-800 transition-colors"
         >
-          <Plus className="w-4 h-4" />
+          <IconPlus className="w-4 h-4" />
           Add Job
         </Link>
       </div>
 
       <div className="mb-4">
         <div className="relative max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+          <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <input
             type="text"
             value={search}
@@ -104,7 +104,7 @@ export default function JobsPage() {
         </div>
       ) : filtered.length === 0 ? (
         <div className="bg-white rounded-xl border border-zinc-200 py-20 text-center">
-          <Briefcase className="w-10 h-10 text-zinc-300 mx-auto mb-3" />
+          <IconBriefcase className="w-10 h-10 text-zinc-300 mx-auto mb-3" />
           <p className="text-zinc-500 text-sm">{search ? 'No jobs match your search' : 'No jobs yet. Create your first job opening!'}</p>
         </div>
       ) : (
@@ -129,19 +129,19 @@ export default function JobsPage() {
                   </td>
                   <td className="px-5 py-3.5">
                     <span className="inline-flex items-center gap-1 text-sm text-zinc-600">
-                      <Building2 className="w-3.5 h-3.5 text-zinc-400" />
+                      <IconBuilding className="w-3.5 h-3.5 text-zinc-400" />
                       {job.department}
                     </span>
                   </td>
                   <td className="px-5 py-3.5">
                     <span className="inline-flex items-center gap-1 text-sm text-zinc-600">
-                      <MapPin className="w-3.5 h-3.5 text-zinc-400" />
+                      <IconMapPin className="w-3.5 h-3.5 text-zinc-400" />
                       {job.location}
                     </span>
                   </td>
                   <td className="px-5 py-3.5">
                     <span className="inline-flex items-center gap-1 text-sm text-zinc-600">
-                      <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                      <IconClock className="w-3.5 h-3.5 text-zinc-400" />
                       {job.type}
                     </span>
                   </td>
@@ -158,9 +158,9 @@ export default function JobsPage() {
                         title={job.isActive ? 'Deactivate' : 'Activate'}
                       >
                         {job.isActive ? (
-                          <ToggleRight className="w-4 h-4 text-emerald-600" />
+                          <IconToggleRight className="w-4 h-4 text-emerald-600" />
                         ) : (
-                          <ToggleLeft className="w-4 h-4 text-zinc-400" />
+                          <IconToggleLeft className="w-4 h-4 text-zinc-400" />
                         )}
                       </button>
                       <Link
@@ -168,14 +168,14 @@ export default function JobsPage() {
                         className="p-1.5 hover:bg-zinc-100 rounded-md transition-colors"
                         title="Edit"
                       >
-                        <Edit className="w-4 h-4 text-zinc-600" />
+                        <IconEdit className="w-4 h-4 text-zinc-600" />
                       </Link>
                       <button
                         onClick={() => deleteJob(job.id)}
                         className="p-1.5 hover:bg-red-50 rounded-md transition-colors"
                         title="Delete"
                       >
-                        <Trash2 className="w-4 h-4 text-red-500" />
+                        <IconTrash className="w-4 h-4 text-red-500" />
                       </button>
                     </div>
                   </td>

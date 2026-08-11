@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight } from 'lucide-react'
+import { IconArrowRight } from '@tabler/icons-react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
@@ -175,7 +175,7 @@ export function BrightoHero() {
             <div className="flex gap-4 pt-4">
               <Link href="/contact" className="px-6 py-3 bg-blue-900 text-white rounded-lg font-medium hover:bg-blue-950 transition-all duration-250 hover:shadow-lg hover:translate-y-[-4px] flex items-center gap-2">
                 Request Consultation
-                <ArrowRight className="w-4 h-4" />
+                <IconArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/services" className="px-6 py-3 border border-slate-300 text-slate-900 rounded-lg font-medium hover:bg-slate-50 transition-all duration-250 hover:shadow-md hover:translate-y-[-4px]">
                 Explore Services

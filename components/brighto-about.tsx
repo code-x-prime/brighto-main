@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { IconArrowRight } from '@tabler/icons-react'
 
 const CERTS = [
   { label: 'ISO 27001 Certified', sub: 'Information Security', icon: '/icons/iso-27001-badge.png' },
@@ -89,7 +89,7 @@ export function BrightoAbout() {
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <Link href="/about" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-900 text-white font-semibold hover:bg-blue-950 transition-all hover:shadow-lg">
                 Explore Full About Page
-                <ArrowRight className="w-4 h-4" />
+                <IconArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-300 text-slate-900 font-semibold hover:bg-white hover:shadow-sm transition-all">
                 Talk to Our Team

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Star, Plus, Trash2, Edit, X, Eye, EyeOff, Search, Quote } from 'lucide-react'
+import { IconStar, IconPlus, IconTrash, IconEdit, IconX, IconEye, IconEyeOff, IconSearch, IconQuote } from '@tabler/icons-react'
 import { authFetch } from '@/lib/auth-client'
 
 interface Testimonial {
@@ -146,14 +146,14 @@ export default function TestimonialsPage() {
           onClick={() => { resetForm(); setShowForm(true) }}
           className="flex items-center gap-2 px-4 py-2.5 bg-zinc-950 text-white rounded-lg text-sm font-medium hover:bg-zinc-800 transition-colors"
         >
-          <Plus className="w-4 h-4" />
+          <IconPlus className="w-4 h-4" />
           Add Testimonial
         </button>
       </div>
 
       <div className="mb-4">
         <div className="relative max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+          <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <input
             type="text"
             value={search}
@@ -171,7 +171,7 @@ export default function TestimonialsPage() {
         </div>
       ) : filtered.length === 0 ? (
         <div className="bg-white rounded-xl border border-zinc-200 py-20 text-center">
-          <Quote className="w-10 h-10 text-zinc-300 mx-auto mb-3" />
+          <IconQuote className="w-10 h-10 text-zinc-300 mx-auto mb-3" />
           <p className="text-zinc-500 text-sm">{search ? 'No testimonials match your search' : 'No testimonials yet. Add your first one!'}</p>
         </div>
       ) : (
@@ -208,7 +208,7 @@ export default function TestimonialsPage() {
                     <td className="px-5 py-3.5">
                       <div className="flex gap-0.5">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className={`w-3.5 h-3.5 ${i < t.rating ? 'fill-amber-400 text-amber-400' : 'text-zinc-200'}`} />
+                          <IconStar key={i} className={`w-3.5 h-3.5 ${i < t.rating ? 'fill-amber-400 text-amber-400' : 'text-zinc-200'}`} />
                         ))}
                       </div>
                     </td>
@@ -219,7 +219,7 @@ export default function TestimonialsPage() {
                           t.isActive ? 'bg-emerald-50 text-emerald-700' : 'bg-zinc-100 text-zinc-500'
                         }`}
                       >
-                        {t.isActive ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
+                        {t.isActive ? <IconEye className="w-3 h-3" /> : <IconEyeOff className="w-3 h-3" />}
                         {t.isActive ? 'Active' : 'Hidden'}
                       </button>
                     </td>
@@ -230,14 +230,14 @@ export default function TestimonialsPage() {
                           className="p-1.5 hover:bg-zinc-100 rounded-md transition-colors"
                           title="Edit"
                         >
-                          <Edit className="w-4 h-4 text-zinc-600" />
+                          <IconEdit className="w-4 h-4 text-zinc-600" />
                         </button>
                         <button
                           onClick={() => handleDelete(t.id)}
                           className="p-1.5 hover:bg-red-50 rounded-md transition-colors"
                           title="Delete"
                         >
-                          <Trash2 className="w-4 h-4 text-red-500" />
+                          <IconTrash className="w-4 h-4 text-red-500" />
                         </button>
                       </div>
                     </td>
@@ -258,7 +258,7 @@ export default function TestimonialsPage() {
                 {editingId ? 'Edit Testimonial' : 'Add Testimonial'}
               </h3>
               <button onClick={resetForm} className="p-1.5 hover:bg-zinc-100 rounded-lg">
-                <X className="w-5 h-5 text-zinc-400" />
+                <IconX className="w-5 h-5 text-zinc-400" />
               </button>
             </div>
 
@@ -316,7 +316,7 @@ export default function TestimonialsPage() {
                         onClick={() => setForm({ ...form, rating: r })}
                         className="p-0.5"
                       >
-                        <Star className={`w-6 h-6 ${r <= form.rating ? 'fill-amber-400 text-amber-400' : 'text-zinc-200'}`} />
+                        <IconStar className={`w-6 h-6 ${r <= form.rating ? 'fill-amber-400 text-amber-400' : 'text-zinc-200'}`} />
                       </button>
                     ))}
                   </div>
