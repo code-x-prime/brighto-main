@@ -100,7 +100,7 @@ const INDUSTRIES = [
   },
   {
     svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg>,
-    label: 'MNC', desc: 'Comprehensive due diligence for multinational corporations including vendor verification, compliance checks, and risk assessment.',
+    label: 'MNCs', desc: 'Comprehensive due diligence for multinational corporations including vendor verification, compliance checks, and risk assessment.',
   },
 ]
 
@@ -173,10 +173,10 @@ export default function DueDiligencePage() {
         breadcrumb="Due Diligence Services"
         breadcrumbHref="/services/due-diligence"
         stats={[
-          { val: '2015',      label: 'Serving Since',   sub: 'Decade of experience',     color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
-          { val: '10+',       label: 'Years of Experience', sub: 'In due diligence',      color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
-          { val: 'Pan-India', label: 'Coverage',        sub: 'Multi-geography reach',     color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
-          { val: '2 Certs',   label: 'ISO 27001 + 9001', sub: 'Internationally certified', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
+          { val: '2015', label: 'Serving Since', sub: 'Decade of experience', color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
+          { val: '10+', label: 'Years of Experience', sub: 'In due diligence', color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+          { val: 'Pan-India', label: 'Coverage', sub: 'Multi-geography reach', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
+          { val: '2 Certs', label: 'ISO 27001 + 9001', sub: 'Internationally certified', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
         ]}
       />
 
