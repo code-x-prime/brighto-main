@@ -3,6 +3,7 @@ import { BrightoHero } from '@/components/brighto-hero'
 import { BrightoAbout } from '@/components/brighto-about'
 import { BrightoTeamPreview } from '@/components/brighto-team'
 import { BrightoTrustNetwork } from '@/components/brighto-trust-network'
+import { BrightoPartners } from '@/components/brighto-partners'
 import { BrightoServices } from '@/components/brighto-services'
 import { BrightoEcosystem } from '@/components/brighto-ecosystem'
 import { BrightoIndustries } from '@/components/brighto-industries'
@@ -17,6 +18,7 @@ export default function Home() {
       <BrightoHeader />
       <BrightoHero />
       <BrightoAbout />
+      <BrightoPartners />
       <BrightoTrustNetwork />
       <BrightoServices />
       <BrightoEcosystem />

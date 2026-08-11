@@ -146,9 +146,9 @@ export function BrightoFooter() {
 
       {/* Copyright */}
       <div className="mx-auto mb-6 mt-6 flex flex-col items-center justify-between gap-1 text-center text-xs md:max-w-7xl px-4">
-        <span className="text-slate-500">Brighto Credit Information Private Limited</span>
+        <span className="text-slate-500">Brighto Credit Information Private Limited.</span>
         <div className="flex flex-row flex-wrap items-center justify-center gap-1 text-slate-500">
-          <span>&copy; {new Date().getFullYear()} Brighto India. All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} Brighto Credit Information Private Limited. All Rights Reserved.</span>
           <span>Website designed &amp; developed by</span>
           <a
             href="https://groxmedia.in/"
