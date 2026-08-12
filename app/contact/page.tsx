@@ -27,7 +27,7 @@ const CONTACT_INFO = [
     icon: IconMail,
     label: 'Email Us',
     value: 'Support@brightoindia.com',
-    sub: 'We respond within 24 hours',
+    sub: 'We typically respond within 24 working hours',
     href: 'mailto:Support@brightoindia.com',
     color: '#091C8C',
     bg: '#eef2ff',
@@ -204,7 +204,7 @@ export default function ContactPage() {
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-950 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
                   Send Us a Message
                 </h2>
-                <p className="text-slate-500 text-sm mt-2">Fill in the details below and our team will get back to you within 24 hours.</p>
+                <p className="text-slate-500 text-sm mt-2">Fill in the details below and our team will get back to you shortly.</p>
               </div>
 
               {submitted ? (
@@ -213,7 +213,7 @@ export default function ContactPage() {
                     <IconCircleCheck className="w-8 h-8 text-emerald-600" />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900">Message Received!</h3>
-                  <p className="text-slate-500 text-sm max-w-xs">Thank you for reaching out. Our team will contact you within 24 hours to discuss your requirements.</p>
+                  <p className="text-slate-500 text-sm max-w-xs">Thank you for reaching out. Our team will contact you shortly to discuss your requirements.</p>
                   {emailStatus && (
                     <div className={`px-4 py-2 rounded-lg text-xs font-medium ${emailStatus === 'sent' ? 'bg-green-50 text-green-700' : 'bg-yellow-50 text-yellow-700'}`}>
                       {emailStatus === 'sent' ? 'Confirmation email sent to your inbox' : 'Email notification pending - we still received your message'}
@@ -502,7 +502,7 @@ export default function ContactPage() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-3 gap-8 text-center">
             {[
-              { icon: IconMessage, val: '24 hrs', label: 'Response Time', sub: 'We respond to all queries within 24 hours' },
+              { icon: IconMessage, val: '24 hrs', label: 'Response Time', sub: 'We typically respond to business enquiries within 24 working hours' },
               { icon: IconUsers, val: 'Dedicated', label: 'Account Manager', sub: 'Your single point of contact for all requirements' },
               { icon: IconShield, val: '100%', label: 'Confidential', sub: 'All information handled with strict data security' },
             ].map((item) => {

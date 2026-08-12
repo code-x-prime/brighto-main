@@ -48,7 +48,7 @@ export function BrightoIndustries() {
               <span className="text-xs font-bold text-orange-400 tracking-widest uppercase">Industries We Serve</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
-              Trusted Across<br />10+ Sectors
+              Industries<br />We Serve
             </h2>
             <p className="text-slate-400 leading-relaxed text-base">
               Our experience across different sectors helps us understand each industry's own verification needs and daily challenges — so we deliver practical support that fits.

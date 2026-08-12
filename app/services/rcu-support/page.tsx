@@ -34,7 +34,7 @@ const RCU_SERVICES = [
   { icon: 'Briefcase',    title: 'Office Verification',           desc: 'Help confirm job details through separate, independent verification steps and reporting systems.',                                         color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
   { icon: 'Building2',    title: 'Business Verification',         desc: 'Check business details with careful verification and investigation activities.',                                                           color: '#d97706', bg: '#fffbeb', border: '#fde68a' },
   { icon: 'CheckCircle2', title: 'Information Validation Support', desc: 'Build stronger review systems with structured information validation and assessment support services.',                                   color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
-  { icon: 'FileText',     title: 'Document Review Support',       desc: 'Help the company review processes by checking and validating the papers people submit.',                                                   color: '#0f766e', bg: '#f0fdfa', border: '#99f6e4' },
+  { icon: 'FileText',     title: 'Document Review Support',       desc: 'Support internal review processes by checking and validating submitted documentation.',                                                   color: '#0f766e', bg: '#f0fdfa', border: '#99f6e4' },
   { icon: 'FileCheck',    title: 'Verification Reporting',        desc: 'Get clear reports with final results and backup details ready for review.',                                                                color: '#4f46e5', bg: '#eef2ff', border: '#c7d2fe' },
 ]
 
@@ -167,8 +167,8 @@ export default function RCUSupportPage() {
                 </h2>
                 <div className="space-y-4 text-slate-600 leading-relaxed">
                   <p>Banks and lenders work in a world where information accuracy and structured review processes really matter. Some situations call for additional verification, investigation, or assessment support before they move ahead in company systems.</p>
-                  <p>Brighto India&apos;s Risk Containment Unit (RCU) Support Services give organizations help through structured verification activities, field investigations, information validation, and assessment-driven reporting. These services help financial lenders to go over the submitted details, evaluate the reports, and build stronger internal verification processes with independent investigation support.</p>
-                  <p>No matter if we help banks, NBFCs, housing finance companies, fintech lenders, or other finance groups, our team provides process-oriented RCU support that fits exactly what the daily operations need.</p>
+                  <p>Brighto India&apos;s Risk Containment Unit (RCU) Support Services provide organizations with structured verification activities, field investigations, information validation, and assessment-driven reporting. These services support lenders in reviewing submitted information, evaluating verification findings, and strengthening internal risk-assessment processes with independent investigation support.</p>
+                  <p>Whether working with banks, NBFCs, housing finance companies, fintech lenders, or other finance groups, our team delivers process-oriented RCU support tailored to daily operational requirements.</p>
                 </div>
               </div>
               <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-16/7">
