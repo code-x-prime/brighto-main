@@ -149,15 +149,7 @@ export function BrightoFooter() {
         <span className="text-slate-500">Brighto Credit Information Private Limited.</span>
         <div className="flex flex-row flex-wrap items-center justify-center gap-1 text-slate-500">
           <span>&copy; {new Date().getFullYear()} Brighto Credit Information Private Limited. All Rights Reserved.</span>
-          <span>Website designed &amp; developed by</span>
-          <a
-            href="https://groxmedia.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-bold text-slate-800 hover:text-blue-900 transition-colors"
-          >
-            Grox Media
-          </a>
+
         </div>
       </div>
     </footer>
