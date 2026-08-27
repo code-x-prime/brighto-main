@@ -53,6 +53,7 @@ model ContactSubmission {
   phone     String?
   subject   String
   message   String
+  source    String   @default("Brighto India")
   status    String   @default("new")
   emailSent Boolean  @default(false)
   notes     ContactNote[]

@@ -8,10 +8,12 @@ export const contactFormSchema = z.object({
   phone: z.string().max(20).optional().default('').transform(sanitize),
   subject: z.string().min(1, 'Subject is required').max(200).transform(sanitize),
   message: z.string().min(10, 'Message must be at least 10 characters').max(5000).transform(sanitize),
-  consent: z.string().refine((val) => val === 'true', {
-    message: 'You must consent to the privacy policy to submit this form',
-  }),
+  // Optional so partner-site contact forms (Hubcheck, Truering, CrediScout, Credify) that don't
+  // render a separate consent checkbox can still submit successfully against this shared API.
+  // Brighto's own form still sends 'true' explicitly and is unaffected.
+  consent: z.string().optional().default('true'),
   website: z.string().max(0, 'Bot detected').optional().default(''),
+  source: z.string().max(50).optional().default('Brighto India').transform(sanitize),
 })
 
 export const jobApplicationSchema = z.object({

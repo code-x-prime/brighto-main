@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { name, email, phone, subject, message, website } = parsed.data
+    const { name, email, phone, subject, message, website, source } = parsed.data
 
     if (website) {
       return NextResponse.json({ success: true })
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     let submission
     try {
       submission = await prisma.contactSubmission.create({
-        data: { name, email, phone: phone || null, subject, message },
+        data: { name, email, phone: phone || null, subject, message, source },
       })
     } catch {
       return NextResponse.json({ error: 'Failed to save your message. Please try again.' }, { status: 500 })

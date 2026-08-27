@@ -17,10 +17,23 @@ interface Submission {
   phone: string | null
   subject: string
   message: string
+  source: string
   status: string
   emailSent: boolean
   notes: Note[]
   createdAt: string
+}
+
+const SOURCE_COLORS: Record<string, string> = {
+  'Brighto India': 'bg-blue-50 text-blue-700 border-blue-200',
+  'Hubcheck': 'bg-orange-50 text-orange-700 border-orange-200',
+  'Truering': 'bg-purple-50 text-purple-700 border-purple-200',
+  'CrediScout': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  'Credify': 'bg-cyan-50 text-cyan-700 border-cyan-200',
+}
+
+function sourceColor(source: string) {
+  return SOURCE_COLORS[source] || 'bg-zinc-100 text-zinc-600 border-zinc-200'
 }
 
 const STATUS_OPTIONS = [
@@ -201,6 +214,7 @@ export default function ContactsPage() {
             <thead>
               <tr className="border-b border-zinc-100">
                 <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Contact</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Source</th>
                 <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Subject</th>
                 <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Status</th>
                 <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Email</th>
@@ -223,6 +237,11 @@ export default function ContactsPage() {
                           <div className="text-xs text-zinc-500">{sub.email}</div>
                         </div>
                       </div>
+                    </td>
+                    <td className="px-5 py-3.5">
+                      <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium border ${sourceColor(sub.source)}`}>
+                        {sub.source}
+                      </span>
                     </td>
                     <td className="px-5 py-3.5 text-sm text-zinc-600 max-w-[200px] truncate">{sub.subject}</td>
                     <td className="px-5 py-3.5">
@@ -291,10 +310,16 @@ export default function ContactsPage() {
             </div>
 
             <div className="flex-1 overflow-y-auto p-6 space-y-5">
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-3">
                 <div className="bg-zinc-50 rounded-lg p-3">
                   <p className="text-[11px] text-zinc-500 uppercase tracking-wider mb-1">Phone</p>
                   <p className="text-sm font-medium text-zinc-900">{selectedSubmission.phone || 'N/A'}</p>
+                </div>
+                <div className="bg-zinc-50 rounded-lg p-3">
+                  <p className="text-[11px] text-zinc-500 uppercase tracking-wider mb-1">Source</p>
+                  <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium border ${sourceColor(selectedSubmission.source)}`}>
+                    {selectedSubmission.source}
+                  </span>
                 </div>
                 <div className="bg-zinc-50 rounded-lg p-3">
                   <p className="text-[11px] text-zinc-500 uppercase tracking-wider mb-1">Date</p>
