@@ -37,7 +37,7 @@ const CONTACT_INFO = [
     icon: IconPhone,
     label: 'Call Us',
     value: '9311463901',
-    sub: 'Mon-Sat, 9 AM - 6 PM IST',
+    sub: 'Mon-Sat, 9 AM - 6 PM IST · Landline: +91 120 453 9428',
     href: 'tel:9311463901',
     color: '#059669',
     bg: '#f0fdf4',

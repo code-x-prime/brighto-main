@@ -50,8 +50,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }, [])
 
   async function handleLogout() {
+    try {
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include',
+      })
+    } catch {
+      // proceed to clear client state and redirect even if the request fails
+    }
     localStorage.removeItem('admin-token')
-    document.cookie = 'admin-token=; path=/; max-age=0'
     window.location.href = '/admin/login'
   }
 

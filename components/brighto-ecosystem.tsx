@@ -13,7 +13,7 @@ const ecosystem = [
     accent: '#3B82F6',
     letter: 'CS',
     logo: '/CrediScout-Logo2.png',
-    url: '#',
+    url: 'https://crediscout.in',
   },
   {
     name: 'Hubcheck',
@@ -33,7 +33,7 @@ const ecosystem = [
     accent: '#10B981',
     letter: 'CI',
     logo: '/Credify-Logo2.png',
-    url: '#',
+    url: 'https://credifyindia.com',
   },
   {
     name: 'Truering',
@@ -193,9 +193,9 @@ export function BrightoEcosystem() {
 
             {/* Surrounding nodes */}
             {[
-              { cx: 155, cy: 85, label: 'Crediscout', sub: 'Background', accent: '#3B82F6', logo: '/CrediScout-Logo2.png', url: '#' },
+              { cx: 155, cy: 85, label: 'Crediscout', sub: 'Background', accent: '#3B82F6', logo: '/CrediScout-Logo2.png', url: 'https://crediscout.in' },
               { cx: 645, cy: 85, label: 'Hubcheck', sub: 'Warehouse', accent: '#F97316', logo: '/Hubcheck-Logo.png', url: 'https://hubcheck.in' },
-              { cx: 155, cy: 315, label: 'Credify', sub: 'APIs', accent: '#10B981', logo: '/Credify-Logo2.png', url: '#' },
+              { cx: 155, cy: 315, label: 'Credify', sub: 'APIs', accent: '#10B981', logo: '/Credify-Logo2.png', url: 'https://credifyindia.com' },
               { cx: 645, cy: 315, label: 'Truering', sub: 'CRM', accent: '#8B5CF6', logo: '/TrueRing-Logo2.png', url: 'https://www.truering.in/' },
             ].map((node, idx) => {
               const NodeContent = (

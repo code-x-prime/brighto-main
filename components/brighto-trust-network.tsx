@@ -6,9 +6,9 @@ import Link from 'next/link'
 
 export function BrightoTrustNetwork() {
   const brands = [
-    { name: 'Crediscout', initials: 'CS', desc: 'Background verification — employment, education, address, vendor & contractor screening', logo: '/CrediScout-Logo2.png', url: '#' },
+    { name: 'Crediscout', initials: 'CS', desc: 'Background verification — employment, education, address, vendor & contractor screening', logo: '/CrediScout-Logo2.png', url: 'https://crediscout.in' },
     { name: 'Hubcheck', initials: 'HC', desc: 'Warehouse audits, stock verification, collateral reviews for commodity finance', logo: '/Hubcheck-Logo.png', url: 'https://hubcheck.in' },
-    { name: 'Credify India', initials: 'CI', desc: 'Verification APIs — KYC, KYB, digital onboarding, banking & compliance APIs', logo: '/Credify-Logo2.png', url: '#' },
+    { name: 'Credify India', initials: 'CI', desc: 'Verification APIs — KYC, KYB, digital onboarding, banking & compliance APIs', logo: '/Credify-Logo2.png', url: 'https://credifyindia.com' },
     { name: 'Truering', initials: 'TR', desc: 'Telecalling CRM — inbound/outbound calling, cloud phone, lead tracking, auto dialers', logo: '/TrueRing-Logo2.png', url: 'https://www.truering.in/' },
   ]
 

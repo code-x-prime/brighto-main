@@ -97,6 +97,11 @@ export function BrightoFooter() {
                   </a>
                 </li>
                 <li>
+                  <a href="tel:+911204539428" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
+                    <FiPhone className="w-3.5 h-3.5 shrink-0" /> +91 120 453 9428
+                  </a>
+                </li>
+                <li>
                   <Link href="/contact" className="text-sm text-slate-500 md:text-xs flex items-center gap-2 hover:text-blue-900 transition-colors">
                     <FiMapPin className="w-3.5 h-3.5 shrink-0" /> C-83, 1st Floor, Sector-2, Noida, India
                   </Link>
