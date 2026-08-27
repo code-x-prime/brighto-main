@@ -91,7 +91,7 @@ export default function CookiePolicyPage() {
               <p className="text-slate-700 mt-2">
                 <strong>Brighto Credit Information Pvt. Ltd.</strong><br />
                 Email: <a href="mailto:Support@brightoindia.com" className="text-blue-600 hover:underline">Support@brightoindia.com</a><br />
-                Phone: <a href="tel:9311463901" className="text-blue-600 hover:underline">9311463901</a> / <a href="tel:+911204539428" className="text-blue-600 hover:underline">+91 120 453 9428</a>
+                Phone: <a href="tel:+911204539428" className="text-blue-600 hover:underline">+91 120 453 9428</a>
               </p>
             </div>
           </div>

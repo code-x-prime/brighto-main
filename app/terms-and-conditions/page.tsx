@@ -182,7 +182,7 @@ export default function TermsPage() {
                 <strong>Brighto Credit Information Pvt. Ltd.</strong><br />
                 C-83, 1st Floor, Sector-2, Noida, India<br />
                 Email: <a href="mailto:Support@brightoindia.com" className="text-blue-600 hover:underline">Support@brightoindia.com</a><br />
-                Phone: <a href="tel:9311463901" className="text-blue-600 hover:underline">9311463901</a> / <a href="tel:+911204539428" className="text-blue-600 hover:underline">+91 120 453 9428</a>
+                Phone: <a href="tel:+911204539428" className="text-blue-600 hover:underline">+91 120 453 9428</a>
               </p>
             </div>
           </div>
