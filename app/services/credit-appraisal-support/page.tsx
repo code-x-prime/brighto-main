@@ -33,14 +33,14 @@ export const metadata: Metadata = {
 }
 
 const SERVICES = [
-  { icon: 'FileText', title: 'Loan Application Verification', desc: 'Help with lending assessments by checking what the applicant shared and any additional details.', color: '#b45309', bg: '#fffbeb', border: '#fde68a' },
-  { icon: 'FileCheck', title: 'Document Verification', desc: 'Go over the papers people send in, using established verification methods to check them and compile reports.', color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
+  { icon: 'FileText', title: 'Loan Application Verification', desc: 'Support lending assessments by validating applicant-provided details and supporting information.', color: '#b45309', bg: '#fffbeb', border: '#fde68a' },
+  { icon: 'FileCheck', title: 'Document Verification', desc: 'Review submitted documents using established verification methods and compile structured reports.', color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
   { icon: 'MapPin', title: 'Contact Point Verification', desc: 'Confirm home, work, business, and other contact details through structured confirmation steps.', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
   { icon: 'Home', title: 'Residence Verification', desc: 'Support validation on home details using independent confirmation and report steps.', color: '#0f766e', bg: '#f0fdfa', border: '#99f6e4' },
   { icon: 'Briefcase', title: 'Office Verification', desc: 'Verify job-related details using defined confirmation methods.', color: '#d97706', bg: '#fffbeb', border: '#fde68a' },
   { icon: 'Building2', title: 'Business Verification', desc: 'Validate business details through structured review and verification activities.', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
-  { icon: 'Search', title: 'Information Validation Support', desc: 'Build stronger lending review steps with organized methods for checking facts.', color: '#c2410c', bg: '#fff7ed', border: '#fdba74' },
-  { icon: 'FileCheck', title: 'Assessment Reporting', desc: 'Get clear reports that list what was found and the details that support the review.', color: '#4f46e5', bg: '#eef2ff', border: '#c7d2fe' },
+  { icon: 'Search', title: 'Information Validation Support', desc: 'Strengthen lending review processes with organized fact-checking methodologies.', color: '#c2410c', bg: '#fff7ed', border: '#fdba74' },
+  { icon: 'FileCheck', title: 'Assessment Reporting', desc: 'Receive structured reports documenting verification findings and supporting evidence for review.', color: '#4f46e5', bg: '#eef2ff', border: '#c7d2fe' },
 ]
 
 const INCLUDES = [
@@ -58,22 +58,22 @@ const WHY_MATTERS = [
   { title: 'Improve Lending Visibility', desc: 'Credit appraisal support gives lenders a clearer view of details that affect assessment decisions.' },
   { title: 'Strengthen Review Consistency', desc: 'Structured workflows help teams keep review practices steady across files and branches.' },
   { title: 'Support Better Decisions', desc: 'Independently verified inputs help internal teams make more informed lending choices.' },
-  { title: 'Reduce Missing Information Gaps', desc: 'Verification steps help identify paperwork or detail gaps before approval stages.' },
-  { title: 'Support Credit Policy Workflows', desc: 'Reports and notes can fit into existing credit rules, review standards, and decision steps.' },
+  { title: 'Reduce Missing Information Gaps', desc: 'Verification steps help identify documentation or information gaps before approval stages.' },
+  { title: 'Support Credit Policy Workflows', desc: 'Reports and findings align with existing credit policies, review standards, and decision-making processes.' },
 ]
 
 const WHY_BRIGHTO = [
   { title: 'Financial Services Expertise', desc: 'Brighto India works with banks, NBFCs, housing finance companies, fintech companies, and other lenders.' },
   { title: 'Process-Driven Methodology', desc: 'Our services use established operational procedures designed to keep work consistent and clear.' },
   { title: 'Verification & Investigation Capabilities', desc: 'We combine verification expertise with field investigation and assessment support capabilities.' },
-  { title: 'Secure & Compliance-Oriented Operations', desc: 'Our way of working includes set rules for data safety, quality control, and process controls.' },
+  { title: 'Secure & Compliance-Oriented Operations', desc: 'Our operations follow established standards for data security, quality control, and process governance.' },
   { title: 'Structured Reporting Framework', desc: 'Assessment findings are organized into report formats that support internal review work.' },
   { title: 'Pan-India Operational Reach', desc: 'Our network enables verification and assessment support across many locations and work settings.' },
 ]
 
 const INDUSTRIES = [
   { title: 'Banking', desc: 'Verification and assessment support for lending and credit review work.' },
-  { title: 'NBFCs', desc: 'Structured credit appraisal support services matched to lending and daily needs.' },
+  { title: 'NBFCs', desc: 'Structured credit appraisal support services matched to lending and operational requirements.' },
   { title: 'Housing Finance Companies', desc: 'Information validation and assessment support for home loans and housing finance steps.' },
   { title: 'Fintech Companies', desc: 'Confirmation services that support online lending and customer evaluation.' },
   { title: 'Microfinance Institutions', desc: 'Assessment support services designed to strengthen lending review steps.' },
@@ -82,21 +82,21 @@ const INDUSTRIES = [
 ]
 
 const PROCESS = [
-  { num: '01', title: 'Requirement Assessment', desc: 'Learning the assessment objectives, limits, and daily needs.' },
-  { num: '02', title: 'Case Assignment', desc: 'Assigning cases using structured working steps.' },
-  { num: '03', title: 'Verification & Information Validation', desc: 'Doing the verification steps and information validation procedures.' },
-  { num: '04', title: 'Quality Review', desc: 'Going over the gathered details using the set quality-check steps.' },
-  { num: '05', title: 'Assessment & Documentation', desc: 'Putting together the notes and backup details for review.' },
-  { num: '06', title: 'Reporting', desc: 'Giving clear reports for the client to look at and use in their review.' },
+  { num: '01', title: 'Requirement Assessment', desc: 'Understanding the assessment objectives, scope, and operational requirements.' },
+  { num: '02', title: 'Case Assignment', desc: 'Allocating cases through structured operational workflows.' },
+  { num: '03', title: 'Verification & Information Validation', desc: 'Conducting verification steps and information validation procedures.' },
+  { num: '04', title: 'Quality Review', desc: 'Reviewing gathered details through defined quality control procedures.' },
+  { num: '05', title: 'Assessment & Documentation', desc: 'Compiling observations and supporting evidence for review.' },
+  { num: '06', title: 'Reporting', desc: 'Providing structured reports for client review and evaluation.' },
 ]
 
 const FAQS = [
   { q: 'What is Credit Appraisal Support?', a: 'Credit Appraisal Support means the verification, information validation, document review, and assessment activities that assist financial institutions in evaluating loan requests.' },
-  { q: 'Who uses Credit Appraisal Support Services?', a: 'Banks, NBFCs, housing finance companies, fintech groups, microfinance institutions, and other financial groups often use credit appraisal support services.' },
+  { q: 'Who uses Credit Appraisal Support Services?', a: 'Banks, NBFCs, housing finance companies, fintech organizations, microfinance institutions, and other financial institutions commonly use credit appraisal support services.' },
   { q: 'What activities are included in Credit Appraisal Support?', a: 'Services may include loan application verification, document verification, contact point verification, residence verification, office verification, business verification, information validation, and assessment reporting.' },
   { q: 'How does Credit Appraisal Support help financial institutions?', a: 'Credit Appraisal Support provides independently verified information, documented observations, and clear reports to support internal lending review and assessment work.' },
   { q: 'Does Brighto India provide verification support for lending assessments?', a: 'Yes. Brighto India provides verification and information validation services made to support credit appraisal steps.' },
-  { q: 'How can I get started with Brighto India?', a: 'Reach out to our team to discuss your assessment requirements, operational objectives, and service scope. We will suggest a support plan tailored to your needs.' },
+  { q: 'How can I get started with Brighto India?', a: 'Reach out to our team to discuss your assessment requirements, operational objectives, and service scope. We will recommend a support plan tailored to your engagement scope.' },
 ]
 
 export default function CreditAppraisalSupportPage() {
@@ -175,7 +175,7 @@ export default function CreditAppraisalSupportPage() {
                 <div className="space-y-4 text-slate-600 leading-relaxed">
                   <p>The credit appraisal process typically requires accurate details, supporting documentation, verification activities, and clear reports to support the full lending review process. Structured appraisal support lets lenders see the details more clearly and maintain consistency as they move through their assessment workflows.</p>
                   <p>Brighto India&apos;s Credit Appraisal Support Services help companies with information validation, document review, field verification support, and assessment-driven reporting. Our services give lenders independently verified information and documented observations within the set limits of each job.</p>
-                  <p>Whether we work with banks, NBFCs, housing finance companies, fintech lenders, or other financial groups, we provide process-driven appraisal support tailored to their operating models.</p>
+                  <p>Whether we work with banks, NBFCs, housing finance companies, fintech lenders, or other financial institutions, we provide process-driven appraisal support tailored to their operating models.</p>
                 </div>
               </div>
               <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[16/7]">
@@ -199,7 +199,7 @@ export default function CreditAppraisalSupportPage() {
                 What is Credit Appraisal Support?
               </h3>
               <div className="space-y-3 text-slate-400 text-sm leading-relaxed mb-8">
-                <p>Credit Appraisal Support means the verification, information validation, document review, and assessment support activities that assist financial groups in evaluating loan requests.</p>
+                <p>Credit Appraisal Support means the verification, information validation, document review, and assessment support activities that assist financial institutions in evaluating loan requests.</p>
                 <p>The goal is to support internal credit review frameworks by providing information, documented observations, and clear reports to support the review process.</p>
               </div>
               <p className="text-xs font-bold text-orange-400 uppercase tracking-wider mb-4">Credit Appraisal Support may include the following:</p>
@@ -333,7 +333,7 @@ export default function CreditAppraisalSupportPage() {
             </div>
             <div>
               <p className="text-xs font-bold text-amber-700 uppercase tracking-widest mb-2">Our Assessment Framework</p>
-              <p className="text-sm text-amber-900 leading-relaxed">Brighto India&apos;s Credit Appraisal Support Services are based on the details provided at the time of assessment and remain within the agreed job limits. Check results, notes, and backup details help clients review the work alongside their own credit rules, review standards, and decision steps.</p>
+              <p className="text-sm text-amber-900 leading-relaxed">Brighto India&apos;s Credit Appraisal Support Services are based on the details provided at the time of assessment and remain within the agreed engagement scope. Verification findings, observations, and supporting evidence help clients review the work alongside their own credit policies, review standards, and decision-making processes.</p>
             </div>
           </div>
         </div>
@@ -365,7 +365,7 @@ export default function CreditAppraisalSupportPage() {
             Let's Discuss Your Credit Appraisal Requirements
           </h2>
           <p className="text-amber-100 text-lg leading-relaxed mb-10">
-            If you need loan application verification, document verification, contact point verification, business verification, residence verification, office verification, or information validation support, our team can suggest a good way that fits your daily needs.
+            If you need loan application verification, document verification, contact point verification, business verification, residence verification, office verification, or information validation support, our team can recommend a structured approach aligned with your operational requirements.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="flex items-center gap-2 px-8 py-4 bg-white hover:bg-amber-50 text-amber-900 rounded-xl font-bold text-base transition-all hover:shadow-2xl hover:-translate-y-0.5">

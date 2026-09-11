@@ -125,7 +125,7 @@ export default function LoanApplicationVerificationPage() {
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-slate-600 leading-relaxed text-base">
                 <p>Verification is at the core of every reliable lending process. Since 2015, Brighto India has combined verification expertise, field investigations, document reviews, and structured reporting to help financial institutions strengthen Loan Application Verification processes.</p>
-                <p>We support banks, NBFCs, housing finance companies, fintech lenders, and microfinance groups that need a dependable partner for checking applicant details and supporting internal review work.</p>
+                <p>We support banks, NBFCs, housing finance companies, fintech lenders, and microfinance institutions that need a dependable partner for verifying applicant details and supporting internal review work.</p>
                 <p className="sm:col-span-2">As an ISO 27001 Certified and ISO 9001 Certified organization, we follow established standards for information security and quality management across every engagement.</p>
               </div>
             </div>
@@ -160,7 +160,7 @@ export default function LoanApplicationVerificationPage() {
                   Strengthen Lending Reviews with Structured Loan Application Verification
                 </h2>
                 <div className="space-y-4 text-slate-600 leading-relaxed">
-                  <p>Every loan request includes details that must be verified before the bank or lender moves ahead in its internal approval process. Banks, NBFCs, housing finance firms, fintech lenders, and microfinance groups often need external help to ensure the information is reliable and their review systems work effectively.</p>
+                  <p>Every loan request includes details that must be verified before the bank or lender moves ahead in its internal approval process. Banks, NBFCs, housing finance firms, fintech lenders, and microfinance institutions often need external support to ensure the information is reliable and their review systems work effectively.</p>
                   <p>Brighto India delivers Loan Application Verification Services designed to help lenders verify facts, conduct field visits, review documents, and prepare clear reports. Our work gives organizations better visibility into applicant details and supports smarter lending decisions.</p>
                   <p>By linking these checks with assessment support, we help clients build a more dependable verification workflow that fits their operational needs.</p>
                 </div>
@@ -221,7 +221,7 @@ export default function LoanApplicationVerificationPage() {
               <h2 className="text-3xl sm:text-4xl font-black text-slate-950 mb-5 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
                 Why Loan Application Verification Matters
               </h2>
-              <p className="text-slate-600 leading-relaxed">Solid facts are key to lending and credit review work. Organized check steps help groups improve information quality and strengthen their internal review systems.</p>
+              <p className="text-slate-600 leading-relaxed">Accurate information is key to lending and credit review work. Structured verification steps help financial institutions improve information quality and strengthen their internal review systems.</p>
             </div>
             <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {WHY.map((item, i) => (
@@ -269,7 +269,7 @@ export default function LoanApplicationVerificationPage() {
           <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-3">Sectors We Cover</p>
             <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>Industries We Serve</h2>
-            <p className="text-slate-400 mt-4 text-base">Brighto India helps groups working in many lending and finance areas.</p>
+            <p className="text-slate-400 mt-4 text-base">Brighto India supports organizations across many lending and finance sectors.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {INDUSTRIES.map((ind) => (

@@ -44,7 +44,7 @@ const FRAUD_SERVICES = [
   {
     icon: 'AlertTriangle',
     title: 'Field Investigation Support',
-    desc: 'Conduct field investigation activities set up to support data evaluation and review needs.',
+    desc: 'Conduct field investigation activities designed to support information validation and risk review requirements.',
     color: '#dc2626',
     bg: '#fef2f2',
     border: '#fecaca',
@@ -52,7 +52,7 @@ const FRAUD_SERVICES = [
   {
     icon: 'FileCheck',
     title: 'Document Review Support',
-    desc: 'Examine supporting documentation using set check methods and summary practices.',
+    desc: 'Examine supporting documentation using established verification methods and reporting practices.',
     color: '#0369a1',
     bg: '#f0f9ff',
     border: '#bae6fd',
@@ -60,7 +60,7 @@ const FRAUD_SERVICES = [
   {
     icon: 'Home',
     title: 'Residence Verification',
-    desc: 'Confirm residential information through structured check steps and recorded summaries.',
+    desc: 'Confirm residential information through structured verification steps and documented findings.',
     color: '#059669',
     bg: '#f0fdf4',
     border: '#a7f3d0',
@@ -68,7 +68,7 @@ const FRAUD_SERVICES = [
   {
     icon: 'Briefcase',
     title: 'Office Verification',
-    desc: 'Support confirming employment-related information through independent verification activities.',
+    desc: 'Support confirmation of employment-related information through independent verification activities.',
     color: '#d97706',
     bg: '#fffbeb',
     border: '#fde68a',
@@ -76,7 +76,7 @@ const FRAUD_SERVICES = [
   {
     icon: 'Building2',
     title: 'Business Verification',
-    desc: 'Check business details through process-based review and investigation activities.',
+    desc: 'Validate business details through process-based review and investigation activities.',
     color: '#7c3aed',
     bg: '#faf5ff',
     border: '#ddd6fe',
@@ -84,7 +84,7 @@ const FRAUD_SERVICES = [
   {
     icon: 'CheckCircle2',
     title: 'Exception Case Assessment',
-    desc: 'Provide additional check and evaluation support for situations that require deeper review.',
+    desc: 'Provide additional verification and evaluation support for situations requiring deeper review.',
     color: '#0f766e',
     bg: '#f0fdfa',
     border: '#99f6e4',
@@ -92,7 +92,7 @@ const FRAUD_SERVICES = [
   {
     icon: 'FileText',
     title: 'Assessment Reporting',
-    desc: 'Get clear summaries that record findings, supporting information, and evaluation results.',
+    desc: 'Receive structured reports documenting verification findings, supporting evidence, and evaluation results.',
     color: '#4f46e5',
     bg: '#eef2ff',
     border: '#c7d2fe',
@@ -111,38 +111,38 @@ const INCLUDES = [
 ]
 
 const WHY_MATTERS = [
-  { title: 'Improve Information Visibility', desc: 'Verification activities help companies gain additional visibility into details that need evaluation.' },
-  { title: 'Strengthen Review Frameworks', desc: 'Structured evaluation support adds to more consistent review and evaluation methods.' },
-  { title: 'Support Risk Assessment Activities', desc: 'Verification findings and recorded results can back internal evaluation steps.' },
-  { title: 'Enhance Information Validation', desc: 'Separate investigations help to confirm the details given during operational processes.' },
-  { title: 'Improve Operational Consistency', desc: 'Clear methods support steady work across validation, investigations, and summary activities.' },
+  { title: 'Improve Information Visibility', desc: 'Verification activities give organizations greater visibility into details requiring evaluation.' },
+  { title: 'Strengthen Review Frameworks', desc: 'Structured evaluation support contributes to more consistent review and assessment methods.' },
+  { title: 'Support Risk Assessment Activities', desc: 'Verification findings and documented results support internal evaluation processes.' },
+  { title: 'Enhance Information Validation', desc: 'Independent investigations corroborate the details submitted during operational processes.' },
+  { title: 'Improve Operational Consistency', desc: 'Defined methodologies support consistent work across validation, investigation, and reporting activities.' },
 ]
 
 const WHY_BRIGHTO = [
   { title: 'Financial Services Expertise', desc: 'Brighto India works with banks, NBFCs, housing finance companies, fintech organizations, insurance providers, and other businesses.' },
-  { title: 'Process-Driven Methodology', desc: 'Our services follow defined operational procedures designed to deliver consistent results, clear steps, and quality summaries.' },
+  { title: 'Process-Driven Methodology', desc: 'Our services follow defined operational procedures designed to deliver consistent results, clear workflows, and quality reporting.' },
   { title: 'Experienced Investigation Network', desc: 'We combine verification expertise with on-site investigative capabilities across multiple locations.' },
-  { title: 'Secure & Compliance-Oriented Operations', desc: 'Our operational framework includes data safety, quality management, and control steps.' },
-  { title: 'Structured Reporting Framework', desc: 'Evaluation results get recorded in clear summary formats that back internal review work.' },
-  { title: 'Pan-India Operational Reach', desc: 'Our network provides verification and investigation support across different areas and work settings.' },
+  { title: 'Secure & Compliance-Oriented Operations', desc: 'Our operational framework includes established data security, quality management, and control standards.' },
+  { title: 'Structured Reporting Framework', desc: 'Evaluation results are documented in structured report formats that support internal review work.' },
+  { title: 'Pan-India Operational Reach', desc: 'Our network provides verification and investigation support across multiple geographies and business environments.' },
 ]
 
 const INDUSTRIES = [
-  { title: 'Banking', desc: 'Check and evaluation support for lending, customer onboarding, and customer review steps.' },
-  { title: 'NBFCs', desc: 'Structured risk evaluation support services matched to lending and work review needs.' },
-  { title: 'Housing Finance Companies', desc: 'Assessment support and investigation support for housing finance evaluation workflows.' },
+  { title: 'Banking', desc: 'Verification and evaluation support for lending, customer onboarding, and customer review processes.' },
+  { title: 'NBFCs', desc: 'Structured risk evaluation support services matched to lending and operational review requirements.' },
+  { title: 'Housing Finance Companies', desc: 'Assessment and investigation support for housing finance evaluation workflows.' },
   { title: 'Fintech Companies', desc: 'Verification services supporting digital onboarding and customer assessment processes.' },
-  { title: 'Insurance Companies', desc: 'Evaluation support services are built to strengthen customer review and validation steps.' },
-  { title: 'Microfinance Institutions', desc: 'On-site investigation and check support matched to work needs.' },
-  { title: 'Enterprises', desc: 'Risk evaluation support services built to strengthen work review systems.' },
+  { title: 'Insurance Companies', desc: 'Evaluation support services designed to strengthen customer review and validation processes.' },
+  { title: 'Microfinance Institutions', desc: 'On-site investigation and verification support matched to operational requirements.' },
+  { title: 'Enterprises', desc: 'Risk evaluation support services designed to strengthen internal review systems.' },
 ]
 
 const PROCESS_STEPS = [
-  { num: '01', title: 'Requirement Assessment', desc: 'Getting to know review goals, limits, and operational requirements.' },
-  { num: '02', title: 'Case Assignment', desc: 'Assigning cases through set workflows.' },
-  { num: '03', title: 'Verification & Investigation', desc: 'Doing check activities, on-site investigations, and information validation steps.' },
-  { num: '04', title: 'Quality Review', desc: 'Studying gathered details through set quality control steps.' },
-  { num: '05', title: 'Assessment & Documentation', desc: 'Putting together findings, supporting information, and evaluation results.' },
+  { num: '01', title: 'Requirement Assessment', desc: 'Understanding review objectives, scope, and operational requirements.' },
+  { num: '02', title: 'Case Assignment', desc: 'Allocating cases through structured operational workflows.' },
+  { num: '03', title: 'Verification & Investigation', desc: 'Conducting verification activities, on-site investigations, and information validation steps.' },
+  { num: '04', title: 'Quality Review', desc: 'Reviewing gathered details through defined quality control procedures.' },
+  { num: '05', title: 'Assessment & Documentation', desc: 'Compiling findings, supporting evidence, and evaluation results.' },
   { num: '06', title: 'Reporting', desc: 'Providing structured reports for client evaluation and review.' },
 ]
 
@@ -150,8 +150,8 @@ const FAQS = [
   { q: 'What is Fraud Risk Assessment Support?', a: 'Fraud Risk Assessment Support covers structured validation, investigations, and information validation activities to support companies through risk review and evaluation.' },
   { q: 'Which organizations use Fraud Risk Assessment Support Services?', a: 'Banks, NBFCs, housing finance companies, fintech organizations, insurance providers, and other businesses often use fraud risk assessment support services.' },
   { q: 'What services are included in Fraud Risk Assessment Support?', a: 'Services may cover information validation, on-site investigation support, document review, residence verification, office verification, business validation, and structured reporting.' },
-  { q: 'Does Brighto India provide field investigation support?', a: 'Yes. Brighto India provides on-site investigation and check support services designed to help companies with review and evaluation work.' },
-  { q: 'How can Fraud Risk Assessment Support help organizations?', a: 'Structured evaluation support provides independently verified information and recorded findings to support internal review and evaluation steps.' },
+  { q: 'Does Brighto India provide field investigation support?', a: 'Yes. Brighto India provides on-site investigation and verification support services designed to help organizations with review and evaluation work.' },
+  { q: 'How can Fraud Risk Assessment Support help organizations?', a: 'Structured evaluation support provides independently verified information and documented findings to support internal review and evaluation processes.' },
   { q: 'How can I get started with Brighto India?', a: 'Contact our team to discuss your verification requirements, operational scope, and reporting needs. We will recommend an approach aligned with your goals.' },
 ]
 
@@ -389,7 +389,7 @@ export default function FraudRiskAssessmentPage() {
             </div>
             <div>
               <p className="text-xs font-bold text-amber-700 uppercase tracking-widest mb-2">Our Assessment Framework</p>
-              <p className="text-sm text-amber-900 leading-relaxed">Brighto India&apos;s Fraud Risk Assessment Support Services are conducted based on the details present at the time of review and within the agreed scope of work. Check results, findings, and supporting information help clients review the steps and evaluate them alongside internal risk rules, work policies, and decision systems.</p>
+              <p className="text-sm text-amber-900 leading-relaxed">Brighto India&apos;s Fraud Risk Assessment Support Services are conducted based on the details available at the time of review and within the agreed scope of work. Verification results, findings, and supporting evidence help clients evaluate the process alongside internal risk policies, operational procedures, and decision-making frameworks.</p>
             </div>
           </div>
         </div>
@@ -421,7 +421,7 @@ export default function FraudRiskAssessmentPage() {
             Let's Discuss Your Verification & Investigation Requirements
           </h2>
           <p className="text-blue-200 text-lg leading-relaxed mb-10">
-            Whether you need information validation, on-site investigation support, document review, business validation, or evaluation summaries, our team can suggest a method matched to your work goals.
+            Whether you need information validation, on-site investigation support, document review, business validation, or evaluation reporting, our team can recommend an approach matched to your operational requirements.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-base transition-all hover:shadow-2xl hover:-translate-y-0.5">

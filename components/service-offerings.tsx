@@ -96,14 +96,6 @@ export function ServiceOfferings({
                   boxShadow: `0 4px 24px -4px ${svc.border}99, inset 0 1px 0 rgba(255,255,255,0.9)`,
                 }}
               >
-                {/* Large bg number watermark */}
-                <span
-                  className="absolute -right-2 -bottom-4 text-[7rem] font-black leading-none select-none pointer-events-none opacity-[0.06] transition-all duration-300 group-hover:opacity-[0.1] group-hover:scale-110"
-                  style={{ color: svc.color }}
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-
                 {/* Accent top bar */}
                 <div
                   className="absolute top-0 left-0 right-0 h-0.5 rounded-t-3xl opacity-60"

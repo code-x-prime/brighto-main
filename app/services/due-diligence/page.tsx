@@ -69,34 +69,34 @@ const IMPORTANCE = [
 ]
 
 const WHY_BRIGHTO = [
-  { title: 'Verification-Led Approach', desc: 'Our due diligence process centers on independent checks and independent verification methodologies.' },
-  { title: 'Investigation Expertise', desc: 'We bring together verification systems and field investigation skills to deliver deeper, more comprehensive reviews.' },
+  { title: 'Verification-Led Approach', desc: 'Our due diligence process centers on independent checks and structured verification methodologies.' },
+  { title: 'Investigation Expertise', desc: 'We combine verification systems with field investigation capabilities to deliver deeper, more comprehensive reviews.' },
   { title: 'Industry-Focused Knowledge', desc: 'Years of work in BFSI, fintech, insurance, logistics, staffing, and enterprise sectors have given us a clear understanding of sector-specific verification and assessment requirements.' },
-  { title: 'Structured Reporting Framework', desc: 'We deliver clear report formats that make it easy for clients to review the results and use them in their own decision-making.' },
-  { title: 'Pan-India Operational Reach', desc: 'Our network of verifiers operates across multiple geographies, so companies can conduct due diligence at any scale.' },
-  { title: 'Process-Oriented Execution', desc: 'Every job follows defined operational procedures meant to keep things consistent, open, and high-quality.' },
+  { title: 'Structured Reporting Framework', desc: 'We deliver clear report formats that make it easy for clients to review the results and apply them to their own decision-making.' },
+  { title: 'Pan-India Operational Reach', desc: 'Our verification network operates across multiple geographies, enabling due diligence engagements at any scale.' },
+  { title: 'Process-Oriented Execution', desc: 'Every engagement follows defined operational procedures designed to keep work consistent, transparent, and high-quality.' },
 ]
 
 const INDUSTRIES = [
   {
     svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" /></svg>,
-    label: 'Banking', desc: 'Help with lending, customer onboarding, verification, and risk review needs.',
+    label: 'Banking', desc: 'Support for lending, customer onboarding, verification, and risk review requirements.',
   },
   {
     svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>,
-    label: 'NBFCs & HFCs', desc: 'Verification and due diligence work designed to strengthen lending and improve customer checks.',
+    label: 'NBFCs & HFCs', desc: 'Verification and due diligence support designed to strengthen lending and customer review processes.',
   },
   {
     svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" /></svg>,
-    label: 'Fintech Companies', desc: 'Support for digital onboarding, verification, and risk handling flows.',
+    label: 'Fintech Companies', desc: 'Support for digital onboarding, verification, and risk assessment workflows.',
   },
   {
     svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>,
-    label: 'Insurance Companies', desc: 'Verification help for customers, partners, and operational review processes.',
+    label: 'Insurance Companies', desc: 'Verification support for customers, partners, and operational review processes.',
   },
   {
     svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>,
-    label: 'Microfinance Institutions', desc: 'Organized verification services that back up field-level assessment work.',
+    label: 'Microfinance Institutions', desc: 'Structured verification services that support field-level assessment work.',
   },
   {
     svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg>,
@@ -105,12 +105,12 @@ const INDUSTRIES = [
 ]
 
 const PROCESS_STEPS = [
-  { num: '01', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>, title: 'Requirement Assessment', desc: 'We get clear on the project scope, goals, and exact verification needs for each job.' },
-  { num: '02', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" /></svg>, title: 'Information Collection', desc: 'We pull together the relevant details and supporting documentation.' },
-  { num: '03', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>, title: 'Verification & Investigation', desc: 'We carry out field checks, verification activities, and investigative work wherever needed.' },
-  { num: '04', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>, title: 'Quality Review', desc: 'Teams go over all collected information using pre-defined quality steps.' },
-  { num: '05', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>, title: 'Risk Assessment', desc: 'We review what we found and highlight information requiring further assessment.' },
-  { num: '06', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>, title: 'Reporting', desc: 'We hand over organized findings and documents to support client review and decision-making processes.' },
+  { num: '01', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>, title: 'Requirement Assessment', desc: 'We establish the engagement scope, objectives, and exact verification requirements for each case.' },
+  { num: '02', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" /></svg>, title: 'Information Collection', desc: 'We compile the relevant details and supporting documentation.' },
+  { num: '03', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>, title: 'Verification & Investigation', desc: 'We conduct field checks, verification activities, and investigative work wherever required.' },
+  { num: '04', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>, title: 'Quality Review', desc: 'Teams review all collected information through defined quality control procedures.' },
+  { num: '05', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>, title: 'Risk Assessment', desc: 'We review verification findings and flag information requiring further assessment.' },
+  { num: '06', svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>, title: 'Reporting', desc: 'We deliver structured findings and documentation to support client review and decision-making processes.' },
 ]
 
 const WHAT_DD_HELPS = [
@@ -234,16 +234,16 @@ export default function DueDiligencePage() {
                 </h2>
                 <div className="space-y-4 text-slate-600 leading-relaxed">
                   <p>
-                    Every lending decision, business deal, customer signup, or supplier tie-up comes with some risk. Companies that rely solely on what people hand over can run into problems such as incorrect details, missing facts, day-to-day issues, or compliance concerns.
+                    Every lending decision, business deal, customer onboarding, or supplier engagement carries some degree of risk. Organizations that rely solely on self-submitted information can encounter issues such as incorrect details, missing facts, operational gaps, or compliance concerns.
                   </p>
                   <p>
                     Brighto India supports organizations through structured Due Diligence Services designed to strengthen information validation, support risk assessment, and enhance internal review processes.
                   </p>
                   <p>
-                    As a certified due diligence company in India, we help banks, NBFCs, housing finance companies, fintech platforms, insurance companies, and other businesses with clear verification and investigation work that fits their exact needs.
+                    As a certified due diligence company in India, we support banks, NBFCs, housing finance companies, fintech platforms, insurance companies, and other businesses with verification and investigation work tailored to their specific requirements.
                   </p>
                   <p>
-                    We combine on-the-ground checks, document reviews, fact-checking, risk support, and clear reports. This provides clients with independently verified information and documented observations to support internal review and decision-making processes.
+                    We combine on-the-ground checks, document reviews, information validation, and structured reporting. This provides clients with independently verified information and documented observations to support internal review and decision-making processes.
                   </p>
                 </div>
               </div>
@@ -270,10 +270,10 @@ export default function DueDiligencePage() {
               </h3>
               <div className="space-y-3 text-slate-400 text-sm leading-relaxed mb-8">
                 <p>
-                  Doing your due diligence involves reviewing, examining, and researching information before entering into a business partnership, approving a transaction, onboarding a new customer, choosing a supplier, or making a significant move.
+                  Due diligence involves reviewing, examining, and researching information before entering into a business partnership, approving a transaction, onboarding a new customer, selecting a supplier, or making a significant business decision.
                 </p>
                 <p>
-                  The goal goes beyond just gathering papers. It means independently confirming the important parts and identifying information requiring further review or assessment.
+                  The objective extends beyond collecting submitted documents. It means independently confirming key details and identifying information requiring further review or assessment.
                 </p>
               </div>
               <p className="text-xs font-bold text-orange-400 uppercase tracking-wider mb-4">Professional Due Diligence Services help organizations:</p>
@@ -458,7 +458,7 @@ export default function DueDiligencePage() {
             <div>
               <p className="text-xs font-bold text-amber-700 uppercase tracking-widest mb-2">Principles That Guide Our Assessments</p>
               <p className="text-sm text-amber-900 leading-relaxed">
-                Brighto India carries out Due Diligence Services based on the information available during the check and within the agreed work scope. We share findings and notes to help clients with their review work. Clients are always encouraged to consider these alongside their own rules, procedures, and decision-making systems.
+                Brighto India carries out Due Diligence Services based on the information available at the time of assessment and within the agreed engagement scope. We share verification findings and supporting evidence to help clients with their review work. Clients are always encouraged to evaluate these alongside their own policies, procedures, and decision-making frameworks.
               </p>
             </div>
           </div>
