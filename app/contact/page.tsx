@@ -66,7 +66,7 @@ const CONTACT_INFO = [
 ]
 
 const WHY_CONTACT = [
-  { icon: IconShield, text: 'ISO 27001 | ISO 9001 | PDPD Ready' },
+  { icon: IconShield, text: 'ISO 27001 | ISO 9001 | DPDP Ready' },
   { icon: IconCircleCheck, text: 'Trusted by banks, NBFCs, fintechs & enterprises' },
   { icon: IconBuilding, text: 'Pan-India verification & investigation network' },
   { icon: IconClock, text: 'Quick turnaround, structured reporting' },
@@ -446,7 +446,7 @@ export default function ContactPage() {
               <div className="bg-emerald-50 border border-emerald-200 rounded-3xl p-7">
                 <p className="text-xs font-bold text-emerald-700 uppercase tracking-widest mb-3">Certifications</p>
                 <div className="space-y-2.5">
-                  {['ISO 27001 Certified', 'ISO 9001 Certified', 'PDPD Ready'].map((cert) => (
+                  {['ISO 27001 Certified', 'ISO 9001 Certified', 'DPDP Ready'].map((cert) => (
                     <div key={cert} className="flex items-center gap-2.5">
                       <IconCircleCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                       <span className="text-sm text-emerald-900 font-medium">{cert}</span>
