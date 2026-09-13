@@ -22,7 +22,7 @@ export function BrightoFooter() {
           />
         </div>
         <p className="bg-transparent text-center text-xs leading-5 text-slate-500 max-w-4xl md:text-left">
-          Welcome to Brighto India, where compliance meets cutting-edge technology. We are passionate about delivering structured due diligence, verification, and risk management solutions across India. We specialize in physical address checks, automated identity verification, and deep risk intelligence to empower banking, NBFC, fintech, and insurance sectors. Our mission is to secure transactions, prevent fraud, and build trust in a fast-paced market. We believe in absolute accuracy, compliance, and swift turnaround times.
+          Welcome to Brighto India, where compliance meets cutting-edge technology. We are passionate about delivering structured due diligence, verification, and risk management solutions across India. We specialize in physical address checks, automated identity verification, and deep risk intelligence to empower banking, NBFC, fintech, and insurance sectors. Our mission is to secure transactions, prevent fraud, and build trust in a fast-paced market. We are committed to accuracy, compliance and timely turnaround.
         </p>
       </div>
 

@@ -29,7 +29,7 @@ export function BrightoAbout() {
             <div>
               <p className="text-sm font-semibold text-blue-900 mb-3 tracking-wide uppercase">About Brighto India</p>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-950 leading-tight mb-6" style={{ fontFamily: 'var(--font-manrope)' }}>
-                India's most reliable risk, verification, and technology solutions partner.
+                A trusted risk, verification and technology solutions partner.
               </h2>
               <p className="text-base text-slate-600 leading-relaxed">
                 Since 2015, Brighto Credit Information Private Limited has helped banks, NBFCs, fintech companies, financial institutions, and enterprises with verification, risk management, audit support, and technology-led operations.
