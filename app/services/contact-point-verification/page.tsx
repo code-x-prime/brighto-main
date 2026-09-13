@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 const CPV_SERVICES = [
   { icon: 'Home',      title: 'Residence Verification',          desc: 'Support residential information validation through structured residence verification activities and reporting processes. Brighto India offers structured residence verification to support data confirmation and review needs.', color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
-  { icon: 'Briefcase', title: 'Office Verification',             desc: 'Employment-related information often requires independent validation. Our office verification services support information review through structured verification procedures.', color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
+  { icon: 'Briefcase', title: 'Office Verification',             desc: 'Verify the existence, occupancy, and operational status of an office or business location through structured field checks and documented observations.', color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
   { icon: 'Building2', title: 'Business Verification',           desc: 'Validate business-related information through structured verification activities designed to support onboarding, review, and assessment requirements.', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
   { icon: 'Phone',     title: 'Contact Information Verification', desc: "Brighto India helps organizations verify applicants' contact details using proven verification steps and reporting methods.", color: '#d97706', bg: '#fffbeb', border: '#fde68a' },
   { icon: 'Search',    title: 'Field Verification Support',      desc: 'Support information validation requirements through field-based verification activities conducted using structured operational processes and documentation standards.', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
@@ -52,14 +52,14 @@ const WHY_MATTERS = [
   { title: 'Enhanced Review Processes',          desc: 'Contact Point Verification leads to steadier review and judgment steps.' },
   { title: 'Better Information Visibility',      desc: 'Independent verification provides additional visibility into applicant-provided information and supporting details.' },
   { title: 'Support for Assessment Activities',  desc: 'Verification observations may assist organizations during internal review and assessment processes.' },
-  { title: 'Consistent Verification Frameworks', desc: 'Set verification steps help maintain steady work across daily operations.' },
+  { title: 'Consistent Verification Frameworks', desc: 'Defined verification steps help maintain consistency across operational requirements.' },
 ]
 
 const WHY_BRIGHTO = [
   { title: 'BFSI-Focused Expertise',           desc: 'Brighto India helps banks, housing finance companies, NBFCs, fintech organizations, and insurance providers with organized verification services.' },
-  { title: 'Process-Driven Verification',       desc: 'Our Contact Point Verification Services use proven daily steps built to keep work steady and reports accurate.' },
+  { title: 'Process-Driven Verification',       desc: 'Our Contact Point Verification Services follow established procedures designed to maintain consistency and reporting accuracy.' },
   { title: 'Experienced Verification Network',  desc: 'We combine operational expertise with field verification capabilities across multiple locations.' },
-  { title: 'Secure & Compliance-Oriented',      desc: 'Our check steps rest on solid data safety, quality rules, and daily controls.' },
+  { title: 'Secure & Compliance-Oriented',      desc: 'Our verification processes are supported by established data security standards, quality controls, and operational safeguards.' },
   { title: 'Structured Reporting Methodology',  desc: 'Verification findings are documented through organized reporting formats that support internal review activities.' },
   { title: 'Pan-India Verification Support',    desc: 'Our operational network enables verification support across multiple geographies and business environments.' },
 ]
