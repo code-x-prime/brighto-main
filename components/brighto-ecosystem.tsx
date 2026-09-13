@@ -346,7 +346,7 @@ export function BrightoEcosystem() {
                 </div>
 
                 <p className="relative z-10 text-[10px] text-slate-400 border-t border-slate-100 pt-3 mt-auto">
-                  Powered by Brighto Credit Information Private Limited
+                  A Brighto Product — owned &amp; operated by Brighto Credit Information Private Limited
                 </p>
               </div>
             );
