@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 const SERVICES = [
   { icon: 'Home', title: 'Residence Verification', desc: 'Confirm the address provided by applicants through structured residence checks.', color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
-  { icon: 'Briefcase', title: 'Office Verification', desc: 'Validate workplace-related details through independent office verification steps.', color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
+  { icon: 'Briefcase', title: 'Office Verification', desc: 'Verify the existence, occupancy, and operational status of an office or business location through structured field checks and documented observations.', color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
   { icon: 'Building2', title: 'Business Verification', desc: 'Check business details for commercial and business loans through structured workflows.', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
   { icon: 'MapPin', title: 'Contact Point Verification (CPV)', desc: 'Verify the contact point details shared by the applicant during review.', color: '#d97706', bg: '#fffbeb', border: '#fde68a' },
   { icon: 'FileCheck', title: 'Document Verification', desc: 'Review supporting documents to strengthen the overall application review process.', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },

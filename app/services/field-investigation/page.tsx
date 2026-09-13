@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
 const SERVICES = [
   { icon: 'Home', title: 'Residence Investigation', desc: 'Independently validate residential information through well-defined field investigations, physical observations, and organized reporting.', color: '#0f766e', bg: '#f0fdfa', border: '#99f6e4' },
-  { icon: 'Briefcase', title: 'Office Investigation', desc: 'Assess employment-related information through on-site office investigations and documented verification activities.', color: '#0b7285', bg: '#ecfeff', border: '#a5f3fc' },
+  { icon: 'Briefcase', title: 'Office Investigation', desc: 'Verify the existence, occupancy, and operational status of an office or business location through on-site investigation and documented observations.', color: '#0b7285', bg: '#ecfeff', border: '#a5f3fc' },
   { icon: 'Building2', title: 'Business Investigation', desc: 'Verify business-related details through field investigations, operational assessments, and independent verification methods.', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
   { icon: 'Search', title: 'Field Verification', desc: 'Conduct standardized field verification to validate information through physical visits and documented observations.', color: '#0ea5a4', bg: '#f0fdfa', border: '#99f6e4' },
   { icon: 'FileText', title: 'Information Validation', desc: 'Strengthen internal review processes with well-defined information validation backed by independent field investigations.', color: '#0891b2', bg: '#f0f9ff', border: '#bae6fd' },

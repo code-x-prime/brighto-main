@@ -37,7 +37,7 @@ const SERVICES = [
   { icon: 'FileCheck', title: 'Document Verification', desc: 'Review submitted documents using established verification methods and compile structured reports.', color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
   { icon: 'MapPin', title: 'Contact Point Verification', desc: 'Confirm home, work, business, and other contact details through structured confirmation steps.', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
   { icon: 'Home', title: 'Residence Verification', desc: 'Support validation on home details using independent confirmation and report steps.', color: '#0f766e', bg: '#f0fdfa', border: '#99f6e4' },
-  { icon: 'Briefcase', title: 'Office Verification', desc: 'Verify job-related details using defined confirmation methods.', color: '#d97706', bg: '#fffbeb', border: '#fde68a' },
+  { icon: 'Briefcase', title: 'Office Verification', desc: 'Verify the existence, occupancy, and operational status of an office or business location through structured field checks and documented observations.', color: '#d97706', bg: '#fffbeb', border: '#fde68a' },
   { icon: 'Building2', title: 'Business Verification', desc: 'Validate business details through structured review and verification activities.', color: '#7c3aed', bg: '#faf5ff', border: '#ddd6fe' },
   { icon: 'Search', title: 'Information Validation Support', desc: 'Strengthen lending review processes with organized fact-checking methodologies.', color: '#c2410c', bg: '#fff7ed', border: '#fdba74' },
   { icon: 'FileCheck', title: 'Assessment Reporting', desc: 'Receive structured reports documenting verification findings and supporting evidence for review.', color: '#4f46e5', bg: '#eef2ff', border: '#c7d2fe' },

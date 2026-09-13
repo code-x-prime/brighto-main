@@ -68,7 +68,7 @@ const FRAUD_SERVICES = [
   {
     icon: 'Briefcase',
     title: 'Office Verification',
-    desc: 'Support confirmation of employment-related information through independent verification activities.',
+    desc: 'Verify the existence, occupancy, and operational status of an office or business location through structured field checks and documented observations.',
     color: '#d97706',
     bg: '#fffbeb',
     border: '#fde68a',
@@ -290,7 +290,7 @@ export default function FraudRiskAssessmentPage() {
               <h2 className="text-3xl sm:text-4xl font-black text-slate-950 mb-5 leading-tight" style={{ fontFamily: 'var(--font-manrope)' }}>
                 Why Fraud Risk Assessment Support Matters
               </h2>
-              <p className="text-slate-600 leading-relaxed">Risk evaluation steps often require additional validation, investigation, and review support to build stronger internal decision-making systems. Structured evaluation steps help companies gain a clearer view of information while maintaining consistent work across daily tasks.</p>
+              <p className="text-slate-600 leading-relaxed">Risk evaluation steps often require additional validation, investigation, and review support to build stronger internal decision-making systems. Structured evaluation steps help companies gain a clearer view of information while maintaining consistency across operational requirements.</p>
             </div>
             <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {WHY_MATTERS.map((item, i) => (
