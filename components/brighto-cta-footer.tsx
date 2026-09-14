@@ -30,7 +30,7 @@ export function BrightoFooter() {
       <div className="mx-auto max-w-7xl px-6 py-10">
         <div className="border-b border-dotted border-slate-200"></div>
         <div className="py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 leading-6">
+          <div className="grid  md:grid-cols-4 gap-8 leading-6">
             <div>
               <h4 className="font-semibold text-slate-900 text-sm mb-4">Services</h4>
               <ul className="flex flex-col space-y-2">
