@@ -170,7 +170,7 @@ export default function ContactPage() {
       {/* ── CONTACT INFO CARDS ── */}
       <section className="py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid  lg:grid-cols-4 gap-4">
             {CONTACT_INFO.map((info) => {
               const Icon = info.icon
               const isLink = info.href !== '#'
