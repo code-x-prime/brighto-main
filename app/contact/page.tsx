@@ -180,7 +180,7 @@ export default function ContactPage() {
                     <Icon className="w-5 h-5" style={{ color: info.color }} />
                   </span>
                   <p className="text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-1">{info.label}</p>
-                  <p className="font-bold text-slate-900 text-sm leading-snug">{info.value}</p>
+                  <p className="font-bold text-slate-900 text-sm leading-snug break-words">{info.value}</p>
                   <p className="text-xs text-slate-500 mt-0.5">{info.sub}</p>
                 </div>
               )
