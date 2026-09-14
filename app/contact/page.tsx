@@ -470,8 +470,8 @@ export default function ContactPage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-              { city: 'Mumbai', type: 'Head Office', desc: 'Primary operations & client servicing hub for Western India.', color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
-              { city: 'Delhi NCR', type: 'Regional Office', desc: 'Verification & field investigation support for Northern India.', color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
+              { city: 'Delhi', type: 'Head Office', desc: 'Primary operations & client servicing hub for Northern India.', color: '#091C8C', bg: '#eef2ff', border: '#c7d2fe' },
+              { city: 'Noida', type: 'Regional Office', desc: 'Verification & field investigation support for the NCR region.', color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
               { city: 'Pan-India Network', type: 'Field Coverage', desc: 'Active verification and investigation network across major cities and tier-2 locations.', color: '#059669', bg: '#f0fdf4', border: '#a7f3d0' },
             ].map((office) => (
               <div key={office.city} className="rounded-2xl border p-6" style={{ background: office.bg, borderColor: office.border }}>
