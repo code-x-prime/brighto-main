@@ -69,8 +69,6 @@ export function BrightoFooter() {
               <ul className="flex flex-col space-y-2">
                 {[
                   { label: 'Our Team', href: '/team' },
-                  { label: 'Blog & Insights', href: '#' },
-                  { label: 'Case Studies', href: '#' },
                   { label: 'Privacy Policy', href: '/privacy-policy' },
                   { label: 'Terms & Conditions', href: '/terms-and-conditions' },
                   { label: 'Cookie Policy', href: '/cookie-policy' },
