@@ -2,6 +2,18 @@ import { z } from 'zod'
 
 const sanitize = (s: string) => s.trim()
 
+const CANONICAL_SOURCES: Record<string, string> = {
+  'brighto india': 'Brighto India',
+  brighto: 'Brighto India',
+  hubcheck: 'Hubcheck',
+  truering: 'Truering',
+  crediscout: 'CrediScout',
+  'credi-scout': 'CrediScout',
+  credify: 'Credify',
+}
+
+export const canonicalSource = (s: string) => CANONICAL_SOURCES[s.trim().toLowerCase()] || s.trim()
+
 export const contactFormSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100).transform(sanitize),
   email: z.string().email('Invalid email address').max(255).transform(sanitize),
@@ -13,7 +25,7 @@ export const contactFormSchema = z.object({
   // Brighto's own form still sends 'true' explicitly and is unaffected.
   consent: z.string().optional().default('true'),
   website: z.string().max(0, 'Bot detected').optional().default(''),
-  source: z.string().max(50).optional().default('Brighto India').transform(sanitize),
+  source: z.string().max(50).optional().default('Brighto India').transform(canonicalSource),
 })
 
 export const jobApplicationSchema = z.object({

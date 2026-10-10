@@ -32,8 +32,25 @@ const SOURCE_COLORS: Record<string, string> = {
   'Credify': 'bg-cyan-50 text-cyan-700 border-cyan-200',
 }
 
+const SOURCE_ALIASES: Record<string, string> = {
+  'credi-scout': 'CrediScout',
+  crediscout: 'CrediScout',
+  truering: 'Truering',
+  hubcheck: 'Hubcheck',
+  credify: 'Credify',
+  brighto: 'Brighto India',
+  'brighto india': 'Brighto India',
+}
+
+const KNOWN_SOURCES = ['Brighto India', 'Hubcheck', 'Truering', 'CrediScout', 'Credify']
+
+function normalizeSource(source: string) {
+  const s = (source || '').trim()
+  return SOURCE_ALIASES[s.toLowerCase()] || s || 'Brighto India'
+}
+
 function sourceColor(source: string) {
-  return SOURCE_COLORS[source] || 'bg-zinc-100 text-zinc-600 border-zinc-200'
+  return SOURCE_COLORS[normalizeSource(source)] || 'bg-zinc-100 text-zinc-600 border-zinc-200'
 }
 
 const STATUS_OPTIONS = [
@@ -51,25 +68,34 @@ export default function ContactsPage() {
   const [noteText, setNoteText] = useState('')
   const [addingNote, setAddingNote] = useState(false)
   const [filter, setFilter] = useState('all')
+  const [sourceFilter, setSourceFilter] = useState('all')
   const [search, setSearch] = useState('')
+  const [busyId, setBusyId] = useState<string | null>(null)
+  const [refreshing, setRefreshing] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     fetchSubmissions()
   }, [])
 
-  async function fetchSubmissions() {
+  async function fetchSubmissions(isRefresh = false) {
+    if (isRefresh) setRefreshing(true)
+    setError('')
     try {
       const res = await authFetch('/api/admin/contacts')
       const data = await res.json()
       if (data.success) setSubmissions(data.submissions)
+      else setError(data.error || 'Failed to load enquiries')
     } catch {
-      console.error('Failed to fetch')
+      setError('Network error while loading enquiries')
     } finally {
       setLoading(false)
+      setRefreshing(false)
     }
   }
 
   async function updateStatus(id: string, status: string) {
+    setBusyId(id)
     try {
       const res = await authFetch(`/api/admin/contacts/${id}`, {
         method: 'PUT',
@@ -82,21 +108,28 @@ export default function ContactsPage() {
         if (selectedSubmission?.id === id) {
           setSelectedSubmission({ ...selectedSubmission, status })
         }
+      } else {
+        setError(data.error || 'Failed to update status')
       }
     } catch {
-      console.error('Failed to update')
+      setError('Failed to update status')
+    } finally {
+      setBusyId(null)
     }
   }
 
   async function deleteSubmission(id: string) {
-    if (!confirm('Delete this submission?')) return
+    if (!confirm('Delete this enquiry permanently? This cannot be undone.')) return
+    setBusyId(id)
     try {
       const res = await authFetch(`/api/admin/contacts/${id}`, { method: 'DELETE' })
       if (!res.ok) throw new Error('delete failed')
       setSubmissions(submissions.filter(s => s.id !== id))
       if (selectedSubmission?.id === id) setSelectedSubmission(null)
     } catch {
-      console.error('Failed to delete')
+      setError('Failed to delete enquiry')
+    } finally {
+      setBusyId(null)
     }
   }
 
@@ -149,12 +182,17 @@ export default function ContactsPage() {
     }
   }
 
+  const q = search.trim().toLowerCase()
   const filtered = submissions
     .filter(s => filter === 'all' || s.status === filter)
+    .filter(s => sourceFilter === 'all' || normalizeSource(s.source) === sourceFilter)
     .filter(s =>
-      s.name.toLowerCase().includes(search.toLowerCase()) ||
-      s.email.toLowerCase().includes(search.toLowerCase()) ||
-      s.subject.toLowerCase().includes(search.toLowerCase())
+      !q ||
+      s.name.toLowerCase().includes(q) ||
+      s.email.toLowerCase().includes(q) ||
+      s.subject.toLowerCase().includes(q) ||
+      s.message.toLowerCase().includes(q) ||
+      (s.phone || '').toLowerCase().includes(q)
     )
 
   const statusCounts = submissions.reduce((acc, s) => {
@@ -162,12 +200,66 @@ export default function ContactsPage() {
     return acc
   }, {} as Record<string, number>)
 
+  const sourceCounts = submissions.reduce((acc, s) => {
+    const key = normalizeSource(s.source)
+    acc[key] = (acc[key] || 0) + 1
+    return acc
+  }, {} as Record<string, number>)
+
+  const sourceList = [
+    ...KNOWN_SOURCES,
+    ...Object.keys(sourceCounts).filter(k => !KNOWN_SOURCES.includes(k)),
+  ]
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-semibold text-zinc-900">Contacts</h1>
-          <p className="text-sm text-zinc-500 mt-0.5">{submissions.length} total submissions</p>
+          <p className="text-sm text-zinc-500 mt-0.5">
+            {submissions.length} total enquiries across all websites
+            {filtered.length !== submissions.length && ` · showing ${filtered.length}`}
+          </p>
+        </div>
+        <button
+          onClick={() => fetchSubmissions(true)}
+          disabled={refreshing || loading}
+          className="px-3 py-2 bg-white border border-zinc-200 rounded-lg text-sm font-medium text-zinc-700 hover:bg-zinc-50 disabled:opacity-60 transition-colors flex items-center gap-2"
+        >
+          <span className={`w-3.5 h-3.5 border-2 border-zinc-300 border-t-zinc-600 rounded-full ${refreshing ? 'animate-spin' : 'opacity-0'}`} />
+          {refreshing ? 'Refreshing...' : 'Refresh'}
+        </button>
+      </div>
+
+      {error && (
+        <div className="mb-4 flex items-center justify-between gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-2.5 text-sm text-red-700">
+          <span>{error}</span>
+          <button onClick={() => setError('')} className="text-red-500 hover:text-red-700"><IconX className="w-4 h-4" /></button>
+        </div>
+      )}
+
+      <div className="mb-5">
+        <p className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider mb-2">Website</p>
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => setSourceFilter('all')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+              sourceFilter === 'all' ? 'bg-zinc-950 text-white border-zinc-950' : 'bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50'
+            }`}
+          >
+            All Websites ({submissions.length})
+          </button>
+          {sourceList.map(src => (
+            <button
+              key={src}
+              onClick={() => setSourceFilter(src)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                sourceFilter === src ? 'bg-zinc-950 text-white border-zinc-950' : `${sourceColor(src)} hover:opacity-80`
+              }`}
+            >
+              {src} ({sourceCounts[src] || 0})
+            </button>
+          ))}
         </div>
       </div>
 
@@ -178,7 +270,7 @@ export default function ContactsPage() {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search contacts..."
+            placeholder="Search name, email, phone, message..."
             className="w-full pl-9 pr-3 py-2 border border-zinc-200 rounded-lg text-sm focus:ring-2 focus:ring-zinc-950/10 focus:border-zinc-400 outline-none transition-all"
           />
         </div>
@@ -213,7 +305,7 @@ export default function ContactsPage() {
       ) : filtered.length === 0 ? (
         <div className="bg-white rounded-xl border border-zinc-200 py-20 text-center">
           <IconMessage className="w-10 h-10 text-zinc-300 mx-auto mb-3" />
-          <p className="text-zinc-500 text-sm">{search || filter !== 'all' ? 'No contacts match your filters' : 'No contact submissions yet'}</p>
+          <p className="text-zinc-500 text-sm">{search || filter !== 'all' || sourceFilter !== 'all' ? 'No enquiries match your filters' : 'No contact submissions yet'}</p>
         </div>
       ) : (
         <div className="bg-white rounded-xl border border-zinc-200 overflow-x-auto">
@@ -247,7 +339,7 @@ export default function ContactsPage() {
                     </td>
                     <td className="px-5 py-3.5">
                       <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium border ${sourceColor(sub.source)}`}>
-                        {sub.source}
+                        {normalizeSource(sub.source)}
                       </span>
                     </td>
                     <td className="px-5 py-3.5 text-sm text-zinc-600 max-w-[200px] truncate">{sub.subject}</td>
@@ -255,7 +347,8 @@ export default function ContactsPage() {
                       <select
                         value={sub.status}
                         onChange={(e) => updateStatus(sub.id, e.target.value)}
-                        className={`px-2 py-0.5 rounded-full text-xs font-medium border cursor-pointer ${statusOpt.color}`}
+                        disabled={busyId === sub.id}
+                        className={`px-2 py-0.5 rounded-full text-xs font-medium border cursor-pointer disabled:opacity-50 disabled:cursor-wait ${statusOpt.color}`}
                       >
                         {STATUS_OPTIONS.map(opt => (
                           <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -282,10 +375,15 @@ export default function ContactsPage() {
                         </button>
                         <button
                           onClick={() => deleteSubmission(sub.id)}
-                          className="p-1.5 hover:bg-red-50 rounded-md transition-colors"
+                          disabled={busyId === sub.id}
+                          className="p-1.5 hover:bg-red-50 rounded-md transition-colors disabled:opacity-50"
                           title="Delete"
                         >
-                          <IconTrash className="w-4 h-4 text-red-500" />
+                          {busyId === sub.id ? (
+                            <span className="block w-4 h-4 border-2 border-red-200 border-t-red-500 rounded-full animate-spin" />
+                          ) : (
+                            <IconTrash className="w-4 h-4 text-red-500" />
+                          )}
                         </button>
                       </div>
                     </td>
@@ -317,7 +415,7 @@ export default function ContactsPage() {
             </div>
 
             <div className="flex-1 overflow-y-auto p-6 space-y-5">
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="bg-zinc-50 rounded-lg p-3">
                   <p className="text-[11px] text-zinc-500 uppercase tracking-wider mb-1">Phone</p>
                   <p className="text-sm font-medium text-zinc-900">{selectedSubmission.phone || 'N/A'}</p>
@@ -325,7 +423,7 @@ export default function ContactsPage() {
                 <div className="bg-zinc-50 rounded-lg p-3">
                   <p className="text-[11px] text-zinc-500 uppercase tracking-wider mb-1">Source</p>
                   <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium border ${sourceColor(selectedSubmission.source)}`}>
-                    {selectedSubmission.source}
+                    {normalizeSource(selectedSubmission.source)}
                   </span>
                 </div>
                 <div className="bg-zinc-50 rounded-lg p-3">
@@ -354,7 +452,8 @@ export default function ContactsPage() {
                     <button
                       key={opt.value}
                       onClick={() => updateStatus(selectedSubmission.id, opt.value)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border ${
+                      disabled={busyId === selectedSubmission.id}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border disabled:opacity-50 disabled:cursor-wait ${
                         selectedSubmission.status === opt.value
                           ? 'bg-zinc-950 text-white border-zinc-950'
                           : `border-zinc-200 ${opt.color}`
