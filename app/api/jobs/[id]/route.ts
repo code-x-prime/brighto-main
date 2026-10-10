@@ -6,7 +6,7 @@ function verifyAuth(request: NextRequest) {
   const token = request.cookies.get('admin-token')?.value
   if (!token) return false
   try {
-    jwt.verify(token, process.env.JWT_SECRET || 'brighto-admin-secret-key-2024')
+    jwt.verify(token, process.env.JWT_SECRET!)
     return true
   } catch {
     return false

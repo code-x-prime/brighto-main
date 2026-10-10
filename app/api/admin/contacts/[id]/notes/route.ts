@@ -6,7 +6,7 @@ function verifyAuth(request: NextRequest) {
   const token = request.cookies.get('admin-token')?.value
   if (!token) return false
   try {
-    jwt.verify(token, process.env.JWT_SECRET || 'brighto-admin-secret-key-2024')
+    jwt.verify(token, process.env.JWT_SECRET!)
     return true
   } catch {
     return false
@@ -22,6 +22,10 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     const { id } = await params
     const body = await request.json()
 
+    if (typeof body.content !== 'string' || !body.content.trim() || body.content.length > 2000) {
+      return NextResponse.json({ error: 'Invalid note' }, { status: 400 })
+    }
+
     const note = await prisma.contactNote.create({
       data: {
         content: body.content,
@@ -32,19 +36,5 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     return NextResponse.json({ success: true, note })
   } catch {
     return NextResponse.json({ error: 'Failed to add note' }, { status: 500 })
-  }
-}
-
-export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string; noteId: string }> }) {
-  if (!verifyAuth(request)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-
-  try {
-    const { noteId } = await params
-    await prisma.contactNote.delete({ where: { id: noteId } })
-    return NextResponse.json({ success: true })
-  } catch {
-    return NextResponse.json({ error: 'Failed to delete note' }, { status: 500 })
   }
 }

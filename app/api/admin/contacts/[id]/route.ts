@@ -6,7 +6,7 @@ function verifyAuth(request: NextRequest) {
   const token = request.cookies.get('admin-token')?.value
   if (!token) return false
   try {
-    jwt.verify(token, process.env.JWT_SECRET || 'brighto-admin-secret-key-2024')
+    jwt.verify(token, process.env.JWT_SECRET!)
     return true
   } catch {
     return false
@@ -21,6 +21,10 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
   try {
     const { id } = await params
     const body = await request.json()
+
+    if (!['new', 'in_progress', 'contacted', 'resolved', 'closed'].includes(body.status)) {
+      return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
+    }
 
     const submission = await prisma.contactSubmission.update({
       where: { id },

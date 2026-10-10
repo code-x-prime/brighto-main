@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 
     let emailSent = false
     try {
-      emailSent = await sendContactEmails({ name, email, subject, message })
+      emailSent = await sendContactEmails({ name, email, subject, message, phone, source })
     } catch {
       // Email failed but submission saved
     }

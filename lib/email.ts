@@ -38,24 +38,24 @@ export async function sendContactEmails(data: {
   email: string
   subject: string
   message: string
+  phone?: string | null
+  source?: string
 }) {
-  const { name, email, subject, message } = data
+  const { name, email, subject, message, phone, source } = data
 
-  // Thank you email to user
-  const userResult = await sendEmail({
+  await sendEmail({
     to: email,
     subject: `Thank you for contacting Brighto India - ${subject}`,
     html: contactThankYouTemplate(name),
   })
 
-  // Notification to admin
-  await sendEmail({
+  const adminResult = await sendEmail({
     to: process.env.ADMIN_EMAIL || 'support@brightoindia.com',
-    subject: `New Contact: ${subject}`,
-    html: adminNotificationTemplate(name, email, subject, message),
+    subject: `New Contact [${source || 'Brighto India'}]: ${subject}`,
+    html: adminNotificationTemplate(name, email, subject, message, phone, source),
   })
 
-  return userResult.success
+  return adminResult.success
 }
 
 export async function sendJobApplicationEmails(data: {
@@ -115,10 +115,10 @@ export function contactThankYouTemplate(name: string) {
         <div class="content">
           <p class="greeting">Hi ${safeName},</p>
           <p class="message">
-            Thank you for reaching out to us! We've received your message and our team will get back to you within 24 hours.
+            Thank you for reaching out to us! We've received your message and our team will get back to you shortly.
           </p>
           <div class="highlight">
-            <p>Our team typically responds within 24-48 business hours.</p>
+            <p>Our team typically responds within 24 working hours.</p>
           </div>
           <p class="message">
             In the meantime, feel free to explore our services or reach out to us directly.
@@ -138,7 +138,16 @@ export function contactThankYouTemplate(name: string) {
   `
 }
 
-export function adminNotificationTemplate(name: string, email: string, subject: string, message: string) {
+export function adminNotificationTemplate(
+  name: string,
+  email: string,
+  subject: string,
+  message: string,
+  phone?: string | null,
+  source?: string
+) {
+  const safePhone = escapeHtml(phone || 'Not provided')
+  const safeSource = escapeHtml(source || 'Brighto India')
   const safeName = escapeHtml(name)
   const safeEmail = escapeHtml(email)
   const safeSubject = escapeHtml(subject)
@@ -172,8 +181,16 @@ export function adminNotificationTemplate(name: string, email: string, subject: 
             <div class="value">${safeName}</div>
           </div>
           <div class="field">
+            <div class="label">Source Website</div>
+            <div class="value">${safeSource}</div>
+          </div>
+          <div class="field">
             <div class="label">Email</div>
             <div class="value">${safeEmail}</div>
+          </div>
+          <div class="field">
+            <div class="label">Phone</div>
+            <div class="value">${safePhone}</div>
           </div>
           <div class="field">
             <div class="label">Subject</div>

@@ -91,7 +91,8 @@ export default function ContactsPage() {
   async function deleteSubmission(id: string) {
     if (!confirm('Delete this submission?')) return
     try {
-      await authFetch(`/api/admin/contacts/${id}`, { method: 'DELETE' })
+      const res = await authFetch(`/api/admin/contacts/${id}`, { method: 'DELETE' })
+      if (!res.ok) throw new Error('delete failed')
       setSubmissions(submissions.filter(s => s.id !== id))
       if (selectedSubmission?.id === id) setSelectedSubmission(null)
     } catch {
@@ -132,11 +133,17 @@ export default function ContactsPage() {
   async function deleteNote(noteId: string) {
     if (!selectedSubmission) return
     try {
-      await authFetch(`/api/admin/contacts/${selectedSubmission.id}/notes/${noteId}`, { method: 'DELETE' })
+      const res = await authFetch(`/api/admin/contacts/${selectedSubmission.id}/notes/${noteId}`, { method: 'DELETE' })
+      if (!res.ok) throw new Error('delete failed')
       setSelectedSubmission({
         ...selectedSubmission,
         notes: selectedSubmission.notes.filter(n => n.id !== noteId),
       })
+      setSubmissions(submissions.map(s =>
+        s.id === selectedSubmission.id
+          ? { ...s, notes: s.notes.filter(n => n.id !== noteId) }
+          : s
+      ))
     } catch {
       console.error('Failed to delete note')
     }
@@ -209,15 +216,15 @@ export default function ContactsPage() {
           <p className="text-zinc-500 text-sm">{search || filter !== 'all' ? 'No contacts match your filters' : 'No contact submissions yet'}</p>
         </div>
       ) : (
-        <div className="bg-white rounded-xl border border-zinc-200 overflow-hidden">
-          <table className="w-full">
+        <div className="bg-white rounded-xl border border-zinc-200 overflow-x-auto">
+          <table className="w-full min-w-[900px]">
             <thead>
               <tr className="border-b border-zinc-100">
                 <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Contact</th>
                 <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Source</th>
                 <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Subject</th>
                 <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Status</th>
-                <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Email</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Team Alert</th>
                 <th className="text-left px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Date</th>
                 <th className="text-right px-5 py-3 text-xs font-medium text-zinc-500 uppercase tracking-wider">Actions</th>
               </tr>
