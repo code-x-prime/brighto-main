@@ -11,17 +11,21 @@ const transporter = nodemailer.createTransport({
   },
 })
 
+export const SUPPORT_EMAIL = 'Support@brightoindia.com'
+
 interface SendEmailOptions {
   to: string
   subject: string
   html: string
+  replyTo?: string
 }
 
-export async function sendEmail({ to, subject, html }: SendEmailOptions) {
+export async function sendEmail({ to, subject, html, replyTo }: SendEmailOptions) {
   try {
     const info = await transporter.sendMail({
       from: `"Brighto India" <${process.env.FROM_EMAIL || 'noreply@brightoindia.com'}>`,
       to,
+      replyTo: replyTo || SUPPORT_EMAIL,
       subject,
       html,
     })
@@ -50,9 +54,10 @@ export async function sendContactEmails(data: {
   })
 
   const adminResult = await sendEmail({
-    to: process.env.ADMIN_EMAIL || 'support@brightoindia.com',
+    to: SUPPORT_EMAIL,
     subject: `New Contact [${source || 'Brighto India'}]: ${subject}`,
     html: adminNotificationTemplate(name, email, subject, message, phone, source),
+    replyTo: email,
   })
 
   return adminResult.success
@@ -75,9 +80,10 @@ export async function sendJobApplicationEmails(data: {
 
   // Notification to admin
   await sendEmail({
-    to: process.env.ADMIN_EMAIL || 'support@brightoindia.com',
+    to: SUPPORT_EMAIL,
     subject: `New Job Application: ${jobTitle} (${department})`,
     html: jobApplicationAdminTemplate(name, email, jobTitle, department),
+    replyTo: email,
   })
 
   return userResult.success
