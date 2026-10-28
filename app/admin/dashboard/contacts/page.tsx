@@ -93,9 +93,16 @@ function messageSnippet(message: string, tokens: string[]) {
   return `${start > 0 ? '…' : ''}${message.slice(start, end).replace(/\s+/g, ' ')}${end < message.length ? '…' : ''}`
 }
 
+interface Counts {
+  status: Record<string, number>
+  source: Record<string, number>
+  allSources: number
+}
+
 export default function ContactsPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([])
   const [loading, setLoading] = useState(true)
+  const [fetching, setFetching] = useState(false)
   const [selectedSubmission, setSelectedSubmission] = useState<Submission | null>(null)
   const [noteText, setNoteText] = useState('')
   const [addingNote, setAddingNote] = useState(false)
@@ -103,16 +110,16 @@ export default function ContactsPage() {
   const [sourceFilter, setSourceFilter] = useState('all')
   const [searchInput, setSearchInput] = useState('')
   const [search, setSearch] = useState('')
-
-  useEffect(() => {
-    const t = setTimeout(() => setSearch(searchInput), 300)
-    return () => clearTimeout(t)
-  }, [searchInput])
   const [busyId, setBusyId] = useState<string | null>(null)
   const [refreshing, setRefreshing] = useState(false)
   const [error, setError] = useState('')
   const [page, setPage] = useState(1)
-  const lastFilterKey = useRef('all|all|')
+  const [pageReady, setPageReady] = useState(false)
+  const [total, setTotal] = useState(0)
+  const [totalPages, setTotalPages] = useState(1)
+  const [counts, setCounts] = useState<Counts>({ status: {}, source: {}, allSources: 0 })
+  const searchRef = useRef('')
+  const requestId = useRef(0)
 
   function readPageFromUrl() {
     const n = parseInt(new URLSearchParams(window.location.search).get('page') || '1', 10)
@@ -126,12 +133,41 @@ export default function ContactsPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  function resetPage() {
+    setPage(1)
+    window.history.replaceState(null, '', window.location.pathname)
+  }
+
+  function changeStatusFilter(value: string) {
+    if (value === filter) return
+    setFilter(value)
+    resetPage()
+  }
+
+  function changeSourceFilter(value: string) {
+    if (value === sourceFilter) return
+    setSourceFilter(value)
+    resetPage()
+  }
+
   useEffect(() => {
     setPage(readPageFromUrl())
+    setPageReady(true)
     const onPop = () => setPage(readPageFromUrl())
     window.addEventListener('popstate', onPop)
     return () => window.removeEventListener('popstate', onPop)
   }, [])
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      if (searchRef.current !== searchInput) {
+        searchRef.current = searchInput
+        setSearch(searchInput)
+        resetPage()
+      }
+    }, 300)
+    return () => clearTimeout(t)
+  }, [searchInput])
 
   useEffect(() => {
     document.body.style.overflow = selectedSubmission ? 'hidden' : ''
@@ -141,23 +177,26 @@ export default function ContactsPage() {
   }, [selectedSubmission])
 
   useEffect(() => {
+    if (!pageReady) return
     fetchSubmissions()
-  }, [])
-
-  useEffect(() => {
-    const key = `${filter}|${sourceFilter}|${search}`
-    if (lastFilterKey.current === key) return
-    lastFilterKey.current = key
-    setPage(1)
-    window.history.replaceState(null, '', window.location.pathname)
-  }, [filter, sourceFilter, search])
+  }, [pageReady, page, filter, sourceFilter, search])
 
   async function fetchSubmissions(isRefresh = false) {
+    const id = ++requestId.current
     if (isRefresh) setRefreshing(true)
+    else setFetching(true)
     setError('')
     try {
-      const res = await authFetch('/api/admin/contacts')
+      const params = new URLSearchParams({
+        page: String(page),
+        limit: String(PAGE_SIZE),
+        status: filter,
+        source: sourceFilter,
+        q: search,
+      })
+      const res = await authFetch(`/api/admin/contacts?${params.toString()}`)
       const data = await res.json()
+      if (id !== requestId.current) return
       if (data.success) {
         // Display-only: older partner-site enquiries were stored as "Brighto India"; recover the real site from the subject prefix.
         setSubmissions(
@@ -168,12 +207,22 @@ export default function ContactsPage() {
               : s
           })
         )
+        setTotal(data.total)
+        setTotalPages(data.totalPages)
+        setCounts(data.counts)
+        if (data.page !== page) {
+          setPage(data.page)
+          window.history.replaceState(null, '', `${window.location.pathname}${data.page > 1 ? `?page=${data.page}` : ''}`)
+        }
       } else setError(data.error || 'Failed to load enquiries')
     } catch {
-      setError('Network error while loading enquiries')
+      if (id === requestId.current) setError('Network error while loading enquiries')
     } finally {
-      setLoading(false)
-      setRefreshing(false)
+      if (id === requestId.current) {
+        setLoading(false)
+        setFetching(false)
+        setRefreshing(false)
+      }
     }
   }
 
@@ -188,6 +237,7 @@ export default function ContactsPage() {
       const data = await res.json()
       if (data.success) {
         setSubmissions(submissions.map(s => s.id === id ? { ...s, status } : s))
+        fetchSubmissions()
         if (selectedSubmission?.id === id) {
           setSelectedSubmission({ ...selectedSubmission, status })
         }
@@ -208,6 +258,7 @@ export default function ContactsPage() {
       const res = await authFetch(`/api/admin/contacts/${id}`, { method: 'DELETE' })
       if (!res.ok) throw new Error('delete failed')
       setSubmissions(submissions.filter(s => s.id !== id))
+      fetchSubmissions()
       if (selectedSubmission?.id === id) setSelectedSubmission(null)
     } catch {
       setError('Failed to delete enquiry')
@@ -266,46 +317,19 @@ export default function ContactsPage() {
   }
 
   const tokens = search.trim().split(/\s+/).filter(Boolean)
-  const filtered = submissions
-    .filter(s => filter === 'all' || s.status === filter)
-    .filter(s => sourceFilter === 'all' || normalizeSource(s.source) === sourceFilter)
-    .filter(s => {
-      if (tokens.length === 0) return true
-      const statusLabel = STATUS_OPTIONS.find(o => o.value === s.status)?.label || s.status
-      const haystack = [
-        s.name, s.email, s.phone || '', s.subject, s.message,
-        normalizeSource(s.source), statusLabel,
-        ...s.notes.map(n => n.content),
-      ].join('\n').toLowerCase()
-      const phoneDigits = (s.phone || '').replace(/\D/g, '')
-      return tokens.every(t => {
-        const lt = t.toLowerCase()
-        if (haystack.includes(lt)) return true
-        const d = t.replace(/\D/g, '')
-        return d.length >= 3 && phoneDigits.includes(d)
-      })
-    })
-
-  const statusCounts = submissions.reduce((acc, s) => {
-    acc[s.status] = (acc[s.status] || 0) + 1
-    return acc
-  }, {} as Record<string, number>)
-
-  const sourceCounts = submissions.reduce((acc, s) => {
-    const key = normalizeSource(s.source)
-    acc[key] = (acc[key] || 0) + 1
-    return acc
-  }, {} as Record<string, number>)
+  const statusCounts = counts.status
+  const sourceCounts = counts.source
+  const allStatusCount = Object.values(statusCounts).reduce((a, b) => a + b, 0)
+  const hasFilters = filter !== 'all' || sourceFilter !== 'all' || tokens.length > 0
 
   const sourceList = [
     ...KNOWN_SOURCES,
     ...Object.keys(sourceCounts).filter(k => !KNOWN_SOURCES.includes(k)),
   ]
 
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
-  const currentPage = Math.min(Math.max(page, 1), totalPages)
+  const currentPage = page
   const pageStart = (currentPage - 1) * PAGE_SIZE
-  const pageItems = filtered.slice(pageStart, pageStart + PAGE_SIZE)
+  const pageItems = submissions
 
   const pageNumbers: (number | '...')[] = []
   for (let p = 1; p <= totalPages; p++) {
@@ -319,8 +343,7 @@ export default function ContactsPage() {
         <div>
           <h1 className="text-2xl font-semibold text-zinc-900">Contacts</h1>
           <p className="text-sm text-zinc-500 mt-0.5">
-            {submissions.length} total enquiries across all websites
-            {filtered.length !== submissions.length && ` · showing ${filtered.length}`}
+            {total} {hasFilters ? "matching" : "total"} enquiries across all websites
           </p>
         </div>
         <button
@@ -344,17 +367,17 @@ export default function ContactsPage() {
         <p className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider mb-2">Website</p>
         <div className="flex flex-wrap gap-2">
           <button
-            onClick={() => setSourceFilter('all')}
+            onClick={() => changeSourceFilter('all')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
               sourceFilter === 'all' ? 'bg-zinc-950 text-white border-zinc-950' : 'bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50'
             }`}
           >
-            All Websites ({submissions.length})
+            All Websites ({counts.allSources})
           </button>
           {sourceList.map(src => (
             <button
               key={src}
-              onClick={() => setSourceFilter(src)}
+              onClick={() => changeSourceFilter(src)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                 sourceFilter === src ? 'bg-zinc-950 text-white border-zinc-950' : `${sourceColor(src)} hover:opacity-80`
               }`}
@@ -387,17 +410,17 @@ export default function ContactsPage() {
         </div>
         <div className="flex flex-wrap gap-1.5">
           <button
-            onClick={() => setFilter('all')}
+            onClick={() => changeStatusFilter('all')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
               filter === 'all' ? 'bg-zinc-950 text-white' : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
             }`}
           >
-            All ({submissions.length})
+            All ({allStatusCount})
           </button>
           {STATUS_OPTIONS.map(opt => (
             <button
               key={opt.value}
-              onClick={() => setFilter(opt.value)}
+              onClick={() => changeStatusFilter(opt.value)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                 filter === opt.value ? 'bg-zinc-950 text-white' : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
               }`}
@@ -413,13 +436,13 @@ export default function ContactsPage() {
           <div className="w-5 h-5 border-2 border-zinc-300 border-t-zinc-600 rounded-full animate-spin mr-2" />
           Loading...
         </div>
-      ) : filtered.length === 0 ? (
+      ) : submissions.length === 0 ? (
         <div className="bg-white rounded-xl border border-zinc-200 py-20 text-center">
           <IconMessage className="w-10 h-10 text-zinc-300 mx-auto mb-3" />
           <p className="text-zinc-500 text-sm">{search || filter !== 'all' || sourceFilter !== 'all' ? 'No enquiries match your filters' : 'No contact submissions yet'}</p>
         </div>
       ) : (
-        <div className="bg-white rounded-xl border border-zinc-200 overflow-x-auto">
+        <div className={`bg-white rounded-xl border border-zinc-200 overflow-x-auto transition-opacity ${fetching ? "opacity-60 pointer-events-none" : ""}`}>
           <table className="w-full min-w-[900px]">
             <thead>
               <tr className="border-b border-zinc-100">
@@ -514,7 +537,7 @@ export default function ContactsPage() {
           {totalPages > 1 && (
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-zinc-100 px-5 py-3 sticky left-0">
               <p className="text-xs text-zinc-500">
-                Showing {pageStart + 1}–{Math.min(pageStart + PAGE_SIZE, filtered.length)} of {filtered.length}
+                Showing {pageStart + 1}–{Math.min(pageStart + PAGE_SIZE, total)} of {total}
               </p>
               <div className="flex items-center gap-1">
                 <button
