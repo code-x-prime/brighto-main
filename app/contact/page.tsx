@@ -19,6 +19,7 @@ const SERVICES = [
   'Document Verification',
   'Fraud Risk Assessment',
   'Credit Appraisal Support',
+  'Job Enquiry',
   'Other / General Enquiry',
 ]
 
