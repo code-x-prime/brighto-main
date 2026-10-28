@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { IconTrash, IconEye, IconMail, IconMailOpened, IconClock, IconCircleCheck, IconCircleX, IconX, IconMessage, IconSearch, IconUser } from '@tabler/icons-react'
 import { authFetch } from '@/lib/auth-client'
 
@@ -61,6 +61,8 @@ const STATUS_OPTIONS = [
   { value: 'closed', label: 'Closed', icon: IconCircleX, color: 'bg-zinc-100 text-zinc-500 border-zinc-200' },
 ]
 
+const PAGE_SIZE = 30
+
 export default function ContactsPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([])
   const [loading, setLoading] = useState(true)
@@ -73,10 +75,46 @@ export default function ContactsPage() {
   const [busyId, setBusyId] = useState<string | null>(null)
   const [refreshing, setRefreshing] = useState(false)
   const [error, setError] = useState('')
+  const [page, setPage] = useState(1)
+  const lastFilterKey = useRef('all|all|')
+
+  function readPageFromUrl() {
+    const n = parseInt(new URLSearchParams(window.location.search).get('page') || '1', 10)
+    return Number.isFinite(n) && n > 0 ? n : 1
+  }
+
+  function goToPage(p: number) {
+    setPage(p)
+    const url = `${window.location.pathname}${p > 1 ? `?page=${p}` : ''}`
+    window.history.pushState(null, '', url)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    setPage(readPageFromUrl())
+    const onPop = () => setPage(readPageFromUrl())
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = selectedSubmission ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [selectedSubmission])
 
   useEffect(() => {
     fetchSubmissions()
   }, [])
+
+  useEffect(() => {
+    const key = `${filter}|${sourceFilter}|${search}`
+    if (lastFilterKey.current === key) return
+    lastFilterKey.current = key
+    setPage(1)
+    window.history.replaceState(null, '', window.location.pathname)
+  }, [filter, sourceFilter, search])
 
   async function fetchSubmissions(isRefresh = false) {
     if (isRefresh) setRefreshing(true)
@@ -220,6 +258,17 @@ export default function ContactsPage() {
     ...Object.keys(sourceCounts).filter(k => !KNOWN_SOURCES.includes(k)),
   ]
 
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+  const currentPage = Math.min(Math.max(page, 1), totalPages)
+  const pageStart = (currentPage - 1) * PAGE_SIZE
+  const pageItems = filtered.slice(pageStart, pageStart + PAGE_SIZE)
+
+  const pageNumbers: (number | '...')[] = []
+  for (let p = 1; p <= totalPages; p++) {
+    if (p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1) pageNumbers.push(p)
+    else if (pageNumbers[pageNumbers.length - 1] !== '...') pageNumbers.push('...')
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -331,7 +380,7 @@ export default function ContactsPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(sub => {
+              {pageItems.map(sub => {
                 const statusOpt = STATUS_OPTIONS.find(s => s.value === sub.status) || STATUS_OPTIONS[0]
                 return (
                   <tr key={sub.id} className="border-b border-zinc-50 last:border-0 hover:bg-zinc-50/50 transition-colors">
@@ -401,6 +450,44 @@ export default function ContactsPage() {
               })}
             </tbody>
           </table>
+          {totalPages > 1 && (
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-zinc-100 px-5 py-3 sticky left-0">
+              <p className="text-xs text-zinc-500">
+                Showing {pageStart + 1}–{Math.min(pageStart + PAGE_SIZE, filtered.length)} of {filtered.length}
+              </p>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => goToPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-100 text-zinc-600 hover:bg-zinc-200 disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  Previous
+                </button>
+                {pageNumbers.map((p, i) =>
+                  p === '...' ? (
+                    <span key={`dots-${i}`} className="px-1.5 text-xs text-zinc-400">…</span>
+                  ) : (
+                    <button
+                      key={p}
+                      onClick={() => goToPage(p)}
+                      className={`min-w-8 px-2.5 py-1.5 rounded-lg text-xs font-medium ${
+                        p === currentPage ? 'bg-zinc-950 text-white' : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
+                      }`}
+                    >
+                      {p}
+                    </button>
+                  )
+                )}
+                <button
+                  onClick={() => goToPage(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-100 text-zinc-600 hover:bg-zinc-200 disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -423,7 +510,7 @@ export default function ContactsPage() {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 space-y-5">
+            <div className="flex-1 overflow-y-auto overscroll-contain p-6 space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="bg-zinc-50 rounded-lg p-3">
                   <p className="text-[11px] text-zinc-500 uppercase tracking-wider mb-1">Phone</p>
