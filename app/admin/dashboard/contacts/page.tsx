@@ -63,6 +63,36 @@ const STATUS_OPTIONS = [
 
 const PAGE_SIZE = 30
 
+function escapeRegExp(s: string) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function Highlight({ text, tokens }: { text: string; tokens: string[] }) {
+  if (!text || tokens.length === 0) return <>{text}</>
+  const parts = text.split(new RegExp(`(${tokens.map(escapeRegExp).join('|')})`, 'gi'))
+  const lower = tokens.map(t => t.toLowerCase())
+  return (
+    <>
+      {parts.map((part, i) =>
+        lower.includes(part.toLowerCase()) ? (
+          <mark key={i} className="bg-yellow-200 text-zinc-900 rounded-sm px-0.5">{part}</mark>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </>
+  )
+}
+
+function messageSnippet(message: string, tokens: string[]) {
+  const lower = message.toLowerCase()
+  const idx = tokens.map(t => lower.indexOf(t.toLowerCase())).filter(i => i >= 0).sort((a, b) => a - b)[0]
+  if (idx === undefined) return null
+  const start = Math.max(0, idx - 25)
+  const end = Math.min(message.length, idx + 60)
+  return `${start > 0 ? '…' : ''}${message.slice(start, end).replace(/\s+/g, ' ')}${end < message.length ? '…' : ''}`
+}
+
 export default function ContactsPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([])
   const [loading, setLoading] = useState(true)
@@ -71,7 +101,13 @@ export default function ContactsPage() {
   const [addingNote, setAddingNote] = useState(false)
   const [filter, setFilter] = useState('all')
   const [sourceFilter, setSourceFilter] = useState('all')
+  const [searchInput, setSearchInput] = useState('')
   const [search, setSearch] = useState('')
+
+  useEffect(() => {
+    const t = setTimeout(() => setSearch(searchInput), 300)
+    return () => clearTimeout(t)
+  }, [searchInput])
   const [busyId, setBusyId] = useState<string | null>(null)
   const [refreshing, setRefreshing] = useState(false)
   const [error, setError] = useState('')
@@ -229,18 +265,26 @@ export default function ContactsPage() {
     }
   }
 
-  const q = search.trim().toLowerCase()
+  const tokens = search.trim().split(/\s+/).filter(Boolean)
   const filtered = submissions
     .filter(s => filter === 'all' || s.status === filter)
     .filter(s => sourceFilter === 'all' || normalizeSource(s.source) === sourceFilter)
-    .filter(s =>
-      !q ||
-      s.name.toLowerCase().includes(q) ||
-      s.email.toLowerCase().includes(q) ||
-      s.subject.toLowerCase().includes(q) ||
-      s.message.toLowerCase().includes(q) ||
-      (s.phone || '').toLowerCase().includes(q)
-    )
+    .filter(s => {
+      if (tokens.length === 0) return true
+      const statusLabel = STATUS_OPTIONS.find(o => o.value === s.status)?.label || s.status
+      const haystack = [
+        s.name, s.email, s.phone || '', s.subject, s.message,
+        normalizeSource(s.source), statusLabel,
+        ...s.notes.map(n => n.content),
+      ].join('\n').toLowerCase()
+      const phoneDigits = (s.phone || '').replace(/\D/g, '')
+      return tokens.every(t => {
+        const lt = t.toLowerCase()
+        if (haystack.includes(lt)) return true
+        const d = t.replace(/\D/g, '')
+        return d.length >= 3 && phoneDigits.includes(d)
+      })
+    })
 
   const statusCounts = submissions.reduce((acc, s) => {
     acc[s.status] = (acc[s.status] || 0) + 1
@@ -326,11 +370,20 @@ export default function ContactsPage() {
           <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <input
             type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
             placeholder="Search name, email, phone, message..."
-            className="w-full pl-9 pr-3 py-2 border border-zinc-200 rounded-lg text-sm focus:ring-2 focus:ring-zinc-950/10 focus:border-zinc-400 outline-none transition-all"
+            className="w-full pl-9 pr-8 py-2 border border-zinc-200 rounded-lg text-sm focus:ring-2 focus:ring-zinc-950/10 focus:border-zinc-400 outline-none transition-all"
           />
+          {searchInput && (
+            <button
+              onClick={() => { setSearchInput(''); setSearch('') }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-zinc-400 hover:text-zinc-600"
+              aria-label="Clear search"
+            >
+              <IconX className="w-3.5 h-3.5" />
+            </button>
+          )}
         </div>
         <div className="flex flex-wrap gap-1.5">
           <button
@@ -390,8 +443,9 @@ export default function ContactsPage() {
                           <IconUser className="w-4 h-4 text-zinc-500" />
                         </div>
                         <div>
-                          <div className="font-medium text-zinc-900 text-sm">{sub.name}</div>
-                          <div className="text-xs text-zinc-500">{sub.email}</div>
+                          <div className="font-medium text-zinc-900 text-sm"><Highlight text={sub.name} tokens={tokens} /></div>
+                          <div className="text-xs text-zinc-500"><Highlight text={sub.email} tokens={tokens} /></div>
+                          {sub.phone && <div className="text-xs text-zinc-500"><Highlight text={sub.phone} tokens={tokens} /></div>}
                         </div>
                       </div>
                     </td>
@@ -400,7 +454,14 @@ export default function ContactsPage() {
                         {normalizeSource(sub.source)}
                       </span>
                     </td>
-                    <td className="px-5 py-3.5 text-sm text-zinc-600 max-w-[200px] truncate">{sub.subject}</td>
+                    <td className="px-5 py-3.5 text-sm text-zinc-600 max-w-[200px]">
+                      <div className="truncate"><Highlight text={sub.subject} tokens={tokens} /></div>
+                      {tokens.length > 0 && messageSnippet(sub.message, tokens) && (
+                        <div className="mt-0.5 text-xs text-zinc-400 line-clamp-2 whitespace-normal">
+                          <Highlight text={messageSnippet(sub.message, tokens) as string} tokens={tokens} />
+                        </div>
+                      )}
+                    </td>
                     <td className="px-5 py-3.5">
                       <select
                         value={sub.status}
@@ -501,8 +562,8 @@ export default function ContactsPage() {
                   <IconUser className="w-5 h-5 text-zinc-500" />
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold text-zinc-900">{selectedSubmission.name}</h3>
-                  <p className="text-xs text-zinc-500">{selectedSubmission.email}</p>
+                  <h3 className="text-base font-semibold text-zinc-900"><Highlight text={selectedSubmission.name} tokens={tokens} /></h3>
+                  <p className="text-xs text-zinc-500"><Highlight text={selectedSubmission.email} tokens={tokens} /></p>
                 </div>
               </div>
               <button onClick={() => setSelectedSubmission(null)} className="p-1.5 hover:bg-zinc-100 rounded-lg">
@@ -514,7 +575,7 @@ export default function ContactsPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="bg-zinc-50 rounded-lg p-3">
                   <p className="text-[11px] text-zinc-500 uppercase tracking-wider mb-1">Phone</p>
-                  <p className="text-sm font-medium text-zinc-900">{selectedSubmission.phone || 'N/A'}</p>
+                  <p className="text-sm font-medium text-zinc-900">{selectedSubmission.phone ? <Highlight text={selectedSubmission.phone} tokens={tokens} /> : 'N/A'}</p>
                 </div>
                 <div className="bg-zinc-50 rounded-lg p-3">
                   <p className="text-[11px] text-zinc-500 uppercase tracking-wider mb-1">Source</p>
@@ -532,12 +593,12 @@ export default function ContactsPage() {
 
               <div>
                 <p className="text-[11px] text-zinc-500 uppercase tracking-wider mb-1.5">Subject</p>
-                <p className="text-sm font-medium text-zinc-900">{selectedSubmission.subject}</p>
+                <p className="text-sm font-medium text-zinc-900"><Highlight text={selectedSubmission.subject} tokens={tokens} /></p>
               </div>
               <div>
                 <p className="text-[11px] text-zinc-500 uppercase tracking-wider mb-1.5">Message</p>
                 <div className="bg-zinc-50 rounded-lg p-4 text-sm text-zinc-700 leading-relaxed whitespace-pre-wrap">
-                  {selectedSubmission.message}
+                  <Highlight text={selectedSubmission.message} tokens={tokens} />
                 </div>
               </div>
 
