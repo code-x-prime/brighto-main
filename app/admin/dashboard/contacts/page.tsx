@@ -84,8 +84,17 @@ export default function ContactsPage() {
     try {
       const res = await authFetch('/api/admin/contacts')
       const data = await res.json()
-      if (data.success) setSubmissions(data.submissions)
-      else setError(data.error || 'Failed to load enquiries')
+      if (data.success) {
+        // Display-only: older partner-site enquiries were stored as "Brighto India"; recover the real site from the subject prefix.
+        setSubmissions(
+          data.submissions.map((s: Submission) => {
+            const m = s.subject.trim().match(/^\[(hubcheck|truering|credi-?scout|credify)/i)
+            return normalizeSource(s.source) === 'Brighto India' && m
+              ? { ...s, source: normalizeSource(m[1]) }
+              : s
+          })
+        )
+      } else setError(data.error || 'Failed to load enquiries')
     } catch {
       setError('Network error while loading enquiries')
     } finally {

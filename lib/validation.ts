@@ -14,6 +14,16 @@ const CANONICAL_SOURCES: Record<string, string> = {
 
 export const canonicalSource = (s: string) => CANONICAL_SOURCES[s.trim().toLowerCase()] || s.trim()
 
+const SUBJECT_SOURCE = /^\[(hubcheck|truering|credi-?scout|credify)/i
+
+// Partner sites that did not send `source` fall back to "Brighto India"; their subjects start with "[SiteName]".
+export function resolveSource(source: string, subject: string) {
+  const canonical = canonicalSource(source)
+  if (canonical !== 'Brighto India') return canonical
+  const match = subject.trim().match(SUBJECT_SOURCE)
+  return match ? canonicalSource(match[1]) : canonical
+}
+
 export const contactFormSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100).transform(sanitize),
   email: z.string().email('Invalid email address').max(255).transform(sanitize),

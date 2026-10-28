@@ -63,7 +63,12 @@ export async function POST(request: NextRequest) {
 
     const folder = process.env.UPLOAD_FOLDER || 'resumes'
     const safeName = name.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 50)
-    const ext = resume.name.split('.').pop() || 'pdf'
+    const ext =
+      resume.type === 'application/pdf'
+        ? 'pdf'
+        : resume.type === 'application/msword'
+          ? 'doc'
+          : 'docx'
     const fileName = `${folder}/${jobId}/${Date.now()}-${safeName}.${ext}`
     const { url, key } = await uploadToR2(resume, fileName)
 

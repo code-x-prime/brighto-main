@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { sendContactEmails } from '@/lib/email'
-import { contactFormSchema } from '@/lib/validation'
+import { contactFormSchema, resolveSource } from '@/lib/validation'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function POST(request: NextRequest) {
@@ -24,7 +24,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { name, email, phone, subject, message, website, source } = parsed.data
+    const { name, email, phone, subject, message, website } = parsed.data
+    const source = resolveSource(parsed.data.source, subject)
 
     if (website) {
       return NextResponse.json({ success: true })

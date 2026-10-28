@@ -37,6 +37,9 @@ export async function PUT(request: NextRequest) {
 
   try {
     const body = await request.json()
+    if (typeof body.id !== 'string' || !['pending', 'reviewing', 'shortlisted', 'rejected'].includes(body.status)) {
+      return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
+    }
     const application = await prisma.jobApplication.update({
       where: { id: body.id },
       data: { status: body.status },
