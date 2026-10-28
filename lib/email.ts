@@ -52,7 +52,7 @@ const SERVICE_SUBJECTS = [
 
 export function getEnquiryType(subject: string): EnquiryType {
   const s = subject.trim().toLowerCase()
-  if (s === 'job enquiry') return 'job'
+  if (s === 'job enquiry' || s.endsWith('inquiry for job enquiry')) return 'job'
   if (SERVICE_SUBJECTS.includes(s)) return 'service'
   return 'general'
 }
