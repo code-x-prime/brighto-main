@@ -79,6 +79,7 @@ export default function ContactPage() {
   const [form, setForm] = useState({
     name: '', company: '', email: '', phone: '', service: '', message: '', consent: false, website: '',
   })
+  const isJobEnquiry = form.service === 'Job Enquiry'
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [emailStatus, setEmailStatus] = useState<'sent' | 'failed' | null>(null)
@@ -103,7 +104,9 @@ export default function ContactPage() {
           email: form.email,
           phone: form.phone,
           subject: form.service || 'General Enquiry',
-          message: `Company: ${form.company}\n\n${form.message}`,
+          message: isJobEnquiry
+            ? `Job Enquiry\nCurrent Organization: ${form.company || 'Not specified'}\n\n${form.message}`
+            : `Company: ${form.company}\n\n${form.message}`,
           consent: form.consent ? 'true' : '',
           website: form.website,
         }),
@@ -246,7 +249,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-slate-700 uppercase tracking-widest mb-1.5">
-                        Company / Organization
+                        {isJobEnquiry ? 'Current Organization' : 'Company / Organization'}
                       </label>
                       <input
                         name="company"
@@ -307,6 +310,12 @@ export default function ContactPage() {
                         <option key={s} value={s}>{s}</option>
                       ))}
                     </select>
+                    {isJobEnquiry && (
+                      <p className="mt-2 text-xs text-slate-500">
+                        This enquiry will be routed to our HR team. To apply with your resume, visit our{' '}
+                        <a href="/career" className="text-blue-900 font-semibold hover:underline">Careers page</a>.
+                      </p>
+                    )}
                   </div>
 
                   {/* Message */}
@@ -320,7 +329,11 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      placeholder="Describe your verification or assessment requirements, volumes, geography, timelines..."
+                      placeholder={
+                        isJobEnquiry
+                          ? 'Tell us the role or department you are interested in, your experience, and your preferred location...'
+                          : 'Describe your verification or assessment requirements, volumes, geography, timelines...'
+                      }
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 transition-colors resize-none"
                     />
                   </div>

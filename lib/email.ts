@@ -37,6 +37,32 @@ export async function sendEmail({ to, subject, html, replyTo }: SendEmailOptions
   }
 }
 
+export type EnquiryType = 'job' | 'service' | 'general'
+
+const SERVICE_SUBJECTS = [
+  'due diligence services',
+  'loan application verification',
+  'field investigation (fi)',
+  'contact point verification (cpv)',
+  'rcu support',
+  'document verification',
+  'fraud risk assessment',
+  'credit appraisal support',
+]
+
+export function getEnquiryType(subject: string): EnquiryType {
+  const s = subject.trim().toLowerCase()
+  if (s === 'job enquiry') return 'job'
+  if (SERVICE_SUBJECTS.includes(s)) return 'service'
+  return 'general'
+}
+
+const ENQUIRY_LABELS: Record<EnquiryType, { label: string; team: string }> = {
+  job: { label: 'Job Enquiry', team: 'HR / Recruitment' },
+  service: { label: 'Service Enquiry', team: 'Business / Services' },
+  general: { label: 'General Enquiry', team: 'Support' },
+}
+
 export async function sendContactEmails(data: {
   name: string
   email: string
@@ -46,17 +72,18 @@ export async function sendContactEmails(data: {
   source?: string
 }) {
   const { name, email, subject, message, phone, source } = data
+  const type = getEnquiryType(subject)
 
   await sendEmail({
     to: email,
     subject: `Thank you for contacting Brighto India - ${subject}`,
-    html: contactThankYouTemplate(name),
+    html: contactThankYouTemplate(name, type, subject),
   })
 
   const adminResult = await sendEmail({
     to: SUPPORT_EMAIL,
-    subject: `New Contact [${source || 'Brighto India'}]: ${subject}`,
-    html: adminNotificationTemplate(name, email, subject, message, phone, source),
+    subject: `New ${ENQUIRY_LABELS[type].label} [${source || 'Brighto India'}]: ${subject}`,
+    html: adminNotificationTemplate(name, email, subject, message, phone, source, type),
     replyTo: email,
   })
 
@@ -91,8 +118,19 @@ export async function sendJobApplicationEmails(data: {
 
 // ==================== TEMPLATES ====================
 
-export function contactThankYouTemplate(name: string) {
+export function contactThankYouTemplate(name: string, type: EnquiryType = 'general', subject = '') {
   const safeName = escapeHtml(name)
+  const safeSubject = escapeHtml(subject)
+  const intro =
+    type === 'job'
+      ? "Thank you for your interest in building a career with Brighto India! We've received your job enquiry and our HR team will review it and get back to you shortly."
+      : type === 'service'
+        ? `Thank you for your interest in our ${safeSubject} service! We've received your enquiry and our business team will get back to you shortly.`
+        : "Thank you for reaching out to us! We've received your message and our team will get back to you shortly."
+  const outro =
+    type === 'job'
+      ? 'To apply for an open position with your resume, please visit the Careers page at www.brightoindia.com/career.'
+      : 'In the meantime, feel free to explore our services or reach out to us directly.'
   return `
     <!DOCTYPE html>
     <html>
@@ -121,13 +159,13 @@ export function contactThankYouTemplate(name: string) {
         <div class="content">
           <p class="greeting">Hi ${safeName},</p>
           <p class="message">
-            Thank you for reaching out to us! We've received your message and our team will get back to you shortly.
+            ${intro}
           </p>
           <div class="highlight">
             <p>Our team typically responds within 24 working hours.</p>
           </div>
           <p class="message">
-            In the meantime, feel free to explore our services or reach out to us directly.
+            ${outro}
           </p>
           <p class="message">
             Best regards,<br>
@@ -150,8 +188,12 @@ export function adminNotificationTemplate(
   subject: string,
   message: string,
   phone?: string | null,
-  source?: string
+  source?: string,
+  type: EnquiryType = 'general'
 ) {
+  const { label, team } = ENQUIRY_LABELS[type]
+  const headerGradient =
+    type === 'job' ? '#7c3aed 0%, #6d28d9 100%' : type === 'service' ? '#091C8C 0%, #1e40af 100%' : '#f97316 0%, #ea580c 100%'
   const safePhone = escapeHtml(phone || 'Not provided')
   const safeSource = escapeHtml(source || 'Brighto India')
   const safeName = escapeHtml(name)
@@ -165,7 +207,7 @@ export function adminNotificationTemplate(
       <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f8fafc; }
         .container { max-width: 600px; margin: 0 auto; background: white; }
-        .header { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); padding: 30px; text-align: center; }
+        .header { background: linear-gradient(135deg, ${headerGradient}); padding: 30px; text-align: center; }
         .header h1 { color: white; margin: 0; font-size: 20px; }
         .content { padding: 30px; }
         .field { margin-bottom: 15px; }
@@ -179,12 +221,16 @@ export function adminNotificationTemplate(
     <body>
       <div class="container">
         <div class="header">
-          <h1>New Contact Submission</h1>
+          <h1>New ${label}</h1>
         </div>
         <div class="content">
           <div class="field">
             <div class="label">Name</div>
             <div class="value">${safeName}</div>
+          </div>
+          <div class="field">
+            <div class="label">Enquiry Type / Route To</div>
+            <div class="value"><strong>${label}</strong> &rarr; ${team} team</div>
           </div>
           <div class="field">
             <div class="label">Source Website</div>
