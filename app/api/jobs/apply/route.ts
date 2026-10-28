@@ -60,6 +60,9 @@ export async function POST(request: NextRequest) {
     if (!job) {
       return NextResponse.json({ error: 'Job not found' }, { status: 404 })
     }
+    if (!job.isActive) {
+      return NextResponse.json({ error: 'This position is no longer accepting applications' }, { status: 400 })
+    }
 
     const folder = process.env.UPLOAD_FOLDER || 'resumes'
     const safeName = name.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 50)
